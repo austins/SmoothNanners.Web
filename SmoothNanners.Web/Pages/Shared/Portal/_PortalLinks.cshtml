@@ -1,0 +1,24 @@
+@model IList<SmoothNanners.Web.Models.Portal.PortalLink>
+
+<div class="space-y-3">
+    @foreach (var link in Model)
+    {
+        var bgColorClass = link.BackgroundVariant switch
+        {
+            ColorVariant.Indigo => "bg-indigo-600",
+            ColorVariant.Purple => "bg-purple-600",
+            ColorVariant.Rose => "bg-rose-600",
+            ColorVariant.Sky => "bg-sky-600",
+            _ => throw new ArgumentOutOfRangeException()
+        };
+
+        <a
+            href="@link.Url"
+            target="_blank"
+            rel="noreferrer"
+            class="flex items-center rounded-md px-3 py-2 hover:brightness-[0.85] active:brightness-[0.85] @bgColorClass">
+            <svg bootstrap-icon="@link.Icon" class="mr-2"></svg>
+            <span>@link.Text</span>
+        </a>
+    }
+</div>

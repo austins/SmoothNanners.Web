@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmoothNanners.Web", "SmoothNanners.Web\SmoothNanners.Web.csproj", "{727EE1DD-F621-4004-8ECA-36F3467BCD51}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{054C8FE5-C706-40EE-9FC1-A1BF21E097B9}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		Directory.Build.props = Directory.Build.props
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{9EF876F1-45B4-424D-93E2-6EE45373C83E}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{28BCA48C-0D57-49CF-A0A9-22DCC4F608B4}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\codeql.yml = .github\workflows\codeql.yml
+		.github\workflows\deploy.yml = .github\workflows\deploy.yml
+		.github\workflows\test.yml = .github\workflows\test.yml
+		.github\workflows\pr.yml = .github\workflows\pr.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmoothNanners.Web.Tests.E2E", "SmoothNanners.Web.Tests.E2E\SmoothNanners.Web.Tests.E2E.csproj", "{1D884221-C41B-412B-B60E-2898FB941347}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{727EE1DD-F621-4004-8ECA-36F3467BCD51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{727EE1DD-F621-4004-8ECA-36F3467BCD51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{727EE1DD-F621-4004-8ECA-36F3467BCD51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{727EE1DD-F621-4004-8ECA-36F3467BCD51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D884221-C41B-412B-B60E-2898FB941347}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D884221-C41B-412B-B60E-2898FB941347}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D884221-C41B-412B-B60E-2898FB941347}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D884221-C41B-412B-B60E-2898FB941347}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9EF876F1-45B4-424D-93E2-6EE45373C83E} = {054C8FE5-C706-40EE-9FC1-A1BF21E097B9}
+		{28BCA48C-0D57-49CF-A0A9-22DCC4F608B4} = {9EF876F1-45B4-424D-93E2-6EE45373C83E}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    h1 {
+        @apply mb-3.5 text-4xl sm:mb-4 sm:text-5xl;
+    }
+
+    h2 {
+        @apply mb-2 text-2xl sm:mb-3 sm:text-3xl;
+    }
+
+    h3 {
+        @apply mb-1 text-xl sm:mb-2 sm:text-2xl;
+    }
+
+    p {
+        @apply pb-3 last:pb-0;
+    }
+}

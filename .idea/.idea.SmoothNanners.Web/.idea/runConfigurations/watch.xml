@@ -1,0 +1,12 @@
+﻿<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="watch" type="RunDotNetWatch" factoryName="RunDotNetWatch">
+    <option name="exePath" value="$PROJECT_DIR$/SmoothNanners.Web/bin/Debug/net8.0/SmoothNanners.Web.exe" />
+    <option name="programParameters" value="" />
+    <option name="projectFilePath" value="$PROJECT_DIR$/SmoothNanners.Web/SmoothNanners.Web.csproj" />
+    <option name="projectTfm" value="net8.0" />
+    <option name="restartOnRudeEditEditor" value="true" />
+    <option name="watchParameters" value="" />
+    <option name="workingDirectory" value="$PROJECT_DIR$/SmoothNanners.Web" />
+    <method v="2" />
+  </configuration>
+</component>

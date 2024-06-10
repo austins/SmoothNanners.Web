@@ -1,0 +1,14 @@
+version: 2
+updates:
+    -   package-ecosystem: "nuget"
+        directory: "/"
+        schedule:
+            interval: "daily"
+            time: "06:30"
+            timezone: "America/Los_Angeles"
+    -   package-ecosystem: "npm"
+        directory: "/SmoothNanners.Web"
+        schedule:
+            interval: "daily"
+            time: "06:30"
+            timezone: "America/Los_Angeles"

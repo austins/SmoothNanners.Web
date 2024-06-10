@@ -1,0 +1,31 @@
+﻿@page
+@model IndexModel
+
+<section class="mb-4">
+    <div class="min-[386px]:flex">
+        <div class="mb-3 min-[386px]:mb-0 min-[386px]:mr-4">
+            <img src="@Url.Content("~/images/avatar.jpg")" alt="SmoothNanners" width="171.35" height="171.35" class="rounded-md"/>
+        </div>
+
+        <div class="text-[0.95em]">
+            <p>Howdy! My name is Austin.</p>
+
+            <p>I'm a gamer, musician, software engineer, and photographer.</p>
+
+            <p>You can find links to my content and websites below!</p>
+        </div>
+    </div>
+</section>
+
+<div class="grid gap-4 sm:grid-cols-2">
+    <div>
+        <partial name="Shared/Portal/_PortalSection" model="@PortalConstants.MusicSection"/>
+    </div>
+
+    <div class="space-y-4">
+        @foreach (var section in PortalConstants.RightColumnSections)
+        {
+            <partial name="Shared/Portal/_PortalSection" model="section"/>
+        }
+    </div>
+</div>

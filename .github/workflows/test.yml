@@ -1,0 +1,41 @@
+name: Test
+
+on:
+    workflow_call:
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v4
+            -   name: Set up .NET Core SDK
+                uses: actions/setup-dotnet@v3
+                with:
+                    dotnet-version: '8.0.x'
+            -   name: Setup Node
+                uses: actions/setup-node@v4
+                with:
+                    node-version: lts/*
+            -   name: Install pnpm
+                uses: pnpm/action-setup@v3
+                with:
+                    version: latest
+                    run_install: false
+            -   name: Get pnpm store directory
+                shell: bash
+                run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+            -   name: Setup pnpm cache
+                uses: actions/cache@v4
+                with:
+                    path: |
+                        ${{ env.STORE_PATH }}
+                        ./.next/cache
+                    key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**/*.js') }}
+                    restore-keys: ${{ runner.os }}-pnpm-store-
+            -   name: Build
+                run: dotnet build
+            -   name: Setup Playwright
+                run: pwsh ./SmoothNanners.Web.Tests.E2E/bin/Debug/net8.0/playwright.ps1 install --with-deps chromium
+            -   name: Test
+                run: dotnet test --no-build --verbosity normal

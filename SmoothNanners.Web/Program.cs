@@ -1,16 +1,8 @@
 using AspNetStatic;
 using SmoothNanners.Web.Extensions;
-using SmoothNanners.Web.Vite;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Logging.AddSimpleConsole(o => o.TimestampFormat = "HH:mm:ss.fff ");
-
-builder
-    .Services
-    .AddOptions<ViteOptions>()
-    .Bind(builder.Configuration.GetRequiredSection(ViteOptions.SectionName))
-    .ValidateDataAnnotations()
-    .ValidateOnStart();
 
 builder.Services.AddRazorPages();
 

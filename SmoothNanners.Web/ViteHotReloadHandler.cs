@@ -1,11 +1,11 @@
 ﻿#if DEBUG
 using System.Diagnostics;
 using System.Reflection.Metadata;
-using SmoothNanners.Web.Vite;
+using SmoothNanners.Web;
 
 [assembly: MetadataUpdateHandler(typeof(ViteHotReloadHandler))]
 
-namespace SmoothNanners.Web.Vite;
+namespace SmoothNanners.Web;
 
 /// <summary>
 /// Handler for hot reload to run Vite build whenever there is a file change when using dotnet watch.

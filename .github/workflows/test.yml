@@ -28,14 +28,12 @@ jobs:
             -   name: Setup pnpm cache
                 uses: actions/cache@v4
                 with:
-                    path: |
-                        ${{ env.STORE_PATH }}
-                        ./.next/cache
+                    path: ${{ env.STORE_PATH }}
                     key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**/*.js') }}
                     restore-keys: ${{ runner.os }}-pnpm-store-
             -   name: Build
                 run: dotnet build
             -   name: Setup Playwright
-                run: pwsh ./SmoothNanners.Web.Tests.E2E/bin/Debug/net8.0/playwright.ps1 install --with-deps chromium
+                run: pwsh ./tests/SmoothNanners.Web.Tests.E2E/bin/Debug/net8.0/playwright.ps1 install --with-deps chromium
             -   name: Test
                 run: dotnet test --no-build --verbosity normal

@@ -39,17 +39,15 @@ jobs:
             -   name: Setup pnpm cache
                 uses: actions/cache@v4
                 with:
-                    path: |
-                        ${{ env.STORE_PATH }}
-                        ./.next/cache
+                    path: ${{ env.STORE_PATH }}
                     key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**/*.js') }}
                     restore-keys: ${{ runner.os }}-pnpm-store-
             -   name: Build & generate static pages
-                run: dotnet run --project SmoothNanners.Web -c Release --launch-profile ssg
+                run: dotnet run --project ./src/SmoothNanners.Web -c Release --launch-profile ssg
             -   name: Upload GitHub Pages artifact
                 uses: actions/upload-pages-artifact@v3
                 with:
-                    path: ./SmoothNanners.Web/bin/ssg
+                    path: ./src/SmoothNanners.Web/bin/ssg
     deploy:
         needs: build
         permissions:

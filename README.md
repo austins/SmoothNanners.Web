@@ -10,5 +10,5 @@ serves as a template for future Razor Pages projects.
 To run the E2E tests, run this command from the root of the solution to install the default browser:
 
 ```
-pwsh ./SmoothNanners.Web.Tests.E2E/bin/Debug/net8.0/playwright.ps1 install chromium
+pwsh ./tests/SmoothNanners.Web.Tests.E2E/bin/Debug/net8.0/playwright.ps1 install chromium
 ```

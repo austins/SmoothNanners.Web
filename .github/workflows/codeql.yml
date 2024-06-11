@@ -94,9 +94,7 @@ jobs:
                 name: Setup pnpm cache
                 uses: actions/cache@v4
                 with:
-                    path: |
-                        ${{ env.STORE_PATH }}
-                        ./.next/cache
+                    path: ${{ env.STORE_PATH }}
                     key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**/*.js') }}
                     restore-keys: ${{ runner.os }}-pnpm-store-
             -   if: matrix.build-mode == 'manual' && matrix.language == 'csharp'

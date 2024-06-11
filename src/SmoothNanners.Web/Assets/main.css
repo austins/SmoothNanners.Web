@@ -16,6 +16,6 @@
     }
 
     p {
-        @apply pb-3 last:pb-0;
+        @apply pb-3 last-of-type:pb-0;
     }
 }

@@ -1,7 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmoothNanners.Web", "SmoothNanners.Web\SmoothNanners.Web.csproj", "{727EE1DD-F621-4004-8ECA-36F3467BCD51}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{054C8FE5-C706-40EE-9FC1-A1BF21E097B9}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
@@ -24,7 +22,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\pr.yml = .github\workflows\pr.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmoothNanners.Web.Tests.E2E", "SmoothNanners.Web.Tests.E2E\SmoothNanners.Web.Tests.E2E.csproj", "{1D884221-C41B-412B-B60E-2898FB941347}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B58DBDD8-C270-4C34-A262-1DC9391A7B7C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0D94F482-41B5-45FB-8882-600421A2EE9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmoothNanners.Web", "src\SmoothNanners.Web\SmoothNanners.Web.csproj", "{A9E8AC7A-5368-434C-9BA8-2E6FF54094E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmoothNanners.Web.Tests.E2E", "tests\SmoothNanners.Web.Tests.E2E\SmoothNanners.Web.Tests.E2E.csproj", "{D6135DBB-851E-4E6D-B6F6-310ED2E1D426}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,17 +36,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{727EE1DD-F621-4004-8ECA-36F3467BCD51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{727EE1DD-F621-4004-8ECA-36F3467BCD51}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{727EE1DD-F621-4004-8ECA-36F3467BCD51}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{727EE1DD-F621-4004-8ECA-36F3467BCD51}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1D884221-C41B-412B-B60E-2898FB941347}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D884221-C41B-412B-B60E-2898FB941347}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D884221-C41B-412B-B60E-2898FB941347}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D884221-C41B-412B-B60E-2898FB941347}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9E8AC7A-5368-434C-9BA8-2E6FF54094E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9E8AC7A-5368-434C-9BA8-2E6FF54094E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9E8AC7A-5368-434C-9BA8-2E6FF54094E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9E8AC7A-5368-434C-9BA8-2E6FF54094E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6135DBB-851E-4E6D-B6F6-310ED2E1D426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6135DBB-851E-4E6D-B6F6-310ED2E1D426}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6135DBB-851E-4E6D-B6F6-310ED2E1D426}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6135DBB-851E-4E6D-B6F6-310ED2E1D426}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9EF876F1-45B4-424D-93E2-6EE45373C83E} = {054C8FE5-C706-40EE-9FC1-A1BF21E097B9}
 		{28BCA48C-0D57-49CF-A0A9-22DCC4F608B4} = {9EF876F1-45B4-424D-93E2-6EE45373C83E}
+		{A9E8AC7A-5368-434C-9BA8-2E6FF54094E9} = {0D94F482-41B5-45FB-8882-600421A2EE9F}
+		{D6135DBB-851E-4E6D-B6F6-310ED2E1D426} = {B58DBDD8-C270-4C34-A262-1DC9391A7B7C}
 	EndGlobalSection
 EndGlobal

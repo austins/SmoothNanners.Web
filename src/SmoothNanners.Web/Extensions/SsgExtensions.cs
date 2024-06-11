@@ -8,30 +8,29 @@ internal static class SsgExtensions
     {
         return services.AddSingleton<IStaticResourcesInfoProvider>(
             new StaticResourcesInfoProvider(
-                [new PageResource("/"), new PageResource("/error?code=404") { OutFile = "404.html" }]));
+            [
+                new PageResource("/"),
+                new PageResource("/error?code=404") { OutFile = "404.html" },
+                new CssResource("/assets/main.css") { OptimizerType = OptimizerType.None },
+                new JsResource("/assets/main.js") { OptimizerType = OptimizerType.None }
+            ]));
     }
 
     public static void RunSsgAndExit(this WebApplication app)
     {
-        // Create output directory.
-        var outputSsgPath = Path.Combine(app.Environment.ContentRootPath, "bin/ssg");
-        if (Directory.Exists(outputSsgPath))
+        // Ensure output directory exists.
+        var ssgOutputPath = Path.Combine(app.Environment.ContentRootPath, "bin/ssg");
+        if (Directory.Exists(ssgOutputPath))
         {
-            Directory.Delete(outputSsgPath, true);
+            Directory.Delete(ssgOutputPath, true);
         }
 
-        Directory.CreateDirectory(outputSsgPath);
+        Directory.CreateDirectory(ssgOutputPath);
 
-        // Copy all assets to the output directory.
-        var assetPaths = Directory.GetFiles(app.Environment.WebRootPath, "*", SearchOption.AllDirectories);
-        foreach (var assetPath in assetPaths)
-        {
-            var relativeFilePath = Path.GetRelativePath(app.Environment.WebRootPath, assetPath);
-            Directory.CreateDirectory(Path.Combine(outputSsgPath, Path.GetDirectoryName(relativeFilePath)!));
-            File.Copy(assetPath, Path.Combine(outputSsgPath, Path.Combine(outputSsgPath, relativeFilePath)));
-        }
+#pragma warning disable CA1848
+        app.Logger.LogInformation("Running SSG and exiting...");
+#pragma warning restore CA1848
 
-        // Generate static pages.
-        app.GenerateStaticContent(outputSsgPath, true);
+        app.GenerateStaticContent(Path.Combine(app.Environment.ContentRootPath, "bin/ssg"), true);
     }
 }

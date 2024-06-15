@@ -28,8 +28,8 @@ public sealed class TestFixture
     public async Task InitializeAsync()
     {
         _playwright = await Playwright.CreateAsync();
-        Browser = await _playwright[PlaywrightSettingsProvider.BrowserName]
-            .LaunchAsync(PlaywrightSettingsProvider.LaunchOptions);
+
+        Browser = await _playwright[PlaywrightSettingsProvider.BrowserName].LaunchAsync();
     }
 
     /// <summary>

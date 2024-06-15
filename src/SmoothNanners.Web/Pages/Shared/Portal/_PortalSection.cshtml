@@ -21,12 +21,12 @@
     <div class="p-3 space-y-3">
         @if (Model.Links.Count > 0)
         {
-            <partial name="_PortalLinks" model="@Model.Links"/>
+            <partial name="Shared/Portal/_PortalLinks" model="@Model.Links"/>
         }
 
         @if (Model.YouTubeVideoIds.Count > 0)
         {
-            <partial name="_YouTubeEmbeds" model="@Model.YouTubeVideoIds"/>
+            <partial name="Shared/Portal/_YouTubeEmbeds" model="@Model.YouTubeVideoIds"/>
         }
     </div>
 </section>

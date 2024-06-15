@@ -19,13 +19,13 @@
 
 <div class="grid gap-4 sm:grid-cols-2">
     <div>
-        <partial name="_PortalSection" model="@PortalConstants.MusicSection"/>
+        <partial name="Shared/Portal/_PortalSection" model="@PortalConstants.MusicSection"/>
     </div>
 
     <div class="space-y-4">
         @foreach (var section in PortalConstants.RightColumnSections)
         {
-            <partial name="_PortalSection" model="section"/>
+            <partial name="Shared/Portal/_PortalSection" model="section"/>
         }
     </div>
 </div>

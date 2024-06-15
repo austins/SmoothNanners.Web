@@ -1,4 +1,5 @@
 ﻿using Microsoft.Playwright;
+using Microsoft.Playwright.TestAdapter;
 using SafeRouting;
 
 namespace SmoothNanners.Web.Tests.E2E;
@@ -48,6 +49,8 @@ public abstract class TestBase : IAsyncLifetime
                 BaseURL = _fixture.BaseUrl,
                 JavaScriptEnabled = jsEnabled
             });
+
+        context.SetDefaultTimeout(PlaywrightSettingsProvider.ExpectTimeout ?? 5000);
 
         _browserContexts.Add(context);
 

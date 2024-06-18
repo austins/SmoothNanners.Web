@@ -107,8 +107,15 @@ internal static class PortalConstants
                 {
                     Url = "https://twitter.com/smoothnanners",
                     Text = "Twitter",
-                    Icon = BootstrapIconGlyph.Twitter,
+                    Icon = BootstrapIconGlyph.TwitterX,
                     BackgroundVariant = ColorVariant.Sky
+                },
+                new PortalLink
+                {
+                    Url = "https://www.instagram.com/smoothnanners",
+                    Text = "Instagram",
+                    Icon = BootstrapIconGlyph.Instagram,
+                    BackgroundVariant = ColorVariant.Purple
                 },
                 new PortalLink
                 {

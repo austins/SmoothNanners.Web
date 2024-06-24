@@ -3,7 +3,7 @@
     "type": "module",
     "scripts": {
         "build": "bun run build:js && bun run build:css",
-        "build:js": "tsc --incremental --noEmit && bun ./build-assets.ts",
+        "build:js": "tsc && bun ./build-assets.ts",
         "build:css": "bun run --bun tailwindcss -i ./Assets/main.css -o ./wwwroot/assets/main.css -m"
     },
     "peerDependencies": {

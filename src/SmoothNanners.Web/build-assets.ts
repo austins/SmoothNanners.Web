@@ -9,6 +9,8 @@ await rm(outdir, { force: true, recursive: true });
 await Bun.build({
     entrypoints: ["./Assets/main.ts"],
     outdir,
+    target: "browser",
+    format: "esm",
     splitting: true,
     minify: true
 });

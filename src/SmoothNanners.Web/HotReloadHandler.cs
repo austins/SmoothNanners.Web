@@ -3,15 +3,15 @@ using System.Diagnostics;
 using System.Reflection.Metadata;
 using SmoothNanners.Web;
 
-[assembly: MetadataUpdateHandler(typeof(ViteHotReloadHandler))]
+[assembly: MetadataUpdateHandler(typeof(HotReloadHandler))]
 
 namespace SmoothNanners.Web;
 
 /// <summary>
-/// Handler for hot reload to run Vite build whenever there is a file change when using dotnet watch.
+/// Handler for hot reload to run Bun build whenever there is a file change when using dotnet watch.
 /// See https://learn.microsoft.com/en-us/visualstudio/debugger/hot-reload-metadataupdatehandler?view=vs-2022.
 /// </summary>
-internal static class ViteHotReloadHandler
+internal static class HotReloadHandler
 {
     /// <summary>
     /// Invoked whenever there is a file change detected pending hot reload.
@@ -26,35 +26,27 @@ internal static class ViteHotReloadHandler
             return;
         }
 
-        RunViteBuild();
+        RunBunBuild();
     }
 
     /// <summary>
-    /// Run Vite build whenever there is a file change.
+    /// Run Bun build whenever there is a file change.
     /// </summary>
-    private static void RunViteBuild()
+    private static void RunBunBuild()
     {
         var projectRootPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", ".."));
         if (!File.Exists(Path.Combine(projectRootPath, "package.json")))
         {
             Console.WriteLine(
-                $"Vite: failed to invoke {nameof(ViteHotReloadHandler)}.{nameof(RunViteBuild)} because project path could not be determined.");
+                $"Bun: failed to invoke {nameof(HotReloadHandler)}.{nameof(RunBunBuild)} because project path could not be determined.");
 
             return;
         }
 
         var timeout = TimeSpan.FromMilliseconds(3200);
 
-        var command = "pnpm";
-        if (OperatingSystem.IsWindows())
-        {
-            command += ".CMD";
-        }
-
-        const string arguments = "run build";
-
         using var process = new Process();
-        process.StartInfo = new ProcessStartInfo(command, arguments)
+        process.StartInfo = new ProcessStartInfo("bun", "run build")
         {
             WorkingDirectory = projectRootPath,
             CreateNoWindow = true,
@@ -81,7 +73,7 @@ internal static class ViteHotReloadHandler
         {
             if (!string.IsNullOrWhiteSpace(output))
             {
-                Console.WriteLine($"Vite: {output}");
+                Console.WriteLine($"Bun: {output}");
             }
         }
     }

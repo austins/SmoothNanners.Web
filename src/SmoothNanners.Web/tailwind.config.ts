@@ -1,5 +1,6 @@
-/** @type {import("tailwindcss").Config} */
-export default {
+import { type Config } from "tailwindcss";
+
+const config: Config = {
     content: ["./Pages/**/*.cshtml"],
     theme: {
         container: {
@@ -24,3 +25,5 @@ export default {
         }
     }
 };
+
+export default config;

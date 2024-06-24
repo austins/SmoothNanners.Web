@@ -4,6 +4,7 @@
         "config:recommended",
         "schedule:daily",
         ":enableVulnerabilityAlerts",
+        ":rebaseStalePrs",
         ":automergePr",
         ":automergeStableNonMajor",
         ":automergeRequireAllStatusChecks"

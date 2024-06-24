@@ -8,7 +8,7 @@ using SmoothNanners.Web;
 namespace SmoothNanners.Web;
 
 /// <summary>
-/// Handler for hot reload to run Bun build whenever there is a file change when using dotnet watch.
+/// Handler for hot reload to run Vite build whenever there is a file change when using dotnet watch.
 /// See https://learn.microsoft.com/en-us/visualstudio/debugger/hot-reload-metadataupdatehandler?view=vs-2022.
 /// </summary>
 internal static class HotReloadHandler
@@ -26,27 +26,35 @@ internal static class HotReloadHandler
             return;
         }
 
-        RunBunBuild();
+        RunViteBuild();
     }
 
     /// <summary>
-    /// Run Bun build whenever there is a file change.
+    /// Run Vite build whenever there is a file change.
     /// </summary>
-    private static void RunBunBuild()
+    private static void RunViteBuild()
     {
         var projectRootPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", ".."));
         if (!File.Exists(Path.Combine(projectRootPath, "package.json")))
         {
             Console.WriteLine(
-                $"Bun: failed to invoke {nameof(HotReloadHandler)}.{nameof(RunBunBuild)} because project path could not be determined.");
+                $"Vite: failed to invoke {nameof(HotReloadHandler)}.{nameof(RunViteBuild)} because project path could not be determined.");
 
             return;
         }
 
         var timeout = TimeSpan.FromMilliseconds(3200);
 
+        var command = "pnpm";
+        if (OperatingSystem.IsWindows())
+        {
+            command += ".CMD";
+        }
+
+        const string arguments = "run build";
+
         using var process = new Process();
-        process.StartInfo = new ProcessStartInfo("bun", "run build")
+        process.StartInfo = new ProcessStartInfo(command, arguments)
         {
             WorkingDirectory = projectRootPath,
             CreateNoWindow = true,
@@ -73,7 +81,7 @@ internal static class HotReloadHandler
         {
             if (!string.IsNullOrWhiteSpace(output))
             {
-                Console.WriteLine($"Bun: {output}");
+                Console.WriteLine($"Vite: {output}");
             }
         }
     }

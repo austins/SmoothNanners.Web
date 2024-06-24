@@ -10,16 +10,16 @@
         <Content Update="appsettings.Development.json;package.json" CopyToPublishDirectory="Never"/>
     </ItemGroup>
 
-    <Target Name="EnsureBunEnv" BeforeTargets="Build" Condition="!Exists('node_modules')">
-        <Exec Command="bun -v" ContinueOnError="true">
+    <Target Name="EnsurePnpmEnv" BeforeTargets="Build" Condition="!Exists('node_modules')">
+        <Exec Command="pnpm -v" ContinueOnError="true">
             <Output TaskParameter="ExitCode" PropertyName="ErrorCode"/>
         </Exec>
-        <Error Condition="'$(ErrorCode)' != '0'" Text="Bun is required to build and run this project. To continue, please install it as administrator from https://bun.sh/, and then restart your command prompt or IDE."/>
-        <Message Importance="high" Text="Restoring dependencies using 'bun'..."/>
-        <Exec Command="bun install --frozen-lockfile"/>
+        <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js and pnpm is required to build and run this project. To continue, please install Node.js and pnpm, then restart your command prompt or IDE."/>
+        <Message Importance="high" Text="Restoring dependencies using 'pnpm'..."/>
+        <Exec Command="pnpm i --frozen-lockfile"/>
     </Target>
 
     <Target Name="BuildAssets" AfterTargets="Build">
-        <Exec Command="bun run build"/>
+        <Exec Command="pnpm run build"/>
     </Target>
 </Project>

@@ -76,10 +76,22 @@ jobs:
             # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
 
             -   if: matrix.language == 'csharp'
-                name: Setup Bun
-                uses: oven-sh/setup-bun@v2
+                name: Install pnpm
+                uses: pnpm/action-setup@v3
                 with:
-                    bun-version: latest
+                    version: latest
+                    run_install: false
+            -   if: matrix.language == 'csharp'
+                name: Get pnpm store directory
+                shell: bash
+                run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+            -   if: matrix.language == 'csharp'
+                name: Setup pnpm cache
+                uses: actions/cache@v4
+                with:
+                    path: ${{ env.STORE_PATH }}
+                    key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**/*.js', '**/*.ts') }}
+                    restore-keys: ${{ runner.os }}-pnpm-store-
             -   if: matrix.language == 'csharp'
                 run: dotnet build
 

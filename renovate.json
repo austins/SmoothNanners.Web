@@ -3,9 +3,12 @@
     "extends": [
         "config:recommended",
         "schedule:daily",
-        ":enableVulnerabilityAlerts",
         ":automergePr",
         ":automergeStableNonMajor",
         ":automergeRequireAllStatusChecks"
-    ]
+    ],
+    "vulnerabilityAlerts": {
+        "enabled": true,
+        "automerge": true
+    }
 }

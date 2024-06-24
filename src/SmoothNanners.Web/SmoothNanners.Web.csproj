@@ -16,7 +16,7 @@
         </Exec>
         <Error Condition="'$(ErrorCode)' != '0'" Text="Bun is required to build and run this project. To continue, please install it as administrator from https://bun.sh/, and then restart your command prompt or IDE."/>
         <Message Importance="high" Text="Restoring dependencies using 'bun'..."/>
-        <Exec Command="bun install"/>
+        <Exec Command="bun install --frozen-lockfile"/>
     </Target>
 
     <Target Name="BuildAssets" AfterTargets="Build">

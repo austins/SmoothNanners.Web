@@ -1,6 +1,4 @@
-import { type Config } from "tailwindcss";
-
-const config: Config = {
+module.exports = {
     content: ["./Pages/**/*.cshtml"],
     theme: {
         container: {
@@ -25,5 +23,3 @@ const config: Config = {
         }
     }
 };
-
-export default config;

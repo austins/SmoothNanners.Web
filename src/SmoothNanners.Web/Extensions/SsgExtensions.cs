@@ -12,7 +12,7 @@ internal static class SsgExtensions
                 new PageResource("/"),
                 new PageResource("/error?code=404") { OutFile = "404.html" },
                 new CssResource("/assets/main.css") { OptimizerType = OptimizerType.None },
-                new JsResource("/assets/main.js") { OptimizerType = OptimizerType.None },
+                new JsResource("/assets/vendors/alpine/dist/cdn.min.js") { OptimizerType = OptimizerType.None },
                 new BinResource("/favicon.ico") { OptimizerType = OptimizerType.None },
                 new BinResource("/images/avatar.jpg") { OptimizerType = OptimizerType.None }
             ]));

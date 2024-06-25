@@ -6,20 +6,15 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Watch Include="*.config.js;Assets\**\*" Exclude="wwwroot\assets\**\*"/>
-        <Content Update="appsettings.Development.json;package.json" CopyToPublishDirectory="Never"/>
+        <Watch Include="tailwind.config.js"/>
+        <Content Update="appsettings.Development.json" CopyToPublishDirectory="Never"/>
     </ItemGroup>
 
-    <Target Name="EnsurePnpmEnv" BeforeTargets="Build" Condition="!Exists('node_modules')">
-        <Exec Command="pnpm -v" ContinueOnError="true">
-            <Output TaskParameter="ExitCode" PropertyName="ErrorCode"/>
-        </Exec>
-        <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js and pnpm is required to build and run this project. To continue, please install Node.js and pnpm, then restart your command prompt or IDE."/>
-        <Message Importance="high" Text="Restoring dependencies using 'pnpm'..."/>
-        <Exec Command="pnpm i --frozen-lockfile"/>
+    <Target Name="RestoreTools" BeforeTargets="Build">
+        <Exec Command="dotnet tool restore"/>
     </Target>
 
-    <Target Name="BuildAssets" AfterTargets="Build">
-        <Exec Command="pnpm run build"/>
+    <Target Name="BuildTailwindCss" AfterTargets="RestoreTools">
+        <Exec Command="dotnet tool run tailwindcss -i tailwind.css -o ./wwwroot/assets/main.css -m"/>
     </Target>
 </Project>

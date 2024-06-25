@@ -8,7 +8,7 @@ using SmoothNanners.Web;
 namespace SmoothNanners.Web;
 
 /// <summary>
-/// Handler for hot reload to run Vite build whenever there is a file change when using dotnet watch.
+/// Handler for hot reload to build Tailwind CSS whenever there is a file change when using dotnet watch.
 /// See https://learn.microsoft.com/en-us/visualstudio/debugger/hot-reload-metadataupdatehandler?view=vs-2022.
 /// </summary>
 internal static class HotReloadHandler
@@ -26,42 +26,37 @@ internal static class HotReloadHandler
             return;
         }
 
-        RunViteBuild();
+        BuildTailwindCss();
     }
 
     /// <summary>
-    /// Run Vite build whenever there is a file change.
+    /// Build Tailwind CSS whenever there is a file change.
     /// </summary>
-    private static void RunViteBuild()
+    private static void BuildTailwindCss()
     {
+        // Ensure we're using the correct project root path.
         var projectRootPath = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", ".."));
-        if (!File.Exists(Path.Combine(projectRootPath, "package.json")))
+        var tailwindConfigPath = Path.Combine(projectRootPath, "tailwind.config.js");
+        if (!File.Exists(tailwindConfigPath))
         {
             Console.WriteLine(
-                $"Vite: failed to invoke {nameof(HotReloadHandler)}.{nameof(RunViteBuild)} because project path could not be determined.");
+                $"Tailwind: failed to invoke {nameof(HotReloadHandler)}.{nameof(BuildTailwindCss)} because project path could not be determined.");
 
             return;
         }
 
         var timeout = TimeSpan.FromMilliseconds(3200);
 
-        var command = "pnpm";
-        if (OperatingSystem.IsWindows())
-        {
-            command += ".CMD";
-        }
-
-        const string arguments = "run hotreload";
-
         using var process = new Process();
-        process.StartInfo = new ProcessStartInfo(command, arguments)
-        {
-            WorkingDirectory = projectRootPath,
-            CreateNoWindow = true,
-            UseShellExecute = false,
-            RedirectStandardOutput = true,
-            RedirectStandardError = true
-        };
+        process.StartInfo =
+            new ProcessStartInfo("dotnet", "tool run tailwindcss -i tailwind.css -o ./wwwroot/assets/main.css -m")
+            {
+                WorkingDirectory = projectRootPath,
+                CreateNoWindow = true,
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true
+            };
 
         process.OutputDataReceived += (_, e) => LogOutput(e.Data);
         process.ErrorDataReceived += (_, e) => LogOutput(e.Data);
@@ -81,7 +76,7 @@ internal static class HotReloadHandler
         {
             if (!string.IsNullOrWhiteSpace(output))
             {
-                Console.WriteLine($"Vite: {output}");
+                Console.WriteLine($"Tailwind: {output}");
             }
         }
     }

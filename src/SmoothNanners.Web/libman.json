@@ -4,7 +4,7 @@
     "libraries": [
         {
             "library": "alpinejs@3.14.1",
-            "destination": "wwwroot/assets/vendors/alpine",
+            "destination": "./wwwroot/assets/vendors/alpine",
             "files": [
                 "dist/cdn.min.js"
             ]

@@ -51,7 +51,7 @@ internal static class HotReloadHandler
             command += ".CMD";
         }
 
-        const string arguments = "run build";
+        const string arguments = "run hotreload";
 
         using var process = new Process();
         process.StartInfo = new ProcessStartInfo(command, arguments)

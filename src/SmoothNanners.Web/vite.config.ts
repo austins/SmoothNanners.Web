@@ -10,7 +10,7 @@ export default defineConfig({
         rollupOptions: {
             input: {
                 "main.css": "./Assets/main.css",
-                "main": "./Assets/main.js"
+                "main": "./Assets/main.ts"
             },
             output: {
                 assetFileNames: "[name][extname]",

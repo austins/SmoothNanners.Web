@@ -7,7 +7,7 @@
 
     <ItemGroup>
         <Watch Include="tailwind.config.js"/>
-        <Content Update="appsettings.Development.json" CopyToPublishDirectory="Never"/>
+        <Content Update="appsettings.Development.json;libman.json" CopyToPublishDirectory="Never"/>
     </ItemGroup>
 
     <Target Name="RestoreTools" BeforeTargets="Build">

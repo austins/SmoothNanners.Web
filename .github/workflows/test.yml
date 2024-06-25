@@ -32,6 +32,6 @@ jobs:
             -   name: Build
                 run: dotnet build -c Release
             -   name: Setup Playwright
-                run: pwsh ./tests/SmoothNanners.Web.Tests.E2E/bin/Debug/net8.0/playwright.ps1 install --with-deps chromium
+                run: pwsh ./tests/SmoothNanners.Web.Tests.E2E/bin/Release/net8.0/playwright.ps1 install --with-deps chromium
             -   name: Test
                 run: dotnet test -c Release --no-build

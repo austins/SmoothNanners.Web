@@ -30,8 +30,8 @@ jobs:
                     key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**/*.js', '**/*.ts') }}
                     restore-keys: ${{ runner.os }}-pnpm-store-
             -   name: Build
-                run: dotnet build
+                run: dotnet build -c Release
             -   name: Setup Playwright
                 run: pwsh ./tests/SmoothNanners.Web.Tests.E2E/bin/Debug/net8.0/playwright.ps1 install --with-deps chromium
             -   name: Test
-                run: dotnet test --no-build --verbosity normal
+                run: dotnet test -c Release --no-build

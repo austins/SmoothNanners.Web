@@ -14,7 +14,11 @@
         <Exec Command="dotnet tool restore"/>
     </Target>
 
-    <Target Name="BuildTailwindCss" AfterTargets="RestoreTools">
+    <Target Name="RestoreLibman" AfterTargets="RestoreTools" Condition="!Exists('wwwroot\assets\vendors')">
+        <Exec Command="dotnet tool run libman restore"/>
+    </Target>
+
+    <Target Name="BuildTailwindCss" AfterTargets="RestoreLibman">
         <Exec Command="dotnet tool run tailwindcss -i tailwind.css -o ./wwwroot/assets/main.css -m"/>
     </Target>
 </Project>

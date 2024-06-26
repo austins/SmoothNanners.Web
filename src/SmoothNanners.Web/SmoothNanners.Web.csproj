@@ -15,7 +15,7 @@
     </Target>
 
     <Target Name="RestoreLibman" AfterTargets="RestoreTools" Condition="!Exists('wwwroot\assets\vendors')">
-        <Exec Command="dotnet tool run libman restore"/>
+        <Exec Command="dotnet tool run libman restore" LogStandardErrorAsError="true"/>
     </Target>
 
     <Target Name="BuildTailwindCss" AfterTargets="RestoreLibman">

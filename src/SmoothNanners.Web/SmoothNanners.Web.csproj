@@ -10,15 +10,13 @@
         <Content Update="appsettings.Development.json;libman.json" CopyToPublishDirectory="Never"/>
     </ItemGroup>
 
-    <Target Name="RestoreTools" BeforeTargets="Build">
+    <Target Name="RestoreAndBuildAssets" AfterTargets="Build">
         <Exec Command="dotnet tool restore"/>
-    </Target>
-
-    <Target Name="RestoreLibman" AfterTargets="RestoreTools" Condition="!Exists('wwwroot\assets\vendors')">
         <Exec Command="dotnet tool run libman restore" LogStandardErrorAsError="true"/>
+        <Exec Command="dotnet tool run tailwindcss -i tailwind.css -o ./wwwroot/assets/main.css -m"/>
     </Target>
 
-    <Target Name="BuildTailwindCss" AfterTargets="RestoreLibman">
-        <Exec Command="dotnet tool run tailwindcss -i tailwind.css -o ./wwwroot/assets/main.css -m"/>
+    <Target Name="CleanAssets" AfterTargets="Clean">
+        <RemoveDir Directories="wwwroot\assets"/>
     </Target>
 </Project>

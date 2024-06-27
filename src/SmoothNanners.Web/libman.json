@@ -1,6 +1,7 @@
 {
     "version": "1.0",
     "defaultProvider": "jsdelivr",
+    "defaultDestination": "./wwwroot/assets/vendors",
     "libraries": [
         {
             "library": "alpinejs@3.14.1",

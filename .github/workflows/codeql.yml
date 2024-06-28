@@ -42,7 +42,7 @@ jobs:
                     -   language: csharp
                         build-mode: manual
                     -   language: javascript-typescript
-                        build-mode: manual
+                        build-mode: none
                 # CodeQL supports the following values keywords for 'language': 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'swift'
                 # Use `c-cpp` to analyze code written in C, C++ or both
                 # Use 'java-kotlin' to analyze code written in Java, Kotlin or both
@@ -74,9 +74,8 @@ jobs:
             # to build your code.
             # ℹ️ Command-line programs to run using the OS shell.
             # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
-            
-            # Also build for javascript-typescript to scan restored and built assets.
-            -   if: matrix.language == 'csharp' || matrix.language == 'javascript-typescript'
+
+            -   if: matrix.language == 'csharp'
                 run: dotnet build
 
             -   name: Perform CodeQL Analysis

@@ -13,6 +13,7 @@
         {
             "customType": "regex",
             "datasourceTemplate": "npm",
+            "versioningTemplate": "npm",
             "fileMatch": [
                 "(^|/)libman.json$"
             ],

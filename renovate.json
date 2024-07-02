@@ -17,7 +17,7 @@
                 "(^|/)libman.json$"
             ],
             "matchStrings": [
-                "\"library\": ?\"(?<depName>.*?)@(?<currentValue>.*?)\""
+                "\"library\": ?\"(?<depName>@?[^\"]+?)@(?<currentValue>.*?)\""
             ]
         }
     ]

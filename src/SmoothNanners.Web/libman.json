@@ -5,7 +5,7 @@
     "defaultDestination": "./wwwroot/assets/vendors",
     "libraries": [
         {
-            "library": "alpinejs@3.14.0",
+            "library": "alpinejs@3.14.1",
             "destination": "./wwwroot/assets/vendors/alpine",
             "files": [
                 "dist/cdn.min.js"

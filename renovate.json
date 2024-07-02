@@ -8,5 +8,17 @@
         ":automergePr",
         ":automergeRequireAllStatusChecks",
         ":automergeMinor"
+    ],
+    "customManagers": [
+        {
+            "customType": "regex",
+            "datasourceTemplate": "npm",
+            "fileMatch": [
+                "(^|/)libman.json$"
+            ],
+            "matchStrings": [
+                "\"library\": \"(?<depName>.*?)@(?<currentValue>.*?)\""
+            ]
+        }
     ]
 }

@@ -3,12 +3,13 @@
     "extends": [
         "config:recommended",
         "schedule:daily",
+        "helpers:pinGitHubActionDigests",
+        "npm:unpublishSafe",
         ":enableVulnerabilityAlerts",
         ":rebaseStalePrs",
         ":automergePr",
         ":automergeRequireAllStatusChecks",
-        ":automergeMinor",
-        "npm:unpublishSafe"
+        ":automergeMinor"
     ],
     "customManagers": [
         {

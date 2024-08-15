@@ -36,6 +36,4 @@ if (args.HasExitWhenDoneArg())
 
 await app.RunAsync();
 
-public sealed partial class Program
-{
-}
+public sealed partial class Program;

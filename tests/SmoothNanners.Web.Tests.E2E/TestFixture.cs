@@ -55,6 +55,4 @@ public sealed class TestFixture
 }
 
 [CollectionDefinition(nameof(TestCollection))]
-public sealed class TestCollection : ICollectionFixture<TestFixture>
-{
-}
+public sealed class TestCollection : ICollectionFixture<TestFixture>;

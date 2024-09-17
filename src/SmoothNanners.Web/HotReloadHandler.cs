@@ -69,15 +69,13 @@ internal static class HotReloadHandler
         {
             process.Kill();
         }
+    }
 
-        return;
-
-        static void LogOutput(string? output)
+    private static void LogOutput(string? output)
+    {
+        if (!string.IsNullOrWhiteSpace(output))
         {
-            if (!string.IsNullOrWhiteSpace(output))
-            {
-                Console.WriteLine($"Tailwind: {output}");
-            }
+            Console.WriteLine($"Tailwind: {output}");
         }
     }
 }

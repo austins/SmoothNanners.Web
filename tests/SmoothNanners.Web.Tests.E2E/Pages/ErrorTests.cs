@@ -31,10 +31,6 @@ public sealed class ErrorTests(TestFixture fixture) : TestBase(fixture)
             .Should()
             .Be("An error occurred while processing your request. Please try again later.");
 
-        /*var requestId = errorMessage.Locator("//following-sibling::p[1]");
-        (await requestId.Locator("strong").TextContentAsync()).Should().Be("Request ID:");
-        (await requestId.Locator("code").TextContentAsync()).Should().NotBeEmpty();*/
-
         (await page.Locator("body > div > main a").GetByText("Back to Home").GetAttributeAsync("href"))
             .Should()
             .Be(GetPath(Index.Get()));

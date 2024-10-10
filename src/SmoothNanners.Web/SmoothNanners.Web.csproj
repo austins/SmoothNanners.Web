@@ -10,7 +10,7 @@
         <Content Update="appsettings.Development.json;libman.json" CopyToPublishDirectory="Never"/>
     </ItemGroup>
 
-    <Target Name="RestoreAndBuildAssets" BeforeTargets="ResolveProjectStaticWebAssets">
+    <Target Name="RestoreAndBuildAssets" AfterTargets="BeforeBuild">
         <Exec Command="dotnet tool restore"/>
         <Exec Command="dotnet tool run libman restore" LogStandardErrorAsError="true"/>
         <Exec Command="dotnet tool run tailwindcss -i tailwind.css -o ./wwwroot/assets/main.css -m"/>

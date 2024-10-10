@@ -25,6 +25,7 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/error");
 }
 
+// Not using MapStaticAssets because we are doing SSG.
 app.UseStaticFiles().UseStatusCodePagesWithReExecute("/error", "?code={0}").UseRouting();
 
 app.MapRazorPages();

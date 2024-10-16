@@ -16,10 +16,8 @@ internal static class HotReloadHandler
     /// <summary>
     /// Invoked whenever there is a file change detected pending hot reload.
     /// </summary>
-    /// <param name="_">Updated types.</param>
-#pragma warning disable SA1313
+    /// <param name="_">Updated types. Not used.</param>
     public static void UpdateApplication(Type[]? _)
-#pragma warning restore SA1313
     {
         if (Environment.GetEnvironmentVariable("DOTNET_WATCH") != "1")
         {

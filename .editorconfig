@@ -1,4 +1,4 @@
-﻿root = true
+root = true
 
 [*]
 charset = utf-8
@@ -122,3 +122,4 @@ dotnet_diagnostic.CA1724.severity = none
 dotnet_diagnostic.IDE0072.severity = none
 dotnet_diagnostic.IDE0046.severity = none
 dotnet_diagnostic.SA1313.severity = none
+dotnet_diagnostic.SA1208.severity = none

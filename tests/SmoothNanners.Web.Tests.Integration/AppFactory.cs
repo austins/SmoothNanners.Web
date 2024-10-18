@@ -1,10 +1,10 @@
-﻿using System.Net;
-using System.Net.Sockets;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Net;
+using System.Net.Sockets;
 
 namespace SmoothNanners.Web.Tests.Integration;
 

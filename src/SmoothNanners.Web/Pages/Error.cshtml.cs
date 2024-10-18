@@ -14,10 +14,8 @@ public sealed class ErrorModel : PageModel
     public void OnGet(int? code = null)
     {
         code ??= HttpContext.Response.StatusCode;
-        if (code is >= 400 and <= 599)
-        {
-            Code = code.Value;
-        }
+        Code = code is >= 400 and <= 599 ? code.Value : StatusCodes.Status500InternalServerError;
+        Response.StatusCode = Code;
 
         Message = Code switch
         {

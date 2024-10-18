@@ -6,8 +6,8 @@ instance with more content in the future. This also serves as a template for fut
 
 # Testing
 
-To run the E2E tests, run this command from the root of the solution to install the default browser:
+To run the Integration tests, run this command from the root of the solution to install the default browser:
 
 ```
-pwsh ./tests/SmoothNanners.Web.Tests.E2E/bin/Debug/net9.0/playwright.ps1 install chromium
+pwsh ./tests/SmoothNanners.Web.Tests.Integration/bin/Debug/net9.0/playwright.ps1 install chromium
 ```

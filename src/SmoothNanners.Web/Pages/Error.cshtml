@@ -5,6 +5,10 @@
     ViewData.SetTitle($"Error: {Model.Code}");
 }
 
+@section Head {
+    <meta name="robots" content="noindex"/>
+}
+
 <div class="text-sky-300">
     <h2>Error: @Model.Code</h2>
 
@@ -12,7 +16,8 @@
 </div>
 
 <div class="mt-5">
-    <a for-route="@Index.Get()" class="inline-block rounded-md bg-blue-600 px-3 py-2 hover:bg-blue-700 active:bg-blue-700">
+    <a for-route="@Index.Get()"
+       class="inline-block rounded-md bg-blue-600 px-3 py-2 hover:bg-blue-700 active:bg-blue-700">
         Back to Home
     </a>
 </div>

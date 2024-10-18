@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace SmoothNanners.Web.Tests.E2E;
+namespace SmoothNanners.Web.Tests.Integration;
 
 internal sealed class AppFactory : WebApplicationFactory<Program>
 {

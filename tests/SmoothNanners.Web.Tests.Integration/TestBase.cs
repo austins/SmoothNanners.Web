@@ -2,7 +2,7 @@
 using Microsoft.Playwright.TestAdapter;
 using SafeRouting;
 
-namespace SmoothNanners.Web.Tests.E2E;
+namespace SmoothNanners.Web.Tests.Integration;
 
 [Collection(nameof(TestCollection))]
 public abstract class TestBase : IAsyncLifetime

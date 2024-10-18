@@ -2,7 +2,7 @@
 using Microsoft.Playwright;
 using Microsoft.Playwright.TestAdapter;
 
-namespace SmoothNanners.Web.Tests.E2E;
+namespace SmoothNanners.Web.Tests.Integration;
 
 /// <summary>
 /// Test fixture used for <see cref="TestCollection" /> that ensures it's instantiated

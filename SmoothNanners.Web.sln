@@ -26,7 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0D94F482-41B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmoothNanners.Web", "src\SmoothNanners.Web\SmoothNanners.Web.csproj", "{A9E8AC7A-5368-434C-9BA8-2E6FF54094E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmoothNanners.Web.Tests.E2E", "tests\SmoothNanners.Web.Tests.E2E\SmoothNanners.Web.Tests.E2E.csproj", "{D6135DBB-851E-4E6D-B6F6-310ED2E1D426}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmoothNanners.Web.Tests.Integration", "tests\SmoothNanners.Web.Tests.Integration\SmoothNanners.Web.Tests.Integration.csproj", "{D6135DBB-851E-4E6D-B6F6-310ED2E1D426}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

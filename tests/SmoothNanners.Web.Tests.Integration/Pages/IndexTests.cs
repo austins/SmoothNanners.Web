@@ -3,7 +3,7 @@ using Microsoft.Net.Http.Headers;
 using SmoothNanners.Web.Constants;
 using Index = Routes.Pages.Index;
 
-namespace SmoothNanners.Web.Tests.E2E.Pages;
+namespace SmoothNanners.Web.Tests.Integration.Pages;
 
 public sealed class IndexTests(TestFixture fixture) : TestBase(fixture)
 {

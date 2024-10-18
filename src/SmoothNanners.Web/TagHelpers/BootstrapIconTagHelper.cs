@@ -11,12 +11,12 @@ public sealed class BootstrapIconTagHelper : TagHelper
 {
     public override void Process(TagHelperContext context, TagHelperOutput output)
     {
-        if (output.Attributes.All(x => x.Name != "width"))
+        if (!output.Attributes.ContainsName("width"))
         {
             output.Attributes.SetAttribute("width", "1em");
         }
 
-        if (output.Attributes.All(x => x.Name != "height"))
+        if (!output.Attributes.ContainsName("height"))
         {
             output.Attributes.SetAttribute("height", "1em");
         }

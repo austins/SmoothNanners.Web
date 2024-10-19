@@ -1,7 +1,7 @@
 #if DEBUG
-using SmoothNanners.Web;
 using System.Diagnostics;
 using System.Reflection.Metadata;
+using SmoothNanners.Web;
 
 [assembly: MetadataUpdateHandler(typeof(HotReloadHandler))]
 
@@ -47,7 +47,7 @@ internal static class HotReloadHandler
 
         using var process = new Process();
         process.StartInfo =
-            new ProcessStartInfo("dotnet", "tool run tailwindcss -i tailwind.css -o ./wwwroot/assets/main.css -m")
+            new ProcessStartInfo("dotnet", "tool run tailwindcss -i tailwind.css -o ./wwwroot/assets/main.min.css -m")
             {
                 WorkingDirectory = projectRootPath,
                 CreateNoWindow = true,

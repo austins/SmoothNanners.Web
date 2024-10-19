@@ -10,7 +10,11 @@ internal static class SsgExtensions
             new StaticResourcesInfoProvider(
             [
                 new PageResource("/"),
-                new PageResource("/error?code=404") { OutFile = "404.html" },
+                new PageResource("/error")
+                {
+                    Query = "?code=404",
+                    OutFile = "404.html"
+                },
                 new CssResource("/assets/main.css") { OptimizerType = OptimizerType.None },
                 new JsResource("/assets/vendors/alpine/dist/cdn.min.js") { OptimizerType = OptimizerType.None },
                 new BinResource("/favicon.ico") { OptimizerType = OptimizerType.None },

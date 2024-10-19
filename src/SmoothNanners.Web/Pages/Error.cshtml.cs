@@ -1,4 +1,6 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SmoothNanners.Web.Pages;
@@ -7,20 +9,29 @@ namespace SmoothNanners.Web.Pages;
 [IgnoreAntiforgeryToken]
 public sealed class ErrorModel : PageModel
 {
-    public int Code { get; private set; } = StatusCodes.Status500InternalServerError;
+    [FromQuery]
+    [BindRequired]
+    [Range(400, 599)]
+    public int Code { get; set; }
 
     public string Message { get; private set; } = null!;
 
-    public void OnGet(int? code = null)
+    public IActionResult OnGet()
     {
-        code ??= HttpContext.Response.StatusCode;
-        Code = code is >= 400 and <= 599 ? code.Value : StatusCodes.Status500InternalServerError;
-        Response.StatusCode = Code;
+        if (!ModelState.IsValid)
+        {
+            return BadRequest();
+        }
 
         Message = Code switch
         {
             StatusCodes.Status404NotFound => "The resource you are looking for was not found.",
             _ => "An error occurred while processing your request. Please try again later."
         };
+
+        // Force return 200 for 404 page SSG generation, which requires a success response.
+        Response.StatusCode = Code is StatusCodes.Status404NotFound ? StatusCodes.Status200OK : Code;
+
+        return Page();
     }
 }

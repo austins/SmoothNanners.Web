@@ -13,7 +13,7 @@
     <Target Name="RestoreAndBuildAssets" AfterTargets="BeforeBuild">
         <Exec Command="dotnet tool restore"/>
         <Exec Command="dotnet tool run libman restore" LogStandardErrorAsError="true"/>
-        <Exec Command="dotnet tool run tailwindcss -i tailwind.css -o ./wwwroot/assets/main.css -m"/>
+        <Exec Command="dotnet tool run tailwindcss -i tailwind.css -o ./wwwroot/assets/main.min.css -m"/>
     </Target>
 
     <Target Name="CleanAssets" AfterTargets="Clean">

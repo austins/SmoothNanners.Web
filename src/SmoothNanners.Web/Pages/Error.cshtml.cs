@@ -12,7 +12,7 @@ public sealed class ErrorModel : PageModel
     [FromQuery]
     [BindRequired]
     [Range(400, 599)]
-    public int Code { get; set; }
+    public int Code { get; init; }
 
     public string Message { get; private set; } = null!;
 

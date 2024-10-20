@@ -1,7 +1,7 @@
 #if DEBUG
+using SmoothNanners.Web;
 using System.Diagnostics;
 using System.Reflection.Metadata;
-using SmoothNanners.Web;
 
 [assembly: MetadataUpdateHandler(typeof(HotReloadHandler))]
 

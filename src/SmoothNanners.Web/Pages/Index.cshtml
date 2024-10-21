@@ -4,14 +4,14 @@
     ViewData.TryAddScript("~/assets/scripts/youtube-embed.js", true);
 }
 
-<div class="d-flex mb-3">
-    <div class="flex-shrink-0 me-3">
+<div class="d-sm-flex mb-3">
+    <div class="mb-2 mb-sm-0 flex-sm-shrink-0 me-sm-3">
         <img src="@Url.Content("~/assets/images/avatar.jpg")" alt="@AppConstants.SiteName" width="171.35"
              height="171.35"
              class="rounded"/>
     </div>
 
-    <div class="flex-grow-1 fs-5">
+    <div class="flex-sm-grow-1 fs-5">
         <p>Howdy! My name is Austin.</p>
 
         <p>I'm a gamer, musician, software engineer, and photographer.</p>
@@ -21,11 +21,11 @@
 </div>
 
 <div class="row gx-3">
-    <div class="col">
+    <div class="col-12 mb-3 col-sm-6 mb-sm-0">
         <partial name="Shared/Portal/_PortalSection" model="@PortalConstants.MusicSection"/>
     </div>
 
-    <div class="col">
+    <div class="col-12 col-sm-6">
         <div class="vstack gap-3">
             @foreach (var section in PortalConstants.RightColumnSections)
             {

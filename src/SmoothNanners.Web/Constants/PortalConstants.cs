@@ -13,7 +13,7 @@ internal static class PortalConstants
     {
         HeadingText = "Music",
         Icon = BootstrapIconGlyph.MusicNoteBeamed,
-        BorderVariant = ColorVariant.Fuchsia,
+        BorderVariant = BootstrapVariant.Secondary,
         Links =
         [
             new PortalLink
@@ -21,7 +21,7 @@ internal static class PortalConstants
                 Url = "https://www.youtube.com/channel/UCPjcGsO8o_FKPGHLQ5d1hbg",
                 Text = "YouTube",
                 Icon = BootstrapIconGlyph.Youtube,
-                BackgroundVariant = ColorVariant.Rose
+                BackgroundVariant = BootstrapVariant.Danger
             }
         ],
         YouTubeVideoIds = ["lnWtTXtXc0A", "XjIJoM1AZyQ"]
@@ -33,7 +33,7 @@ internal static class PortalConstants
         {
             HeadingText = "Gaming",
             Icon = BootstrapIconGlyph.Controller,
-            BorderVariant = ColorVariant.Purple,
+            BorderVariant = BootstrapVariant.Danger,
             Links =
             [
                 new PortalLink
@@ -41,28 +41,28 @@ internal static class PortalConstants
                     Url = "https://www.youtube.com/channel/UCQB1XVER5WPtxRESxHMG1Qw",
                     Text = "YouTube",
                     Icon = BootstrapIconGlyph.Youtube,
-                    BackgroundVariant = ColorVariant.Rose
+                    BackgroundVariant = BootstrapVariant.Danger
                 },
                 new PortalLink
                 {
                     Url = "https://www.twitch.tv/smoothnanners",
                     Text = "Twitch",
                     Icon = BootstrapIconGlyph.Twitch,
-                    BackgroundVariant = ColorVariant.Purple
+                    BackgroundVariant = BootstrapVariant.Primary
                 },
                 new PortalLink
                 {
                     Url = "https://discord.gg/P7rhAhA",
                     Text = "Discord",
                     Icon = BootstrapIconGlyph.Discord,
-                    BackgroundVariant = ColorVariant.Indigo
+                    BackgroundVariant = BootstrapVariant.Dark
                 },
                 new PortalLink
                 {
                     Url = "https://gamebyline.com/",
                     Text = "Game Byline",
                     Icon = BootstrapIconGlyph.Globe,
-                    BackgroundVariant = ColorVariant.Indigo
+                    BackgroundVariant = BootstrapVariant.Dark
                 }
             ]
         },
@@ -70,7 +70,7 @@ internal static class PortalConstants
         {
             HeadingText = "Programming",
             Icon = BootstrapIconGlyph.CodeSlash,
-            BorderVariant = ColorVariant.Sky,
+            BorderVariant = BootstrapVariant.Light,
             Links =
             [
                 new PortalLink
@@ -78,21 +78,21 @@ internal static class PortalConstants
                     Url = "https://www.youtube.com/channel/UCJjowuNoLywGC7ujP74zFJg",
                     Text = "YouTube",
                     Icon = BootstrapIconGlyph.Youtube,
-                    BackgroundVariant = ColorVariant.Rose
+                    BackgroundVariant = BootstrapVariant.Danger
                 },
                 new PortalLink
                 {
                     Url = "https://github.com/austins",
                     Text = "GitHub",
                     Icon = BootstrapIconGlyph.Github,
-                    BackgroundVariant = ColorVariant.Indigo
+                    BackgroundVariant = BootstrapVariant.Dark
                 },
                 new PortalLink
                 {
                     Url = "https://austinsdev.com/",
                     Text = "Austin's Dev",
                     Icon = BootstrapIconGlyph.Globe,
-                    BackgroundVariant = ColorVariant.Indigo
+                    BackgroundVariant = BootstrapVariant.Dark
                 }
             ]
         },
@@ -100,7 +100,7 @@ internal static class PortalConstants
         {
             HeadingText = "Social",
             Icon = BootstrapIconGlyph.PersonCircle,
-            BorderVariant = ColorVariant.Indigo,
+            BorderVariant = BootstrapVariant.Primary,
             Links =
             [
                 new PortalLink
@@ -108,28 +108,28 @@ internal static class PortalConstants
                     Url = "https://twitter.com/smoothnanners",
                     Text = "Twitter",
                     Icon = BootstrapIconGlyph.TwitterX,
-                    BackgroundVariant = ColorVariant.Sky
+                    BackgroundVariant = BootstrapVariant.Info
                 },
                 new PortalLink
                 {
                     Url = "https://www.instagram.com/smoothnanners",
                     Text = "Instagram",
                     Icon = BootstrapIconGlyph.Instagram,
-                    BackgroundVariant = ColorVariant.Purple
+                    BackgroundVariant = BootstrapVariant.Primary
                 },
                 new PortalLink
                 {
                     Url = "https://streamlabs.com/smoothnanners/tip",
                     Text = "Tip",
                     Icon = BootstrapIconGlyph.CashCoin,
-                    BackgroundVariant = ColorVariant.Indigo
+                    BackgroundVariant = BootstrapVariant.Dark
                 },
                 new PortalLink
                 {
                     Url = "mailto:austin@austinsdev.com",
                     Text = "Email",
                     Icon = BootstrapIconGlyph.At,
-                    BackgroundVariant = ColorVariant.Indigo
+                    BackgroundVariant = BootstrapVariant.Dark
                 }
             ]
         }

@@ -1,0 +1,25 @@
+﻿@{
+    var title = ViewData.GetTitle();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@(title != null ? $"{title} | {AppConstants.SiteName}" : AppConstants.SiteName)</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="@AppConstants.SiteDescription"/>
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/assets/vendors/bootswatch/dist/vapor/bootstrap.min.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/assets/styles/main.css" asp-append-version="true"/>
+    @await RenderSectionAsync("Head", false)
+</head>
+<body class="text-white">
+<div class="d-flex min-vh-100 align-items-center">
+    <main class="container py-4">
+        <h1>@AppConstants.SiteName</h1>
+
+        @RenderBody()
+    </main>
+</div>
+</body>
+</html>

@@ -5,10 +5,10 @@
     "defaultDestination": "./wwwroot/assets/vendors",
     "libraries": [
         {
-            "library": "alpinejs@3.14.3",
-            "destination": "./wwwroot/assets/vendors/alpine",
+            "library": "bootswatch@5.3.3",
+            "destination": "./wwwroot/assets/vendors/bootswatch",
             "files": [
-                "dist/cdn.min.js"
+                "dist/vapor/bootstrap.min.css"
             ]
         }
     ]

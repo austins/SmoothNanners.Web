@@ -10,5 +10,5 @@ public sealed class PortalLink
 
     public required BootstrapIconGlyph Icon { get; init; }
 
-    public required ColorVariant BackgroundVariant { get; init; }
+    public required BootstrapVariant BackgroundVariant { get; init; }
 }

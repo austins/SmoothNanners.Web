@@ -1,0 +1,21 @@
+body {
+    background-color: rgb(16, 42, 102);
+    background-image: linear-gradient(rgb(19, 13, 77), rgb(16, 42, 102));
+    background-repeat: no-repeat;
+}
+
+.container {
+    max-width: 768px;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+.youtube-embed-container > a {
+    font-size: 3.6rem;
+}
+
+.youtube-embed-container > a:hover {
+    filter: brightness(85%);
+}

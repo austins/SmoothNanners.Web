@@ -8,7 +8,7 @@ public sealed class PortalSection
 
     public required BootstrapIconGlyph Icon { get; init; }
 
-    public required ColorVariant BorderVariant { get; init; }
+    public required BootstrapVariant BorderVariant { get; init; }
 
     public IList<PortalLink> Links { get; init; } = [];
 

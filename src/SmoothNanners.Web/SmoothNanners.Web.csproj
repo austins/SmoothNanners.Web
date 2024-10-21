@@ -2,21 +2,20 @@
     <ItemGroup>
         <PackageReference Include="AspNetStatic" Version="0.24.0"/>
         <PackageReference Include="BootstrapIcons.AspNetCore" Version="1.11.0"/>
+        <PackageReference Include="NetEscapades.EnumGenerators" Version="1.0.0-beta09"/>
         <PackageReference Include="SafeRouting" Version="1.5.0"/>
     </ItemGroup>
 
     <ItemGroup>
-        <Watch Include="tailwind.config.js"/>
         <Content Update="appsettings.Development.json;libman.json" CopyToPublishDirectory="Never"/>
     </ItemGroup>
 
-    <Target Name="RestoreAndBuildAssets" AfterTargets="BeforeBuild">
+    <Target Name="RestoreVendorAssets" AfterTargets="BeforeBuild">
         <Exec Command="dotnet tool restore"/>
         <Exec Command="dotnet tool run libman restore" LogStandardErrorAsError="true"/>
-        <Exec Command="dotnet tool run tailwindcss -i tailwind.css -o ./wwwroot/assets/main.min.css -m"/>
     </Target>
 
-    <Target Name="CleanAssets" AfterTargets="Clean">
-        <RemoveDir Directories="wwwroot\assets"/>
+    <Target Name="CleanVendorAssets" AfterTargets="Clean">
+        <RemoveDir Directories="wwwroot\assets\vendors"/>
     </Target>
 </Project>

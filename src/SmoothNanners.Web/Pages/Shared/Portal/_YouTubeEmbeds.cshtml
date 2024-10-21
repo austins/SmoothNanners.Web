@@ -1,42 +1,35 @@
 @model IList<string>
 
-<div>
-    <h3 class="flex items-center">
-        <svg bootstrap-icon="StarFill" class="mr-2"></svg>
-        <span class="italic">Featured</span>
-    </h3>
+<h5 class="card-title d-flex align-items-center mb-0">
+    <svg bootstrap-icon="StarFill" class="me-2"></svg>
+    <span class="fst-italic">Featured</span>
+</h5>
 
-    <div class="space-y-3" x-data="{currentId: null}">
-        @foreach (var id in Model)
-        {
-            <div class="relative" x-show="currentId !== '@id'">
-                <picture>
-                    <source type="image/webp" srcset="https://i.ytimg.com/vi_webp/@id/mqdefault.webp"/>
-                    <img src="https://i.ytimg.com/vi/@id/mqdefault.jpg" alt="YouTube Video" width="332" height="186.75" class="w-full"/>
-                </picture>
-
-                <a
-                    href="https://youtu.be/@id"
-                    target="_blank"
-                    rel="noreferrer"
-                    class="absolute top-0 hover:brightness-[0.85] w-full h-full flex items-center justify-center text-6xl"
-                    aria-label="YouTube Video"
-                    x-on:click.prevent="currentId = '@id'">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 180">
-                        <path fill="red" d="M250.346 28.075A32.18 32.18 0 0 0 227.69 5.418C207.824 0 127.87 0 127.87 0S47.912.164 28.046 5.582A32.18 32.18 0 0 0 5.39 28.24c-6.009 35.298-8.34 89.084.165 122.97a32.18 32.18 0 0 0 22.656 22.657c19.866 5.418 99.822 5.418 99.822 5.418s79.955 0 99.82-5.418a32.18 32.18 0 0 0 22.657-22.657c6.338-35.348 8.291-89.1-.164-123.134"/><path fill="#FFF" d="m102.421 128.06l66.328-38.418l-66.328-38.418z"/>
-                    </svg>
-                </a>
-            </div>
-
-            <template x-if="currentId === '@id'">
-                <iframe
-                    src="https://www.youtube.com/embed/@id?autoplay=1"
-                    title="YouTube Video"
-                    allowFullScreen
-                    allow="autoplay"
-                    class="aspect-video w-full">
-                </iframe>
-            </template>
-        }
+<template id="youtube-embed">
+    <div class="youtube-embed ratio ratio-16x9">
+        <iframe title="YouTube Video" allowFullScreen allow="autoplay"></iframe>
     </div>
-</div>
+</template>
+
+@foreach (var id in Model)
+{
+    <div class="youtube-embed-container position-relative" data-video-id="@id">
+        <picture>
+            <source type="image/webp" srcset="https://i.ytimg.com/vi_webp/@id/mqdefault.webp"/>
+            <img src="https://i.ytimg.com/vi/@id/mqdefault.jpg" alt="YouTube Video" width="328" height="186.75"/>
+        </picture>
+
+        <a
+            href="https://youtu.be/@id"
+            target="_blank"
+            rel="noreferrer"
+            class="position-absolute top-0 w-100 h-100 d-flex align-items-center justify-content-center"
+            aria-label="YouTube Video">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 180">
+                <path fill="red"
+                      d="M250.346 28.075A32.18 32.18 0 0 0 227.69 5.418C207.824 0 127.87 0 127.87 0S47.912.164 28.046 5.582A32.18 32.18 0 0 0 5.39 28.24c-6.009 35.298-8.34 89.084.165 122.97a32.18 32.18 0 0 0 22.656 22.657c19.866 5.418 99.822 5.418 99.822 5.418s79.955 0 99.82-5.418a32.18 32.18 0 0 0 22.657-22.657c6.338-35.348 8.291-89.1-.164-123.134"/>
+                <path fill="#FFF" d="m102.421 128.06l66.328-38.418l-66.328-38.418z"/>
+            </svg>
+        </a>
+    </div>
+}

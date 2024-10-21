@@ -15,10 +15,14 @@ internal static class SsgExtensions
                     Query = "?code=404",
                     OutFile = "404.html"
                 },
-                new CssResource("/assets/main.min.css") { OptimizerType = OptimizerType.None },
-                new JsResource("/assets/vendors/alpine/dist/cdn.min.js") { OptimizerType = OptimizerType.None },
+                new CssResource("/assets/vendors/bootswatch/dist/vapor/bootstrap.min.css")
+                {
+                    OptimizerType = OptimizerType.None
+                },
+                new CssResource("/assets/styles/main.css"),
+                new JsResource("/assets/scripts/youtube-embed.js"),
                 new BinResource("/favicon.ico") { OptimizerType = OptimizerType.None },
-                new BinResource("/images/avatar.jpg") { OptimizerType = OptimizerType.None }
+                new BinResource("/assets/images/avatar.jpg") { OptimizerType = OptimizerType.None }
             ]));
     }
 

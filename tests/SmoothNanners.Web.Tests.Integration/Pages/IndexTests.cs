@@ -56,28 +56,4 @@ public sealed class IndexTests(TestFixture fixture) : TestBase(fixture)
         // Assert
         (await embedContainer.Locator("iframe").IsVisibleAsync()).Should().Be(jsEnabled);
     }
-
-    [Fact]
-    public async Task Click_YouTubeEmbed_WithJavaScript_OnePlayerAtOnce()
-    {
-        // Arrange
-        var path = GetPath(Index.Get());
-        var page = await CreatePageAsync();
-
-        // Act
-        await page.GotoAsync(path);
-
-        var youtubeEmbedLinks = page.Locator("a[href^='https://youtu.be/'][aria-label='YouTube Video']");
-        var embedContainer = youtubeEmbedLinks.First.Locator("..").Locator("..");
-
-        await youtubeEmbedLinks.First.ClickAsync();
-        await youtubeEmbedLinks.Last.ClickAsync();
-
-        var iframes = embedContainer.Locator("> iframe");
-
-        // Assert
-        (await youtubeEmbedLinks.CountAsync()).Should().Be(2);
-        (await iframes.CountAsync()).Should().Be(1);
-        (await iframes.First.IsVisibleAsync()).Should().Be(true);
-    }
 }

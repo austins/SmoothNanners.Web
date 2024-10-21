@@ -8,13 +8,6 @@
         "libman"
       ],
       "rollForward": false
-    },
-    "tailwindcss.cli": {
-      "version": "3.4.0",
-      "commands": [
-        "tailwindcss"
-      ],
-      "rollForward": false
     }
   }
 }

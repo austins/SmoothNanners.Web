@@ -1,24 +1,16 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @using SmoothNanners.Web.TagHelpers
 @model SmoothNanners.Web.Models.Portal.PortalSection
-@{
-    var borderColorClass = Model.BorderVariant switch
-    {
-        ColorVariant.Fuchsia => "border-fuchsia-600",
-        ColorVariant.Indigo => "border-indigo-500",
-        ColorVariant.Purple => "border-purple-600",
-        ColorVariant.Sky => "border-sky-500",
-        _ => throw new ArgumentOutOfRangeException()
-    };
-}
 
-<section class="rounded-md border-2 drop-shadow-[0_1px_4px_rgba(255,255,255,0.15)] @borderColorClass">
-    <h2 class="mb-0 flex items-center border-b-2 border-b-slate-600 px-3 py-2">
-        <svg bootstrap-icon="@Model.Icon" class="mr-2"></svg>
-        <span>@Model.HeadingText</span>
-    </h2>
+<section class="card border-@Model.BorderVariant.ToStringFast()">
+    <div class="card-header border-2 border-white border-opacity-25 border-bottom">
+        <h2 class="d-flex align-items-center mb-0">
+            <svg bootstrap-icon="@Model.Icon" class="me-2"></svg>
+            @Model.HeadingText
+        </h2>
+    </div>
 
-    <div class="p-3 space-y-3">
+    <div class="card-body vstack gap-2">
         @if (Model.Links.Count > 0)
         {
             <partial name="Shared/Portal/_PortalLinks" model="@Model.Links"/>

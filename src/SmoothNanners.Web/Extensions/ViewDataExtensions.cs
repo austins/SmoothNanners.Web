@@ -22,8 +22,14 @@ internal static class ViewDataExtensions
         return GetOrInitializeScripts(viewData);
     }
 
-    public static bool TryAddScript(this ViewDataDictionary viewData, string src, bool defer = false)
+    public static bool TryAddLocalScript(this ViewDataDictionary viewData, string src, bool defer = false)
     {
+        // "~/" is needed to get correct path for static assets.
+        if (!src.StartsWith("~/", StringComparison.Ordinal))
+        {
+            throw new ArgumentException($"Script {nameof(src)} must be a local path.", nameof(src));
+        }
+
         return GetOrInitializeScripts(viewData).TryAdd(src, defer);
     }
 

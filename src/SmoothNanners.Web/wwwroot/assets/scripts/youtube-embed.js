@@ -12,7 +12,7 @@ containers.forEach(container => container.querySelector("a").addEventListener("c
     }), "*")));
 
     // Replace contents of container with embed.
-    const embed = document.getElementById("youtube-embed").content.cloneNode(true);
+    const embed = document.getElementById("youtube-embed-template").content.cloneNode(true);
     embed.querySelector("iframe").src = `https://www.youtube.com/embed/${container.dataset.videoId}?autoplay=1&enablejsapi=1`;
     container.replaceChildren(embed);
 }));

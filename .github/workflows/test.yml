@@ -14,7 +14,7 @@ jobs:
                 with:
                     dotnet-version: '9.x'
             -   name: Build
-                run: dotnet build -c Release
+                run: dotnet build -c Release -v normal
             -   name: Setup Playwright
                 run: pwsh ./tests/SmoothNanners.Web.Tests.Integration/bin/Release/net9.0/playwright.ps1 install --with-deps chromium
             -   name: Test

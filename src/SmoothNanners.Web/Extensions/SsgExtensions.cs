@@ -1,4 +1,4 @@
-﻿using AspNetStatic;
+using AspNetStatic;
 
 namespace SmoothNanners.Web.Extensions;
 
@@ -41,6 +41,6 @@ internal static class SsgExtensions
         app.Logger.LogInformation("Running SSG and exiting...");
 #pragma warning restore CA1848
 
-        app.GenerateStaticContent(Path.Combine(app.Environment.ContentRootPath, "bin/ssg"), true);
+        app.GenerateStaticContent(ssgOutputPath, true);
     }
 }

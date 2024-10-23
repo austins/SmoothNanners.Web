@@ -1,4 +1,4 @@
-﻿@{
+@{
     Layout = "_LayoutBase";
 }
 
@@ -7,16 +7,15 @@
 @section Head {
     @await RenderSectionAsync("Head", false)
 
-    @foreach (var (src, defer) in ViewData.GetScripts())
+    @foreach (var path in ViewContext.GetScripts())
     {
-        var appendVersion = src.StartsWith("~/", StringComparison.Ordinal) || src.StartsWith('/');
-        if (defer)
+        if (path.StartsWith(ViewContextExtensions.LocalPathPrefix, StringComparison.Ordinal))
         {
-            <script defer src="@src" asp-append-version="appendVersion"></script>
+            <script defer src="~/@(path[ViewContextExtensions.LocalPathPrefix.Length..])" asp-append-version="true"></script>
         }
         else
         {
-            <script src="@src" asp-append-version="appendVersion"></script>
+            <script defer src="@path"></script>
         }
     }
 }

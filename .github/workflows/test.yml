@@ -18,4 +18,4 @@ jobs:
             -   name: Setup Playwright
                 run: pwsh ./tests/SmoothNanners.Web.Tests.Integration/bin/Release/net9.0/playwright.ps1 install --with-deps chromium
             -   name: Test
-                run: dotnet test -c Release --no-build -v normal
+                run: dotnet test -c Release --no-build -v detailed

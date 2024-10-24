@@ -10,13 +10,13 @@ namespace SmoothNanners.Web.Tests.Integration;
 
 internal sealed class AppFactory : WebApplicationFactory<Program>
 {
-#pragma warning disable CA2213
     private IHost? _host;
-#pragma warning restore CA2213
 
     public AppFactory()
     {
+        // Ensure the server is created.
         _ = Server;
+
         LinkGenerator = _host!.Services.GetRequiredService<LinkGenerator>();
     }
 
@@ -24,10 +24,10 @@ internal sealed class AppFactory : WebApplicationFactory<Program>
 
     public LinkGenerator LinkGenerator { get; }
 
-    public new void Dispose()
+    public override ValueTask DisposeAsync()
     {
         _host?.Dispose();
-        base.Dispose();
+        return base.DisposeAsync();
     }
 
     protected override IHost CreateHost(IHostBuilder builder)
@@ -37,7 +37,6 @@ internal sealed class AppFactory : WebApplicationFactory<Program>
         var dummyHost = builder.Build();
 
         _host = builder.ConfigureWebHost(b => b.UseSetting("Kestrel:Endpoints:Http:Url", BaseUrl).UseKestrel()).Build();
-
         _host.Start();
 
         return dummyHost;

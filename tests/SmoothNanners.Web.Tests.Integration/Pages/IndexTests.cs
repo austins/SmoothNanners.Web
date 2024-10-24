@@ -49,7 +49,7 @@ public sealed class IndexTests(TestFixture fixture) : TestBase(fixture)
 
         // Act
         await page.GotoAsync(path);
-        var youTubeEmbed = page.Locator("a[href^='https://youtu.be/'][aria-label='YouTube Video']").First;
+        var youTubeEmbed = page.Locator("a[href^='https://www.youtube.com/watch?v='][aria-label='YouTube Video']").First;
         var embedContainer = youTubeEmbed.Locator("..").Locator("..");
         await youTubeEmbed.ClickAsync();
 

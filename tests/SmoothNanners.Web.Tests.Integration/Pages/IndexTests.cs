@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
 using SmoothNanners.Web.Constants;
-using Index = Routes.Pages.Index;
 
 namespace SmoothNanners.Web.Tests.Integration.Pages;
 
@@ -11,7 +10,7 @@ public sealed class IndexTests(TestFixture fixture) : TestBase(fixture)
     public async Task Loads_Successfully_WithLayoutAndNoJavaScriptErrors()
     {
         // Arrange
-        var path = GetPath(Index.Get());
+        var path = GetPath(Routes.Pages.Index.Get());
         var page = await CreatePageAsync();
 
         var hasJsErrors = false;
@@ -44,13 +43,17 @@ public sealed class IndexTests(TestFixture fixture) : TestBase(fixture)
     public async Task Click_YouTubeEmbed_Success(bool jsEnabled)
     {
         // Arrange
-        var path = GetPath(Index.Get());
+        var path = GetPath(Routes.Pages.Index.Get());
         var page = await CreatePageAsync(jsEnabled);
 
         // Act
         await page.GotoAsync(path);
-        var youTubeEmbed = page.Locator("a[href^='https://www.youtube.com/watch?v='][aria-label='YouTube Video']").First;
+
+        var youTubeEmbed = page.Locator("a[href^='https://www.youtube.com/watch?v='][aria-label='YouTube Video']")
+            .First;
+
         var embedContainer = youTubeEmbed.Locator("..").Locator("..");
+
         await youTubeEmbed.ClickAsync();
 
         // Assert

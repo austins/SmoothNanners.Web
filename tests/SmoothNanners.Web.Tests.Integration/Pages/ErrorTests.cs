@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
-using Routes.Pages;
-using Index = Routes.Pages.Index;
 
 namespace SmoothNanners.Web.Tests.Integration.Pages;
 
@@ -23,7 +21,7 @@ public sealed class ErrorTests(TestFixture fixture) : TestBase(fixture)
         string expectedMessage = "An error occurred while processing your request. Please try again later.")
     {
         // Arrange
-        var path = GetPath(Error.Get(code));
+        var path = GetPath(Routes.Pages.Error.Get(code));
         var page = await CreatePageAsync();
 
         // Act
@@ -43,6 +41,6 @@ public sealed class ErrorTests(TestFixture fixture) : TestBase(fixture)
 
         (await page.Locator("body > div > main a").GetByText("Back to Home").GetAttributeAsync("href"))
             .Should()
-            .Be(GetPath(Index.Get()));
+            .Be(GetPath(Routes.Pages.Index.Get()));
     }
 }

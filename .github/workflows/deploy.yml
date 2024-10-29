@@ -13,7 +13,7 @@ jobs:
         uses: ./.github/workflows/codeql.yml
     test:
         uses: ./.github/workflows/test.yml
-    build:
+    deploy:
         needs: [ analyze, test ]
         runs-on: ubuntu-latest
         steps:
@@ -28,20 +28,9 @@ jobs:
             -   name: Generate static pages
                 working-directory: ./out
                 run: dotnet SmoothNanners.Web.dll ssg
-            -   name: Upload GitHub Pages artifact
-                uses: actions/upload-pages-artifact@v3
+            -   name: Deploy to Cloudflare Pages
+                uses: cloudflare/wrangler-action@v3
                 with:
-                    path: ./out/ssg
-    deploy:
-        needs: build
-        permissions:
-            pages: write
-            id-token: write
-        runs-on: ubuntu-latest
-        environment:
-            name: github-pages
-            url: ${{ steps.deployment.outputs.page_url }}
-        steps:
-            -   name: Deploy to GitHub Pages
-                id: deployment
-                uses: actions/deploy-pages@v4
+                    apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+                    accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+                    command: pages deploy ./out/ssg --project-name=smoothnanners-web

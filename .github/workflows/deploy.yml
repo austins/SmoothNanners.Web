@@ -14,7 +14,6 @@ jobs:
     test:
         uses: ./.github/workflows/test.yml
     build:
-        needs: [ analyze, test ]
         runs-on: ubuntu-latest
         steps:
             -   name: Checkout
@@ -23,12 +22,15 @@ jobs:
                 uses: actions/setup-dotnet@v4
                 with:
                     dotnet-version: '9.x'
-            -   name: Build & generate static pages
-                run: dotnet run --project ./src/SmoothNanners.Web -c Release --launch-profile ssg
+            -   name: Build
+                run: dotnet publish ./src/SmoothNanners.Web -c Release -o ./out
+            -   name: Generate static pages
+                working-directory: ./out
+                run: dotnet SmoothNanners.Web.dll ssg
             -   name: Upload GitHub Pages artifact
                 uses: actions/upload-pages-artifact@v3
                 with:
-                    path: ./src/SmoothNanners.Web/bin/ssg
+                    path: ./out/ssg
     deploy:
         needs: build
         permissions:

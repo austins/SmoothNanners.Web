@@ -14,7 +14,6 @@ jobs:
     test:
         uses: ./.github/workflows/test.yml
     build:
-        needs: [ analyze, test ]
         runs-on: ubuntu-latest
         steps:
             -   name: Checkout

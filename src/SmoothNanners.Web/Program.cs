@@ -1,5 +1,19 @@
+using Microsoft.AspNetCore.Http.Features;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Logging.AddSimpleConsole(o => o.TimestampFormat = "HH:mm:ss.fff ");
+
+builder.Services.AddWebOptimizer(
+    p =>
+    {
+        p.MinifyCssFiles("~/assets/styles/**/*.css");
+        p.MinifyJsFiles("~/assets/scripts/**/*.js");
+    },
+    o =>
+    {
+        o.EnableDiskCache = false;
+        o.HttpsCompression = HttpsCompressionMode.DoNotCompress;
+    });
 
 builder.Services.AddRazorPages();
 
@@ -19,7 +33,12 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/error");
 }
 
-app.UseStatusCodePagesWithReExecute("/error", "?code={0}").UseStaticFiles().UseRouting().UseOutputCache();
+app
+    .UseStatusCodePagesWithReExecute("/error", "?code={0}")
+    .UseWebOptimizer()
+    .UseStaticFiles()
+    .UseRouting()
+    .UseOutputCache();
 
 app.MapRazorPages();
 

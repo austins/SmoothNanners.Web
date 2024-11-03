@@ -416,3 +416,5 @@ package-lock.json
 yarn.lock
 bun.lockb
 deno.lock
+
+/src/SmoothNanners.Web/wwwroot/assets/vendors

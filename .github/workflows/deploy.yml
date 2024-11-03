@@ -31,6 +31,7 @@ jobs:
                     username: ${{ github.actor }}
                     password: ${{ secrets.GITHUB_TOKEN }}
             -   name: Set image name
+                # Periods are not allowed in the Docker image name; replace any with a hyphen.
                 run: echo "IMAGE_NAME=${GITHUB_REPOSITORY//./-}" >> $GITHUB_ENV
             -   name: Extract Docker metadata
                 id: meta

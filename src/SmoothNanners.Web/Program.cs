@@ -1,6 +1,3 @@
-using AspNetStatic;
-using SmoothNanners.Web.Extensions;
-
 var builder = WebApplication.CreateBuilder(args);
 builder.Logging.AddSimpleConsole(o => o.TimestampFormat = "HH:mm:ss.fff ");
 
@@ -13,10 +10,7 @@ builder.Services.Configure<RouteOptions>(
         o.LowercaseQueryStrings = true;
     });
 
-if (args.HasExitWhenDoneArg())
-{
-    builder.Services.AddSsg();
-}
+builder.Services.AddOutputCache();
 
 var app = builder.Build();
 
@@ -25,15 +19,10 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/error");
 }
 
-// Not using MapStaticAssets because we are doing SSG.
-app.UseStatusCodePagesWithReExecute("/error", "?code={0}").UseStaticFiles().UseRouting();
+app.UseStatusCodePagesWithReExecute("/error", "?code={0}").UseRouting().UseOutputCache();
 
-app.MapRazorPages();
-
-if (args.HasExitWhenDoneArg())
-{
-    app.RunSsgAndExit();
-}
+app.MapStaticAssets();
+app.MapRazorPages().WithStaticAssets();
 
 await app.RunAsync();
 

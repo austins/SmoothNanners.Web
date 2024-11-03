@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 
 namespace SmoothNanners.Web.Pages;
 
@@ -16,6 +17,8 @@ public sealed class ErrorModel : PageModel
 
     public string Message { get; private set; } = null!;
 
+    public string RequestId { get; private set; } = null!;
+
     public IActionResult OnGet()
     {
         if (!ModelState.IsValid)
@@ -29,8 +32,9 @@ public sealed class ErrorModel : PageModel
             _ => "An error occurred while processing your request. Please try again later."
         };
 
-        // Force return 200 for 404 page SSG generation, which requires a success response.
-        Response.StatusCode = Code is StatusCodes.Status404NotFound ? StatusCodes.Status200OK : Code;
+        RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+
+        Response.StatusCode = Code;
 
         return Page();
     }

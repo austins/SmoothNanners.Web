@@ -9,13 +9,6 @@
             "environmentVariables": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }
-        },
-        "ssg": {
-            "commandName": "Project",
-            "commandLineArgs": "ssg",
-            "environmentVariables": {
-                "ASPNETCORE_ENVIRONMENT": "Production"
-            }
         }
     }
 }

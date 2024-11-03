@@ -11,7 +11,7 @@
     {
         if (path.StartsWith(ViewContextExtensions.LocalPathPrefix, StringComparison.Ordinal))
         {
-            <script defer src="~/@(path[ViewContextExtensions.LocalPathPrefix.Length..])" asp-append-version="true"></script>
+            <script defer src="~/@(path[ViewContextExtensions.LocalPathPrefix.Length..])"></script>
         }
         else
         {

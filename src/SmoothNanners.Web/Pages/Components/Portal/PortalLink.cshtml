@@ -1,0 +1,10 @@
+﻿@model PortalLink
+
+<a
+    href="@Model.Url"
+    target="_blank"
+    rel="noreferrer"
+    class="btn btn-lg btn-@Model.Variant.ToStringFast() hstack gap-2">
+    <svg bootstrap-icon="@Model.Icon"></svg>
+    <span>@Model.Text</span>
+</a>

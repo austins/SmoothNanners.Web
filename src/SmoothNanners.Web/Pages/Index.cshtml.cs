@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.OutputCaching;
 
 namespace SmoothNanners.Web.Pages;
 
-[OutputCache]
+[OutputCache(Duration = int.MaxValue)]
 public sealed class IndexModel : PageModel
 {
     public IActionResult OnGet()

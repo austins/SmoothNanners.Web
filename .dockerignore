@@ -394,3 +394,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+/src/SmoothNanners.Web/wwwroot/assets/vendors

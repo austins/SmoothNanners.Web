@@ -23,7 +23,7 @@ public abstract class ComponentTagHelper : RazorComponentTagHelper
         EnsureValidPropsOrThrow(output.Attributes);
 
         return RenderPartialView(
-            $"{_instanceType.Namespace![_instanceType.Assembly.GetName().Name!.Length..].Replace(".", "/", StringComparison.Ordinal)}/{_instanceType.Name}.cshtml",
+            $"{_instanceType.Namespace![_instanceType.Assembly.GetName().Name!.Length..].Replace('.', '/')}/{_instanceType.Name}.cshtml",
             output);
     }
 

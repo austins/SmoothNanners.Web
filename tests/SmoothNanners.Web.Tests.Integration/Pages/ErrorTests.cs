@@ -11,13 +11,11 @@ public sealed class ErrorTests(TestFixture fixture) : TestBase(fixture)
     [InlineData(StatusCodes.Status500InternalServerError, StatusCodes.Status500InternalServerError)]
     [InlineData(
         StatusCodes.Status404NotFound,
-        StatusCodes.Status200OK,
         StatusCodes.Status404NotFound,
         "The resource you are looking for was not found.")]
     public async Task Loads_Successfully_WithNoCache(
         int code,
         int expectedResponseCode,
-        int? expectedHeadingCode = null,
         string expectedMessage = "An error occurred while processing your request. Please try again later.")
     {
         // Arrange
@@ -34,7 +32,7 @@ public sealed class ErrorTests(TestFixture fixture) : TestBase(fixture)
         (await response.HeaderValueAsync(HeaderNames.Age)).Should().BeNull();
 
         var errorHeading = page.Locator("body > div > main h2").First;
-        (await errorHeading.TextContentAsync()).Should().Be($"Error: {expectedHeadingCode ?? expectedResponseCode}");
+        (await errorHeading.TextContentAsync()).Should().Be($"Error: {expectedResponseCode}");
 
         var errorMessage = errorHeading.Locator("//following-sibling::p[1]");
         (await errorMessage.TextContentAsync()).Should().Be(expectedMessage);

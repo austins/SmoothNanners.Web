@@ -37,6 +37,7 @@ internal sealed class AppFactory : WebApplicationFactory<Program>
         var dummyHost = builder.Build();
 
         _host = builder.ConfigureWebHost(b => b.UseSetting("Kestrel:Endpoints:Http:Url", BaseUrl).UseKestrel()).Build();
+
         _host.Start();
 
         return dummyHost;

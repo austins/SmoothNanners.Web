@@ -417,4 +417,5 @@ yarn.lock
 bun.lockb
 deno.lock
 
+# App
 /src/SmoothNanners.Web/wwwroot/assets/vendors

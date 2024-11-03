@@ -8,6 +8,10 @@ WORKDIR /app
 COPY . .
 RUN dotnet publish ./src/SmoothNanners.Web -c Release -o ./out
 
+# Remove .br and .gz files from the published wwwroot directory
+# because the app isn't using MapStaticAssets and compression is handled by the reverse proxy.
+RUN find ./out/wwwroot -type f \( -name "*.br" -o -name "*.gz" \) -delete
+
 ###################################################
 ## Runtime image creation stage.
 ###################################################

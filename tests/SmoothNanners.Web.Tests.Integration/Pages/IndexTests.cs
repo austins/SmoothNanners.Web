@@ -47,8 +47,7 @@ public sealed class IndexTests(TestFixture fixture) : TestBase(fixture)
 
     [Theory]
     [InlineData(false)]
-    /* [InlineData(true)]
-     * TODO: Disabled for now mapping of static assets in WebApplicationFactory is figured out. */
+    [InlineData(true)]
     public async Task Click_YouTubeEmbed_Success(bool jsEnabled)
     {
         // Arrange
@@ -61,7 +60,7 @@ public sealed class IndexTests(TestFixture fixture) : TestBase(fixture)
         var youTubeVideoLink = page.Locator("a[href^='https://www.youtube.com/watch?v='][aria-label='YouTube Video']")
             .First;
 
-        var embedContainer = youTubeVideoLink.Locator("..");
+        var embedContainer = youTubeVideoLink.Locator("..").Locator("..");
 
         await youTubeVideoLink.ClickAsync();
 

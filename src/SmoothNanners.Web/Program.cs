@@ -19,10 +19,9 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/error");
 }
 
-app.UseStatusCodePagesWithReExecute("/error", "?code={0}").UseRouting().UseOutputCache();
+app.UseStatusCodePagesWithReExecute("/error", "?code={0}").UseStaticFiles().UseRouting().UseOutputCache();
 
-app.MapStaticAssets();
-app.MapRazorPages().WithStaticAssets();
+app.MapRazorPages();
 
 await app.RunAsync();
 

@@ -5,7 +5,7 @@ using SafeRouting;
 namespace SmoothNanners.Web.Tests.Integration;
 
 [Collection<TestCollection>]
-public abstract class TestBase : IAsyncLifetime
+public abstract class TestBase : IAsyncDisposable
 {
     private readonly IList<IBrowserContext> _browserContexts = [];
     private readonly TestFixture _fixture;
@@ -13,15 +13,6 @@ public abstract class TestBase : IAsyncLifetime
     protected TestBase(TestFixture fixture)
     {
         _fixture = fixture;
-    }
-
-    /// <summary>
-    /// Initialization before each test.
-    /// </summary>
-    /// <returns>ValueTask.</returns>
-    public ValueTask InitializeAsync()
-    {
-        return ValueTask.CompletedTask;
     }
 
     /// <summary>

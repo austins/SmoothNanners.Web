@@ -8,9 +8,7 @@ namespace SmoothNanners.Web.Tests.Integration;
 /// Test fixture used for <see cref="TestCollection" /> that ensures it's instantiated
 /// only once as a singleton for any tests within the collection.
 /// </summary>
-public sealed class TestFixture
-    : IAsyncLifetime,
-        IDisposable
+public sealed class TestFixture : IAsyncLifetime
 {
     private readonly AppFactory _appFactory = new();
     private IPlaywright? _playwright;
@@ -24,8 +22,8 @@ public sealed class TestFixture
     /// <summary>
     /// Initialization that should run once before all tests at the creation time.
     /// </summary>
-    /// <returns>Task.</returns>
-    public async Task InitializeAsync()
+    /// <returns>ValueTask.</returns>
+    public async ValueTask InitializeAsync()
     {
         _playwright = await Playwright.CreateAsync();
 
@@ -35,24 +33,18 @@ public sealed class TestFixture
     /// <summary>
     /// Async teardown that should run once after all tests are finished.
     /// </summary>
-    /// <returns>Task.</returns>
-    public async Task DisposeAsync()
+    /// <returns>ValueTask.</returns>
+    public async ValueTask DisposeAsync()
     {
         if (Browser is not null)
         {
             await Browser.DisposeAsync();
         }
-    }
 
-    /// <summary>
-    /// Teardown that should run once after all tests are finished.
-    /// </summary>
-    public void Dispose()
-    {
         _playwright?.Dispose();
-        _appFactory.Dispose();
+        await _appFactory.DisposeAsync();
     }
 }
 
-[CollectionDefinition(nameof(TestCollection))]
+[CollectionDefinition]
 public sealed class TestCollection : ICollectionFixture<TestFixture>;

@@ -4,7 +4,7 @@ using SafeRouting;
 
 namespace SmoothNanners.Web.Tests.Integration;
 
-[Collection(nameof(TestCollection))]
+[Collection<TestCollection>]
 public abstract class TestBase : IAsyncLifetime
 {
     private readonly IList<IBrowserContext> _browserContexts = [];
@@ -18,22 +18,24 @@ public abstract class TestBase : IAsyncLifetime
     /// <summary>
     /// Initialization before each test.
     /// </summary>
-    /// <returns>Task.</returns>
-    public Task InitializeAsync()
+    /// <returns>ValueTask.</returns>
+    public ValueTask InitializeAsync()
     {
-        return Task.CompletedTask;
+        return ValueTask.CompletedTask;
     }
 
     /// <summary>
     /// Teardown after each test.
     /// </summary>
-    /// <returns>Task.</returns>
-    public async Task DisposeAsync()
+    /// <returns>ValueTask.</returns>
+    public async ValueTask DisposeAsync()
     {
         foreach (var browserContext in _browserContexts)
         {
             await browserContext.DisposeAsync();
         }
+
+        GC.SuppressFinalize(this);
     }
 
     protected string GetPath(IRouteValues route)

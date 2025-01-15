@@ -4,9 +4,9 @@ using SmoothNanners.Web.Constants;
 
 namespace SmoothNanners.Web.Tests.Integration.Pages;
 
-public sealed class IndexTests(TestFixture fixture) : TestBase(fixture)
+public sealed class IndexTests : TestBase
 {
-    [Fact]
+    [Test]
     public async Task Loads_Successfully_WithLayoutAndNoJavaScriptErrors()
     {
         // Arrange
@@ -25,29 +25,27 @@ public sealed class IndexTests(TestFixture fixture) : TestBase(fixture)
         // Act
         var response = await page.GotoAsync(path);
 
-        // The response output may have been cached previously from another test case, but we reload to make sure that it gets cached.
+        // The response output may have been cached previously from another test case, so we reload to ensure we're seeing a cached page with relevant headers.
         var cachedResponse = await page.ReloadAsync();
 
         // Assert
-        response!.Status.Should().Be(StatusCodes.Status200OK);
-        hasJsErrors.Should().BeFalse();
-        (await response.HeaderValueAsync(HeaderNames.ContentType)).Should().Be("text/html; charset=utf-8");
+        response!.Status.ShouldBe(StatusCodes.Status200OK);
+        hasJsErrors.ShouldBeFalse();
+        (await response.HeaderValueAsync(HeaderNames.ContentType)).ShouldBe("text/html; charset=utf-8");
 
-        (await cachedResponse!.HeaderValueAsync(HeaderNames.Age)).Should().NotBeEmpty();
-        (await cachedResponse.HeaderValueAsync(HeaderNames.Date))
-            .Should()
-            .Be(await response.HeaderValueAsync(HeaderNames.Date));
+        (await cachedResponse!.HeaderValueAsync(HeaderNames.Age)).ShouldNotBeEmpty();
+        (await cachedResponse.HeaderValueAsync(HeaderNames.Date)).ShouldBe(
+            await response.HeaderValueAsync(HeaderNames.Date));
 
-        (await page.Locator("head > meta[name='description']").GetAttributeAsync("content"))
-            .Should()
-            .Be(AppConstants.SiteDescription);
+        (await page.Locator("head > meta[name='description']").GetAttributeAsync("content")).ShouldBe(
+            AppConstants.SiteDescription);
 
-        (await page.Locator("body > div > main > h1").First.TextContentAsync()).Should().Be(AppConstants.SiteName);
+        (await page.Locator("body > div > main > h1").First.TextContentAsync()).ShouldBe(AppConstants.SiteName);
     }
 
-    [Theory]
-    [InlineData(false)]
-    [InlineData(true)]
+    [Test]
+    [Arguments(false)]
+    [Arguments(true)]
     public async Task Click_YouTubeEmbed_Success(bool jsEnabled)
     {
         // Arrange
@@ -65,6 +63,6 @@ public sealed class IndexTests(TestFixture fixture) : TestBase(fixture)
         await youTubeVideoLink.ClickAsync();
 
         // Assert
-        (await embedContainer.Locator("iframe").IsVisibleAsync()).Should().Be(jsEnabled);
+        (await embedContainer.Locator("iframe").IsVisibleAsync()).ShouldBe(jsEnabled);
     }
 }

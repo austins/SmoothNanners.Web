@@ -1,7 +1,13 @@
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http.Features;
+using SmoothNanners.Web.Extensions;
+using SmoothNanners.Web.Telemetry;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Logging.AddSimpleConsole(o => o.TimestampFormat = "HH:mm:ss.fff ");
+
+builder.AddTelemetry();
 
 builder.Services.AddWebOptimizer(
     p =>
@@ -26,6 +32,8 @@ builder.Services.Configure<RouteOptions>(
 
 builder.Services.AddOutputCache();
 
+builder.Services.AddRateLimiting().AddHealthChecks();
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -38,7 +46,14 @@ app
     .UseWebOptimizer()
     .UseStaticFiles()
     .UseRouting()
-    .UseOutputCache();
+    .UseOutputCache()
+    .UseRateLimiter();
+
+app
+    .MapHealthChecks(
+        "/_health",
+        new HealthCheckOptions { ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse })
+    .RequireRateLimiting(RateLimitingExtensions.HealthCheckRateLimiterPolicyName);
 
 app.MapRazorPages();
 

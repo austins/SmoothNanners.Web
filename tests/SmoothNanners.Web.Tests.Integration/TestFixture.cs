@@ -1,14 +1,16 @@
 ﻿using Microsoft.AspNetCore.Routing;
 using Microsoft.Playwright;
 using Microsoft.Playwright.TestAdapter;
+using TUnit.Core.Interfaces;
 
 namespace SmoothNanners.Web.Tests.Integration;
 
 /// <summary>
-/// Test fixture used for <see cref="TestCollection" /> that ensures it's instantiated
-/// only once as a singleton for any tests within the collection.
+/// Test fixture that should be instantiated only once as a singleton for any tests within the session.
 /// </summary>
-public sealed class TestFixture : IAsyncLifetime
+public sealed class TestFixture
+    : IAsyncInitializer,
+        IAsyncDisposable
 {
     private readonly AppFactory _appFactory = new();
     private IPlaywright? _playwright;
@@ -17,13 +19,13 @@ public sealed class TestFixture : IAsyncLifetime
 
     public LinkGenerator LinkGenerator => _appFactory.LinkGenerator;
 
-    public IBrowser? Browser { get; private set; }
+    public IBrowser Browser { get; private set; } = null!;
 
     /// <summary>
-    /// Initialization that should run once before all tests at the creation time.
+    /// Initialization that should run once when the test session starts.
     /// </summary>
-    /// <returns>ValueTask.</returns>
-    public async ValueTask InitializeAsync()
+    /// <returns>Task.</returns>
+    public async Task InitializeAsync()
     {
         _playwright = await Playwright.CreateAsync();
 
@@ -31,20 +33,13 @@ public sealed class TestFixture : IAsyncLifetime
     }
 
     /// <summary>
-    /// Async teardown that should run once after all tests are finished.
+    /// Async teardown that should run once the test session is finished.
     /// </summary>
     /// <returns>ValueTask.</returns>
     public async ValueTask DisposeAsync()
     {
-        if (Browser is not null)
-        {
-            await Browser.DisposeAsync();
-        }
-
+        await Browser.DisposeAsync();
         _playwright?.Dispose();
         await _appFactory.DisposeAsync();
     }
 }
-
-[CollectionDefinition]
-public sealed class TestCollection : ICollectionFixture<TestFixture>;

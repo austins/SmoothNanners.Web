@@ -3,13 +3,13 @@ using Microsoft.Net.Http.Headers;
 
 namespace SmoothNanners.Web.Tests.Integration.Pages;
 
-public sealed class ErrorTests(TestFixture fixture) : TestBase(fixture)
+public sealed class ErrorTests : TestBase
 {
-    [Theory]
-    [InlineData(399, StatusCodes.Status400BadRequest)]
-    [InlineData(600, StatusCodes.Status400BadRequest)]
-    [InlineData(StatusCodes.Status500InternalServerError, StatusCodes.Status500InternalServerError)]
-    [InlineData(
+    [Test]
+    [Arguments(399, StatusCodes.Status400BadRequest)]
+    [Arguments(600, StatusCodes.Status400BadRequest)]
+    [Arguments(StatusCodes.Status500InternalServerError, StatusCodes.Status500InternalServerError)]
+    [Arguments(
         StatusCodes.Status404NotFound,
         StatusCodes.Status404NotFound,
         "The resource you are looking for was not found.")]
@@ -26,19 +26,18 @@ public sealed class ErrorTests(TestFixture fixture) : TestBase(fixture)
         var response = await page.GotoAsync(path);
 
         // Assert
-        response!.Status.Should().Be(expectedResponseCode);
-        (await response.HeaderValueAsync(HeaderNames.CacheControl)).Should().Be("no-store,no-cache");
-        (await response.HeaderValueAsync(HeaderNames.Pragma)).Should().Be("no-cache");
-        (await response.HeaderValueAsync(HeaderNames.Age)).Should().BeNull();
+        response!.Status.ShouldBe(expectedResponseCode);
+        (await response.HeaderValueAsync(HeaderNames.CacheControl)).ShouldBe("no-store,no-cache");
+        (await response.HeaderValueAsync(HeaderNames.Pragma)).ShouldBe("no-cache");
+        (await response.HeaderValueAsync(HeaderNames.Age)).ShouldBeNull();
 
         var errorHeading = page.Locator("body > div > main h2").First;
-        (await errorHeading.TextContentAsync()).Should().Be($"Error: {expectedResponseCode}");
+        (await errorHeading.TextContentAsync()).ShouldBe($"Error: {expectedResponseCode}");
 
         var errorMessage = errorHeading.Locator("//following-sibling::p[1]");
-        (await errorMessage.TextContentAsync()).Should().Be(expectedMessage);
+        (await errorMessage.TextContentAsync()).ShouldBe(expectedMessage);
 
-        (await page.Locator("body > div > main a").GetByText("Back to Home").GetAttributeAsync("href"))
-            .Should()
-            .Be(GetPath(Routes.Pages.Index.Get()));
+        (await page.Locator("body > div > main a").GetByText("Back to Home").GetAttributeAsync("href")).ShouldBe(
+            GetPath(Routes.Pages.Index.Get()));
     }
 }

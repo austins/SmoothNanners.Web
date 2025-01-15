@@ -4,42 +4,33 @@ using SafeRouting;
 
 namespace SmoothNanners.Web.Tests.Integration;
 
-[Collection<TestCollection>]
-public abstract class TestBase : IAsyncDisposable
+public abstract class TestBase
 {
     private readonly IList<IBrowserContext> _browserContexts = [];
-    private readonly TestFixture _fixture;
 
-    protected TestBase(TestFixture fixture)
-    {
-        _fixture = fixture;
-    }
+    [ClassDataSource<TestFixture>(Shared = SharedType.PerTestSession)]
+    public required TestFixture Fixture { get; init; }
 
-    /// <summary>
-    /// Teardown after each test.
-    /// </summary>
-    /// <returns>ValueTask.</returns>
-    public async ValueTask DisposeAsync()
+    [After(Test)]
+    public async Task AfterTestAsync()
     {
         foreach (var browserContext in _browserContexts)
         {
             await browserContext.DisposeAsync();
         }
-
-        GC.SuppressFinalize(this);
     }
 
     protected string GetPath(IRouteValues route)
     {
-        return route.Path(_fixture.LinkGenerator);
+        return route.Path(Fixture.LinkGenerator);
     }
 
     protected async Task<IPage> CreatePageAsync(bool jsEnabled = true)
     {
-        var context = await _fixture.Browser!.NewContextAsync(
+        var context = await Fixture.Browser.NewContextAsync(
             new BrowserNewContextOptions
             {
-                BaseURL = _fixture.BaseUrl,
+                BaseURL = Fixture.BaseUrl,
                 JavaScriptEnabled = jsEnabled
             });
 

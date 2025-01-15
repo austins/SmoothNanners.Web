@@ -29,7 +29,7 @@ RUN apk add --no-cache icu-data-full icu-libs
 
 # Configure healthcheck.
 RUN apk add --no-cache curl
-HEALTHCHECK --interval=2m CMD curl --fail http://localhost:8080/_health || exit 1
+HEALTHCHECK --start-interval=5s --interval=2m CMD curl --fail http://localhost:8080/_health || exit 1
 
 # Configure running the app.
 ENTRYPOINT ["dotnet", "SmoothNanners.Web.dll"]

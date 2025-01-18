@@ -9,17 +9,20 @@ builder.Logging.AddSimpleConsole(o => o.TimestampFormat = "HH:mm:ss.fff ");
 
 builder.AddTelemetry();
 
-builder.Services.AddWebOptimizer(
-    p =>
-    {
-        p.MinifyCssFiles("~/assets/styles/**/*.css");
-        p.MinifyJsFiles("~/assets/scripts/**/*.js");
-    },
-    o =>
-    {
-        o.EnableDiskCache = false;
-        o.HttpsCompression = HttpsCompressionMode.DoNotCompress;
-    });
+if (!builder.Environment.IsDevelopment())
+{
+    builder.Services.AddWebOptimizer(
+        p =>
+        {
+            p.MinifyCssFiles("~/assets/styles/**/*.css");
+            p.MinifyJsFiles("~/assets/scripts/**/*.js");
+        },
+        o =>
+        {
+            o.EnableDiskCache = false;
+            o.HttpsCompression = HttpsCompressionMode.DoNotCompress;
+        });
+}
 
 builder.Services.AddRazorPages();
 
@@ -41,13 +44,14 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/error");
 }
 
-app
-    .UseStatusCodePagesWithReExecute("/error", "?code={0}")
-    .UseWebOptimizer()
-    .UseStaticFiles()
-    .UseRouting()
-    .UseOutputCache()
-    .UseRateLimiter();
+app.UseStatusCodePagesWithReExecute("/error", "?code={0}");
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseWebOptimizer();
+}
+
+app.UseStaticFiles().UseRouting().UseOutputCache().UseRateLimiter();
 
 app
     .MapHealthChecks(

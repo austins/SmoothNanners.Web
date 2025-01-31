@@ -41,6 +41,10 @@ public sealed class IndexTests : TestBase
             AppConstants.SiteDescription);
 
         (await page.Locator("body > div > main > h1").First.TextContentAsync()).ShouldBe(AppConstants.SiteName);
+
+        (await page.Locator("section.card").First.GetAttributeAsync("class"))!
+            .Split(' ')
+            .ShouldContain("border-primary");
     }
 
     [Test]

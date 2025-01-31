@@ -10,7 +10,7 @@ public sealed class PortalLink : ComponentTagHelper
 
     public required string Text { get; set; }
 
-    public required BootstrapIconGlyph Icon { get; set; }
+    public BootstrapIconGlyph Icon { get; set; }
 
-    public required BootstrapVariant Variant { get; set; }
+    public BootstrapVariant Variant { get; set; }
 }

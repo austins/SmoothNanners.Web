@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using SmoothNanners.Web.Extensions;
 using System.Collections.Concurrent;
 using System.Reflection;
 using TechGems.RazorComponentTagHelpers;
@@ -24,9 +25,12 @@ public abstract class ComponentTagHelper : RazorComponentTagHelper
     {
         EnsureValidPropsOrThrow(output.Attributes);
 
-        return RenderPartialView(
-            $"{_instanceType.Namespace![_instanceType.Assembly.GetName().Name!.Length..].Replace('.', '/')}/{_instanceType.Name}.cshtml",
-            output);
+        var viewRoute =
+            $"{_instanceType.Namespace![_instanceType.Assembly.GetName().Name!.Length..].Replace('.', '/')}/{_instanceType.Name}.cshtml";
+
+        AddCollocatedScript(viewRoute);
+
+        return RenderPartialView(viewRoute, output);
     }
 
     private void EnsureValidPropsOrThrow(TagHelperAttributeList attributes)
@@ -62,5 +66,35 @@ public abstract class ComponentTagHelper : RazorComponentTagHelper
             throw new InvalidOperationException(
                 $"Missing required props for '{_instanceType.Name}' component: {string.Join(", ", missingRequiredProps)}.");
         }
+    }
+
+    private void AddCollocatedScript(string viewRoute)
+    {
+        const string componentCollocatedScriptsParsedKey = "ComponentCollocatedScriptParsed";
+        ViewContext!.HttpContext.Items.TryAdd(componentCollocatedScriptsParsedKey, new HashSet<Type>());
+
+        var componentCollocatedScriptsParsed =
+            (ViewContext.HttpContext.Items[componentCollocatedScriptsParsedKey] as HashSet<Type>)!;
+
+        if (componentCollocatedScriptsParsed.Contains(_instanceType))
+        {
+            return;
+        }
+
+        var jsFilePath = $"{viewRoute}.js";
+
+        var jsFileInfo = ViewContext
+            .HttpContext
+            .RequestServices
+            .GetRequiredService<IWebHostEnvironment>()
+            .WebRootFileProvider
+            .GetFileInfo(jsFilePath);
+
+        if (jsFileInfo.Exists)
+        {
+            ViewContext.TryAddScript(jsFilePath);
+        }
+
+        componentCollocatedScriptsParsed.Add(_instanceType);
     }
 }

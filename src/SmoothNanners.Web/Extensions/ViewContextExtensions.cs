@@ -4,36 +4,21 @@ namespace SmoothNanners.Web.Extensions;
 
 internal static class ViewContextExtensions
 {
-    public const string LocalPathPrefix = "~/";
-
-    public static IReadOnlyList<string> GetScripts(this ViewContext viewContext)
+    public static IReadOnlyDictionary<string, bool> GetScripts(this ViewContext viewContext)
     {
         return GetOrInitializeScripts(viewContext);
     }
 
-    public static bool TryAddLocalScript(this ViewContext viewContext, string path)
+    public static bool TryAddScript(this ViewContext viewContext, string path)
     {
-        if (!path.StartsWith(LocalPathPrefix, StringComparison.Ordinal))
-        {
-            throw new ArgumentException(
-                $"Script {nameof(path)} must be a local path starting with '~/'.",
-                nameof(path));
-        }
-
-        var scripts = GetOrInitializeScripts(viewContext);
-        if (!scripts.Contains(path))
-        {
-            scripts.Add(path);
-            return true;
-        }
-
-        return false;
+        var isLocalScript = path.StartsWith('/') || path.StartsWith("~/", StringComparison.Ordinal);
+        return GetOrInitializeScripts(viewContext).TryAdd(path, isLocalScript);
     }
 
-    private static List<string> GetOrInitializeScripts(ViewContext viewContext)
+    private static Dictionary<string, bool> GetOrInitializeScripts(ViewContext viewContext)
     {
         const string scriptsKey = "ViewScripts";
-        viewContext.HttpContext.Items.TryAdd(scriptsKey, new List<string>());
-        return (viewContext.HttpContext.Items[scriptsKey] as List<string>)!;
+        viewContext.HttpContext.Items.TryAdd(scriptsKey, new Dictionary<string, bool>());
+        return (viewContext.HttpContext.Items[scriptsKey] as Dictionary<string, bool>)!;
     }
 }

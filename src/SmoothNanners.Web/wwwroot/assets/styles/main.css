@@ -11,11 +11,3 @@ body {
 p:last-child {
     margin-bottom: 0;
 }
-
-.youtube-embed-container > a {
-    font-size: 3.6rem;
-}
-
-.youtube-embed-container > a:hover {
-    filter: brightness(85%);
-}

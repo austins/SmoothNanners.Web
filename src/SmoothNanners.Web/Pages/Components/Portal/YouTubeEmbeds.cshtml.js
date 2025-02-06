@@ -1,4 +1,4 @@
-"use strict";
+﻿"use strict";
 
 const containers = document.querySelectorAll(".youtube-embed-container");
 

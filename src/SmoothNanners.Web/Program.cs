@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http.Features;
 using SmoothNanners.Web.Extensions;
 using SmoothNanners.Web.Telemetry;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Logging.AddSimpleConsole(o => o.TimestampFormat = "HH:mm:ss.fff ");
@@ -14,8 +15,11 @@ if (!builder.Environment.IsDevelopment())
     builder.Services.AddWebOptimizer(
         p =>
         {
-            p.MinifyCssFiles("~/assets/styles/**/*.css");
-            p.MinifyJsFiles("~/assets/scripts/**/*.js");
+            p.MinifyCssFiles(
+                "/assets/styles/**/*.css",
+                $"/{Assembly.GetExecutingAssembly().GetName().Name}.styles.css");
+
+            p.MinifyJsFiles("/assets/scripts/**/*.js", "/Pages/Components/**/*.js");
         },
         o =>
         {

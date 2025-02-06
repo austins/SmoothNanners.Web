@@ -1,7 +1,7 @@
-﻿.youtube-embed-container > a {
+﻿.youtube-embed-container ::deep > a {
     font-size: 3.6rem;
 }
 
-.youtube-embed-container > a:hover {
+.youtube-embed-container ::deep > a:hover {
     filter: brightness(85%);
 }

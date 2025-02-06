@@ -7,12 +7,11 @@
 @section Head {
     @await RenderSectionAsync("Head", false)
 
-    @foreach (var path in ViewContext.GetScripts())
+    @foreach (var (path, isLocalScript) in ViewContext.GetScripts())
     {
-        if (path.StartsWith(ViewContextExtensions.LocalPathPrefix, StringComparison.Ordinal))
+        if (isLocalScript)
         {
-            <script defer src="~/@(path[ViewContextExtensions.LocalPathPrefix.Length..])"
-                    asp-append-version="true"></script>
+            <script defer src="@path" asp-append-version="true"></script>
         }
         else
         {

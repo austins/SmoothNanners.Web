@@ -76,25 +76,23 @@ public abstract class ComponentTagHelper : RazorComponentTagHelper
         var componentCollocatedScriptsParsed =
             (ViewContext.HttpContext.Items[componentCollocatedScriptsParsedKey] as HashSet<Type>)!;
 
-        if (componentCollocatedScriptsParsed.Contains(_instanceType))
+        if (!componentCollocatedScriptsParsed.Contains(_instanceType))
         {
-            return;
+            var jsFilePath = $"{viewRoute}.js";
+
+            var jsFileInfo = ViewContext
+                .HttpContext
+                .RequestServices
+                .GetRequiredService<IWebHostEnvironment>()
+                .WebRootFileProvider
+                .GetFileInfo(jsFilePath);
+
+            if (jsFileInfo.Exists)
+            {
+                ViewContext.TryAddScript(jsFilePath);
+            }
+
+            componentCollocatedScriptsParsed.Add(_instanceType);
         }
-
-        var jsFilePath = $"{viewRoute}.js";
-
-        var jsFileInfo = ViewContext
-            .HttpContext
-            .RequestServices
-            .GetRequiredService<IWebHostEnvironment>()
-            .WebRootFileProvider
-            .GetFileInfo(jsFilePath);
-
-        if (jsFileInfo.Exists)
-        {
-            ViewContext.TryAddScript(jsFilePath);
-        }
-
-        componentCollocatedScriptsParsed.Add(_instanceType);
     }
 }

@@ -17,6 +17,7 @@ internal static class ViewContextExtensions
 
     private static Dictionary<string, bool> GetOrInitializeScripts(ViewContext viewContext)
     {
+        // Keep track of scripts that are already added as they only need to be added once for a page.
         const string scriptsKey = "ViewScripts";
         viewContext.HttpContext.Items.TryAdd(scriptsKey, new Dictionary<string, bool>());
         return (viewContext.HttpContext.Items[scriptsKey] as Dictionary<string, bool>)!;

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using SmoothNanners.Web.TagHelpers;
 
-namespace SmoothNanners.Web.Pages.Components.Portal;
+namespace SmoothNanners.Web.Pages.Shared.Components.Portal;
 
 [HtmlTargetElement("youtube-embeds", TagStructure = TagStructure.WithoutEndTag)]
 public sealed class YouTubeEmbeds : ComponentTagHelper

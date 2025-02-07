@@ -19,7 +19,7 @@ if (!builder.Environment.IsDevelopment())
                 "/assets/styles/**/*.css",
                 $"/{Assembly.GetExecutingAssembly().GetName().Name}.styles.css");
 
-            p.MinifyJsFiles("/assets/scripts/**/*.js", "/Pages/Components/**/*.js");
+            p.MinifyJsFiles("/assets/scripts/**/*.js", "/Pages/Shared/Components/**/*.js");
         },
         o =>
         {

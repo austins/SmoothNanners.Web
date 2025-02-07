@@ -2,7 +2,7 @@
 using SmoothNanners.Web.Models;
 using SmoothNanners.Web.TagHelpers;
 
-namespace SmoothNanners.Web.Pages.Components.Portal;
+namespace SmoothNanners.Web.Pages.Shared.Components.Portal;
 
 public sealed class PortalSection : ComponentTagHelper
 {

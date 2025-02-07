@@ -17,18 +17,6 @@
         <Content Update="appsettings.Development.json;libman.json" CopyToPublishDirectory="Never"/>
     </ItemGroup>
 
-    <ItemGroup>
-        <_ContentIncludedByDefault Remove="Pages\Components\Portal\PortalLink.cshtml"/>
-        <_ContentIncludedByDefault Remove="Pages\Components\Portal\PortalSection.cshtml"/>
-        <_ContentIncludedByDefault Remove="Pages\Components\Portal\YouTubeEmbeds.cshtml"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <AdditionalFiles Include="Pages\Shared\Components\Portal\PortalLink.cshtml"/>
-        <AdditionalFiles Include="Pages\Shared\Components\Portal\PortalSection.cshtml"/>
-        <AdditionalFiles Include="Pages\Shared\Components\Portal\YouTubeEmbeds.cshtml"/>
-    </ItemGroup>
-
     <Target Name="RestoreVendorAssets" AfterTargets="BeforeBuild">
         <Exec Command="dotnet tool restore"/>
         <Exec Command="dotnet tool run libman restore" LogStandardErrorAsError="true"/>

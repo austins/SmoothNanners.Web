@@ -70,7 +70,7 @@ public abstract class ComponentTagHelper : RazorComponentTagHelper
 
     private void AddCollocatedScript(string viewRoute)
     {
-        // Keep track of collocated scripts already processed by component type to be able
+        // Keep track of components already processed for a collocated script to be able
         // to return early without having to check if the file exists.
         const string componentCollocatedScriptsParsedKey = "ComponentCollocatedScriptsParsed";
         ViewContext!.HttpContext.Items.TryAdd(componentCollocatedScriptsParsedKey, new HashSet<Type>());

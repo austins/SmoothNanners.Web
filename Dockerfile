@@ -1,7 +1,7 @@
 ###################################################
 ## Build stage.
 ###################################################
-FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine@sha256:a9d99ca1f16b123abd916a9e95b4304c3d3e03e86781e24ca565119badd5cad6 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine@sha256:c439a8d5fef241d04858145e777a460ec0e6c8fec8e518b41cdee4e37321f306 AS build
 
 # Publish app.
 WORKDIR /app
@@ -15,7 +15,7 @@ RUN find ./out/wwwroot -type f \( -name "*.br" -o -name "*.gz" \) -delete
 ###################################################
 ## Runtime image creation stage.
 ###################################################
-FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine@sha256:5b2b4d6ef37864167055e4e215eb10bd77217148068f7c055c900ca22d14c945
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine@sha256:36b581c9812089fa977395f6951cd08064b10da98b45653ea43e75b8e247e8fa
 
 # Copy published build.
 WORKDIR /app

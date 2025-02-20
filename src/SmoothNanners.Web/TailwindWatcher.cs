@@ -19,8 +19,6 @@ internal sealed partial class TailwindWatcher
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        _log.Starting();
-
         _process = new Process
         {
             StartInfo = new ProcessStartInfo(
@@ -35,25 +33,27 @@ internal sealed partial class TailwindWatcher
             }
         };
 
-        _process.OutputDataReceived += (_, e) => LogOutput(e.Data);
-        _process.ErrorDataReceived += (_, e) => LogOutput(e.Data);
+        _process.OutputDataReceived += LogOutput;
+        _process.ErrorDataReceived += LogOutput;
 
         _process.Start();
         _process.BeginOutputReadLine();
         _process.BeginErrorReadLine();
+
+        _log.Started();
 
         return Task.CompletedTask;
     }
 
     public async Task StopAsync(CancellationToken cancellationToken)
     {
-        _log.Stopping();
-
         if (_process?.HasExited == false)
         {
             await _process.WaitForExitAsync(cancellationToken);
             Dispose();
         }
+
+        _log.Stopped();
     }
 
     public void Dispose()
@@ -66,21 +66,21 @@ internal sealed partial class TailwindWatcher
         }
     }
 
-    private void LogOutput(string? output)
+    private void LogOutput(object _, DataReceivedEventArgs e)
     {
-        if (output?.Contains("Tailwind CSS: ", StringComparison.Ordinal) == true)
+        if (e.Data?.Contains("Tailwind CSS: ", StringComparison.Ordinal) == true)
         {
-            _log.Output(output.Trim());
+            _log.Output(e.Data.Trim());
         }
     }
 
     private sealed partial class Log(ILogger logger)
     {
-        [LoggerMessage(Level = LogLevel.Information, Message = "Starting Tailwind Watcher...")]
-        public partial void Starting();
+        [LoggerMessage(Level = LogLevel.Information, Message = "Started Tailwind Watcher.")]
+        public partial void Started();
 
-        [LoggerMessage(Level = LogLevel.Information, Message = "Stopping Tailwind Watcher...")]
-        public partial void Stopping();
+        [LoggerMessage(Level = LogLevel.Information, Message = "Stopped Tailwind Watcher.")]
+        public partial void Stopped();
 
         [LoggerMessage(Level = LogLevel.Information, Message = "{output}")]
         public partial void Output(string output);

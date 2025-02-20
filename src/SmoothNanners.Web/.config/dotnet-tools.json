@@ -8,6 +8,13 @@
         "libman"
       ],
       "rollForward": false
+    },
+    "austins.tailwindcsstool": {
+      "version": "1.0.2",
+      "commands": [
+        "tailwindcss"
+      ],
+      "rollForward": false
     }
   }
 }

@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+    --font-handwritten: "Playpen Sans", "Segoe Print", "Bradley Hand", Chilanka, TSCu_Comic, casual, cursive;
+    --font-rounded-sans: ui-rounded, "Hiragino Maru Gothic ProN", Quicksand, Comfortaa, Manjari, "Arial Rounded MT", "Arial Rounded MT Bold", Calibri, source-sans-pro, sans-serif;
+}
+
+@layer utilities {
+    p {
+        @apply pb-3 last:pb-0;
+    }
+}
+
+@utility container {
+    @apply max-w-[768px] mx-auto px-4;
+}

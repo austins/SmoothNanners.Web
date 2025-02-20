@@ -10,7 +10,7 @@ public sealed class IndexTests : TestBase
     public async Task Loads_Successfully_WithLayoutAndNoJavaScriptErrors()
     {
         // Arrange
-        var path = GetPath(Routes.Pages.Index.Get());
+        const string path = "/";
         var page = await CreatePageAsync();
 
         var hasJsErrors = false;
@@ -26,47 +26,67 @@ public sealed class IndexTests : TestBase
         var response = await page.GotoAsync(path);
 
         // The response output may have been cached previously from another test case, so we reload to ensure we're seeing a cached page with relevant headers.
-        var cachedResponse = await page.ReloadAsync();
+        var cachedResponse1 = await page.ReloadAsync();
+        var cachedResponse2 = await page.ReloadAsync();
 
         // Assert
         response!.Status.ShouldBe(StatusCodes.Status200OK);
         hasJsErrors.ShouldBeFalse();
-        (await response.HeaderValueAsync(HeaderNames.ContentType)).ShouldBe("text/html; charset=utf-8");
-
-        (await cachedResponse!.HeaderValueAsync(HeaderNames.Age)).ShouldNotBeEmpty();
-        (await cachedResponse.HeaderValueAsync(HeaderNames.Date)).ShouldBe(
-            await response.HeaderValueAsync(HeaderNames.Date));
 
         (await page.Locator("head > meta[name='description']").GetAttributeAsync("content")).ShouldBe(
             AppConstants.SiteDescription);
 
-        (await page.Locator("body > div > main > h1").First.TextContentAsync()).ShouldBe(AppConstants.SiteName);
+        (await page.Locator("body > div > header > h1").First.TextContentAsync()).ShouldBe(AppConstants.SiteName);
 
-        (await page.Locator("section.card").First.GetAttributeAsync("class"))!
-            .Split(' ')
-            .ShouldContain("border-primary");
+        (await cachedResponse1!.HeaderValueAsync(HeaderNames.ContentType)).ShouldBe("text/html; charset=utf-8");
+        (await cachedResponse1.HeaderValueAsync(HeaderNames.Date)).ShouldBe(
+            await cachedResponse2!.HeaderValueAsync(HeaderNames.Date));
+
+        (await cachedResponse2.HeaderValueAsync(HeaderNames.Age)).ShouldNotBeEmpty();
     }
 
     [Test]
-    [Arguments(false)]
-    [Arguments(true)]
-    public async Task Click_YouTubeEmbed_Success(bool jsEnabled)
+    public async Task Click_YouTubeEmbed_NoJavaScript_Success()
     {
         // Arrange
-        var path = GetPath(Routes.Pages.Index.Get());
-        var page = await CreatePageAsync(jsEnabled);
+        const string path = "/";
+        var page = await CreatePageAsync(false);
 
         // Act
         await page.GotoAsync(path);
 
-        var youTubeVideoLink = page.Locator("a[href^='https://www.youtube.com/watch?v='][aria-label='YouTube Video']")
+        var youTubeEmbed = page.Locator("a[href^='https://www.youtube.com/watch?v='][aria-label='YouTube Video']")
             .First;
 
-        var embedContainer = youTubeVideoLink.Locator("..").Locator("..");
+        var embedContainer = youTubeEmbed.Locator("..").Locator("..");
 
-        await youTubeVideoLink.ClickAsync();
+        await youTubeEmbed.ClickAsync();
 
         // Assert
-        (await embedContainer.Locator("iframe").IsVisibleAsync()).ShouldBe(jsEnabled);
+        (await embedContainer.Locator("iframe").IsHiddenAsync()).ShouldBeTrue();
+    }
+
+    [Test]
+    public async Task Click_YouTubeEmbed_WithJavaScript_OnePlayerAtOnce()
+    {
+        // Arrange
+        const string path = "/";
+        var page = await CreatePageAsync();
+
+        // Act
+        await page.GotoAsync(path);
+
+        var youtubeEmbedLinks = page.Locator("a[href^='https://www.youtube.com/watch?v='][aria-label='YouTube Video']");
+        var embedContainer = youtubeEmbedLinks.First.Locator("..").Locator("..");
+
+        await youtubeEmbedLinks.First.ClickAsync();
+        await youtubeEmbedLinks.Last.ClickAsync();
+
+        var iframes = embedContainer.Locator("> iframe");
+
+        // Assert
+        (await youtubeEmbedLinks.CountAsync()).ShouldBe(2);
+        (await iframes.CountAsync()).ShouldBe(1);
+        (await iframes.First.IsVisibleAsync()).ShouldBeTrue();
     }
 }

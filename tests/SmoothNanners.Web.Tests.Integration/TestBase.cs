@@ -1,6 +1,5 @@
 ﻿using Microsoft.Playwright;
 using Microsoft.Playwright.TestAdapter;
-using SafeRouting;
 
 namespace SmoothNanners.Web.Tests.Integration;
 
@@ -18,11 +17,6 @@ public abstract class TestBase
         {
             await browserContext.DisposeAsync();
         }
-    }
-
-    protected string GetPath(IRouteValues route)
-    {
-        return route.Path(Fixture.LinkGenerator);
     }
 
     protected async Task<IPage> CreatePageAsync(bool jsEnabled = true)

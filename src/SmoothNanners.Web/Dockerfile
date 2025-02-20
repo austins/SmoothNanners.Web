@@ -3,14 +3,16 @@
 ###################################################
 FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine@sha256:c439a8d5fef241d04858145e777a460ec0e6c8fec8e518b41cdee4e37321f306 AS build
 
-# Publish app.
+# Copy source files.
+# The build should be run with the context at the root of the solution in order to copy necessary files.
 WORKDIR /app
-COPY . .
-RUN dotnet publish ./src/SmoothNanners.Web -c Release -o ./out
+COPY .editorconfig Directory.Build.props ./
+COPY ./src/SmoothNanners.Web ./src/SmoothNanners.Web 
 
-# Remove .br and .gz files from the published wwwroot directory
-# because the app isn't using MapStaticAssets and compression is handled by the reverse proxy.
-RUN find ./out/wwwroot -type f \( -name "*.br" -o -name "*.gz" \) -delete
+# Publish app.
+# Assets must be restored first before building/publishing the entire project so that the static web assets can resolve the new files.
+RUN dotnet msbuild -target:RestoreAssets ./src/SmoothNanners.Web
+RUN dotnet publish ./src/SmoothNanners.Web -c Release -o ./out
 
 ###################################################
 ## Runtime image creation stage.

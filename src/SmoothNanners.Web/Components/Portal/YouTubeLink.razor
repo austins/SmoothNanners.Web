@@ -1,0 +1,16 @@
+﻿<PortalLink Variant="Variant.Red" Icon="BootstrapIcon.Youtube" Href="@_href">
+    YouTube
+</PortalLink>
+
+@code {
+    private string? _href;
+
+    [Parameter]
+    [EditorRequired]
+    public required string ChannelId { get; init; }
+
+    protected override void OnInitialized()
+    {
+        _href = $"https://www.youtube.com/channel/{ChannelId}";
+    }
+}

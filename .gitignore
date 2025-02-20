@@ -409,13 +409,8 @@ FodyWeavers.xsd
 **/.idea/**/modules.xml
 
 .DS_Store
-tsconfig.tsbuildinfo
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
-package-lock.json
-yarn.lock
-bun.lockb
-deno.lock
 
-# App
-/src/SmoothNanners.Web/wwwroot/assets/vendors
+/src/SmoothNanners.Web/wwwroot/app.css
+/src/SmoothNanners.Web/wwwroot/vendors

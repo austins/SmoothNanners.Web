@@ -2,13 +2,13 @@
     "$schema": "http://json.schemastore.org/libman.json",
     "version": "1.0",
     "defaultProvider": "jsdelivr",
-    "defaultDestination": "./wwwroot/assets/vendors",
+    "defaultDestination": "./wwwroot/vendors",
     "libraries": [
         {
-            "library": "bootswatch@5.3.3",
-            "destination": "./wwwroot/assets/vendors/bootswatch",
+            "library": "alpinejs@3.14.8",
+            "destination": "./wwwroot/vendors/alpinejs",
             "files": [
-                "dist/vapor/bootstrap.min.css"
+                "dist/cdn.min.js"
             ]
         }
     ]

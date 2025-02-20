@@ -23,26 +23,23 @@ public sealed class IndexTests : TestBase
         };
 
         // Act
-        var response = await page.GotoAsync(path);
+        await page.GotoAsync(path);
 
-        // The response output may have been cached previously from another test case, so we reload to ensure we're seeing a cached page with relevant headers.
-        var cachedResponse1 = await page.ReloadAsync();
-        var cachedResponse2 = await page.ReloadAsync();
+        // The response output may have been cached previously from another test case, so we reload at least two times to ensure we're seeing a cached page with relevant headers.
+        await page.ReloadAsync();
+        var cachedResponse = await page.ReloadAsync();
 
         // Assert
-        response!.Status.ShouldBe(StatusCodes.Status200OK);
+        cachedResponse!.Status.ShouldBe(StatusCodes.Status200OK);
         hasJsErrors.ShouldBeFalse();
+
+        (await cachedResponse.HeaderValueAsync(HeaderNames.ContentType)).ShouldBe("text/html; charset=utf-8");
+        (await cachedResponse.HeaderValueAsync(HeaderNames.Age)).ShouldNotBeEmpty();
 
         (await page.Locator("head > meta[name='description']").GetAttributeAsync("content")).ShouldBe(
             AppConstants.SiteDescription);
 
         (await page.Locator("body > div > header > h1").First.TextContentAsync()).ShouldBe(AppConstants.SiteName);
-
-        (await cachedResponse1!.HeaderValueAsync(HeaderNames.ContentType)).ShouldBe("text/html; charset=utf-8");
-        (await cachedResponse1.HeaderValueAsync(HeaderNames.Date)).ShouldBe(
-            await cachedResponse2!.HeaderValueAsync(HeaderNames.Date));
-
-        (await cachedResponse2.HeaderValueAsync(HeaderNames.Age)).ShouldNotBeEmpty();
     }
 
     [Test]

@@ -52,7 +52,13 @@ jobs:
         steps:
             -   name: Checkout repository
                 uses: actions/checkout@v4
-
+            
+            # Restore vendor assets
+            -   if: matrix.language == 'javascript-typescript'
+                name: Set up .NET Core SDK
+                uses: actions/setup-dotnet@v4
+                with:
+                    dotnet-version: '9.x'
             -   if: matrix.language == 'javascript-typescript'
                 name: Restore vendor assets
                 working-directory: ./src/SmoothNanners.Web

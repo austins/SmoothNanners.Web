@@ -51,9 +51,8 @@ internal sealed partial class TailwindWatcher
 
         if (_process?.HasExited == false)
         {
-            _process.Kill();
             await _process.WaitForExitAsync(cancellationToken);
-            _process = null;
+            Dispose();
         }
     }
 
@@ -61,6 +60,7 @@ internal sealed partial class TailwindWatcher
     {
         if (_process is not null)
         {
+            _process.Kill();
             _process.Dispose();
             _process = null;
         }
@@ -70,7 +70,7 @@ internal sealed partial class TailwindWatcher
     {
         if (output?.Contains("Tailwind CSS: ", StringComparison.Ordinal) == true)
         {
-            _log.Output(output);
+            _log.Output(output.Trim());
         }
     }
 

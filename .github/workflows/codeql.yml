@@ -55,10 +55,7 @@ jobs:
             
             # Restore vendor assets
             -   if: matrix.language == 'javascript-typescript'
-                name: Set up .NET Core SDK
-                uses: actions/setup-dotnet@v4
-                with:
-                    dotnet-version: '9.x'
+                uses: ./.github/actions/setup-dotnet-environment
             -   if: matrix.language == 'javascript-typescript'
                 name: Restore vendor assets
                 working-directory: ./src/SmoothNanners.Web

@@ -27,7 +27,9 @@ public sealed class TestFixture
     /// <returns>Task.</returns>
     public async Task InitializeAsync()
     {
+#pragma warning disable IDISP003
         _playwright = await Playwright.CreateAsync();
+#pragma warning restore IDISP003
 
         Browser = await _playwright[PlaywrightSettingsProvider.BrowserName].LaunchAsync();
     }

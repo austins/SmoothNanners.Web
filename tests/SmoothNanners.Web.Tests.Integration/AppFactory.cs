@@ -36,10 +36,12 @@ internal sealed class AppFactory : WebApplicationFactory<Program>
 
         var dummyHost = builder.Build();
 
+#pragma warning disable IDISP003
         _host = builder
             .ConfigureWebHost(
                 b => b.UseSetting("Kestrel:Endpoints:Http:Url", BaseUrl).UseKestrel().UseStaticWebAssets())
             .Build();
+#pragma warning restore IDISP003
 
         _host.Start();
 

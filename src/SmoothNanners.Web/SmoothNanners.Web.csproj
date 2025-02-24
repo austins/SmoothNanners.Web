@@ -16,7 +16,7 @@
     <Target Name="RestoreAssets" AfterTargets="BeforeBuild">
         <Exec Command="dotnet tool restore"/>
         <Exec Command="dotnet tool run libman restore" LogStandardErrorAsError="true"/>
-        <Exec Command="dotnet tool run tailwindcss install -t v4.0.7"/>
+        <Exec Command="dotnet tool run tailwindcss install -t v4.0.8"/>
         <Exec Command="dotnet tool run tailwindcss build -i tailwind.css -o wwwroot/app.css --minify"/>
     </Target>
 

@@ -7,25 +7,20 @@ internal sealed partial class TailwindWatcher
     : IHostedService,
         IDisposable
 {
-    private readonly IHostEnvironment _environment;
     private readonly Log _log;
-    private Process? _process;
+    private readonly Process _process;
 
     public TailwindWatcher(IHostEnvironment environment, ILogger<TailwindWatcher> logger)
     {
-        _environment = environment;
         _log = new Log(logger);
-    }
 
-    public Task StartAsync(CancellationToken cancellationToken)
-    {
         _process = new Process
         {
             StartInfo = new ProcessStartInfo(
                 "dotnet",
                 "tool run tailwindcss watch -i tailwind.css -o wwwroot/app.css --minify")
             {
-                WorkingDirectory = _environment.ContentRootPath,
+                WorkingDirectory = environment.ContentRootPath,
                 CreateNoWindow = true,
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
@@ -35,7 +30,10 @@ internal sealed partial class TailwindWatcher
 
         _process.OutputDataReceived += LogOutput;
         _process.ErrorDataReceived += LogOutput;
+    }
 
+    public Task StartAsync(CancellationToken cancellationToken)
+    {
         _process.Start();
         _process.BeginOutputReadLine();
         _process.BeginErrorReadLine();
@@ -45,25 +43,19 @@ internal sealed partial class TailwindWatcher
         return Task.CompletedTask;
     }
 
-    public async Task StopAsync(CancellationToken cancellationToken)
+    public Task StopAsync(CancellationToken cancellationToken)
     {
-        if (_process?.HasExited == false)
-        {
-            await _process.WaitForExitAsync(cancellationToken);
-            Dispose();
-        }
-
-        _log.Stopped();
+        return Task.CompletedTask;
     }
 
     public void Dispose()
     {
-        if (_process is not null)
+        if (!_process.HasExited)
         {
             _process.Kill();
-            _process.Dispose();
-            _process = null;
         }
+
+        _process.Dispose();
     }
 
     private void LogOutput(object _, DataReceivedEventArgs e)
@@ -78,9 +70,6 @@ internal sealed partial class TailwindWatcher
     {
         [LoggerMessage(Level = LogLevel.Information, Message = "Started Tailwind Watcher.")]
         public partial void Started();
-
-        [LoggerMessage(Level = LogLevel.Information, Message = "Stopped Tailwind Watcher.")]
-        public partial void Stopped();
 
         [LoggerMessage(Level = LogLevel.Information, Message = "{output}")]
         public partial void Output(string output);

@@ -1,7 +1,7 @@
 The [SmoothNanners](https://smoothnanners.com) website. A portal with links to my other websites and content.
 
-Built with ASP.NET Core Razor Pages. The website currently is simple single page (+page for 404), but may be modified to
-support more content in the future. This also serves as a template for future Razor Pages projects.
+Built with ASP.NET Core Blazor static SSR. The website currently has two pages (home page + error page), but may be modified to
+support more content in the future. This also serves as a template for future projects.
 
 # Testing
 

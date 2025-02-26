@@ -51,8 +51,8 @@
             _ => "An error occurred while processing your request. Please try again later."
         };
 
-        _requestId = Activity.Current?.Id ?? HttpContext!.TraceIdentifier;
+        _requestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
 
-        HttpContext!.Response.StatusCode = Code!.Value;
+        HttpContext.Response.StatusCode = Code!.Value;
     }
 }

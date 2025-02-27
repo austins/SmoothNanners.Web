@@ -16,7 +16,7 @@ builder.Services.AddOutputCache();
 builder.Services.AddRateLimiting().AddHealthChecks();
 
 #if DEBUG
-if (Environment.GetEnvironmentVariable("DOTNET_WATCH") == "1")
+if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddHostedService<SmoothNanners.Web.TailwindWatcher>();
 }

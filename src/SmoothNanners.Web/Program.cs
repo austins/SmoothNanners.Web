@@ -29,12 +29,14 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/error");
 }
 
-app
-    .UseStatusCodePagesWithReExecute("/error", "?code={0}")
-    .UseRouting()
-    .UseOutputCache()
-    .UseRateLimiter()
-    .UseAntiforgery();
+app.UseStatusCodePagesWithReExecute("/error", "?code={0}").UseRouting();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseOutputCache();
+}
+
+app.UseRateLimiter().UseAntiforgery();
 
 app
     .MapHealthChecks(

@@ -18,7 +18,7 @@ internal sealed partial class TailwindWatcher
         {
             StartInfo = new ProcessStartInfo(
                 "dotnet",
-                "tool run tailwindcss watch -t v4.0.8 -m -i tailwind.css -o wwwroot/app.css")
+                "tool run tailwindcss watch -t v4.0.9 -m -i tailwind.css -o wwwroot/app.css")
             {
                 WorkingDirectory = environment.ContentRootPath,
                 CreateNoWindow = true,

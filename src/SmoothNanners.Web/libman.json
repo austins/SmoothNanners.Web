@@ -5,7 +5,7 @@
     "defaultDestination": "./wwwroot/vendors",
     "libraries": [
         {
-            "library": "alpinejs@3.14.8",
+            "library": "alpinejs@3.14.9",
             "destination": "./wwwroot/vendors/alpinejs",
             "files": [
                 "dist/cdn.min.js"

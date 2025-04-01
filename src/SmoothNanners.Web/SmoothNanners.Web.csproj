@@ -16,7 +16,7 @@
     <Target Name="RestoreAssets" AfterTargets="BeforeBuild">
         <Exec Command="dotnet tool restore"/>
         <Exec Command="dotnet tool run libman restore"/>
-        <Exec Command="dotnet tool run tailwindcss build -t v4.0.12 -m -i tailwind.css -o wwwroot/app.css"/>
+        <Exec Command="dotnet tool run tailwindcss build -t v4.0.17 -m -i tailwind.css -o wwwroot/app.css"/>
     </Target>
 
     <Target Name="CleanAssets" AfterTargets="Clean">

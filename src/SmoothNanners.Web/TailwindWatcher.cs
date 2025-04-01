@@ -1,5 +1,8 @@
 ﻿#if DEBUG
+using Microsoft.Build.Construction;
+using System.Collections.Frozen;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace SmoothNanners.Web;
 
@@ -14,11 +17,20 @@ internal sealed partial class TailwindWatcher
     {
         _log = new Log(logger);
 
+        var tailwindCssProps =
+            ProjectRootElement.Open(
+                    Path.Combine(
+                        environment.ContentRootPath,
+                        $"{Assembly.GetExecutingAssembly().GetName().Name}.csproj"))!
+                .Properties
+                .Where(x => x.Name.StartsWith("TailwindCss", StringComparison.Ordinal))
+                .ToFrozenDictionary(x => x.Name, x => x.Value);
+
         _process = new Process
         {
             StartInfo = new ProcessStartInfo(
                 "dotnet",
-                "tool run tailwindcss watch -t v4.0.17 -m -i tailwind.css -o wwwroot/app.css")
+                $"tool run tailwindcss watch -t {tailwindCssProps["TailwindCssVersion"]} -m -i {tailwindCssProps["TailwindCssInputFilePath"]} -o {tailwindCssProps["TailwindCssOutputFilePath"]}")
             {
                 WorkingDirectory = environment.ContentRootPath,
                 CreateNoWindow = true,

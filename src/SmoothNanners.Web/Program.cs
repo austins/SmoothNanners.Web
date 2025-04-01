@@ -5,6 +5,14 @@ using SmoothNanners.Web.Extensions;
 using SmoothNanners.Web.Telemetry;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseDefaultServiceProvider(
+    o =>
+    {
+        o.ValidateOnBuild = true;
+        o.ValidateScopes = true;
+    });
+
 builder.Logging.AddSimpleConsole(o => o.TimestampFormat = "HH:mm:ss.fff ");
 
 builder.AddTelemetry();

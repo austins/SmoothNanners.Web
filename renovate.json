@@ -5,6 +5,7 @@
         "schedule:daily",
         "docker:pinDigests",
         "npm:unpublishSafe",
+        ":configMigration",
         ":enableVulnerabilityAlerts",
         ":rebaseStalePrs",
         ":automergePr",

@@ -17,8 +17,8 @@
             "customType": "regex",
             "datasourceTemplate": "npm",
             "versioningTemplate": "npm",
-            "fileMatch": [
-                "(^|/)libman.json$"
+            "managerFilePatterns": [
+                "/(^|/)libman.json$/"
             ],
             "matchStrings": [
                 "\"library\": ?\"(?<depName>@?[^\"]+?)@(?<currentValue>.*?)\""

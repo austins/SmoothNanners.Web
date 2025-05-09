@@ -16,22 +16,22 @@
     "customManagers": [
         {
             "customType": "regex",
-            "datasourceTemplate": "npm",
-            "versioningTemplate": "npm",
             "managerFilePatterns": [
                 "/(^|/)libman\\.json$/"
             ],
+            "datasourceTemplate": "npm",
+            "versioningTemplate": "npm",
             "matchStrings": [
                 "\"library\": ?\"(?<depName>@?[^\"]+?)@(?<currentValue>.*?)\""
             ]
         },
         {
             "customType": "regex",
-            "datasourceTemplate": "npm",
-            "versioningTemplate": "npm",
             "managerFilePatterns": [
                 "/(^|/)SmoothNanners\\.Web\\.csproj$/"
             ],
+            "datasourceTemplate": "npm",
+            "versioningTemplate": "npm",
             "depNameTemplate": "@tailwindcss/cli",
             "matchStrings": [
                 "<TailwindCssVersion>v?(?<currentValue>.*?)</TailwindCssVersion>"

@@ -56,6 +56,6 @@ jobs:
         steps:
             -   name: Trigger deployment webhook
                 uses: distributhor/workflow-webhook@v3
-                env:
+                with:
                     webhook_url: ${{ secrets.WEBHOOK_URL }}
                     webhook_secret: ${{ secrets.WEBHOOK_SECRET }}

@@ -10,7 +10,8 @@
         ":rebaseStalePrs",
         ":automergePr",
         ":automergeRequireAllStatusChecks",
-        ":automergeMinor"
+        ":automergeMinor",
+        ":automergeDigest"
     ],
     "customManagers": [
         {

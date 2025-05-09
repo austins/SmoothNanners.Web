@@ -19,10 +19,22 @@
             "datasourceTemplate": "npm",
             "versioningTemplate": "npm",
             "managerFilePatterns": [
-                "/(^|/)libman.json$/"
+                "/(^|/)libman\\.json$/"
             ],
             "matchStrings": [
                 "\"library\": ?\"(?<depName>@?[^\"]+?)@(?<currentValue>.*?)\""
+            ]
+        },
+        {
+            "customType": "regex",
+            "datasourceTemplate": "npm",
+            "versioningTemplate": "npm",
+            "managerFilePatterns": [
+                "/(^|/)SmoothNanners\\.Web\\.csproj$/"
+            ],
+            "depNameTemplate": "@tailwindcss/cli",
+            "matchStrings": [
+                "<TailwindCssVersion>v?(?<currentValue>.*?)</TailwindCssVersion>"
             ]
         }
     ]

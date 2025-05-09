@@ -5,7 +5,19 @@ on:
         branches: [ main ]
 
 jobs:
-    analyze:
+    pr-analyze:
         uses: ./.github/workflows/codeql.yml
-    test:
+    pr-test:
         uses: ./.github/workflows/test.yml
+    pr-docker:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v4
+            -   name: Build
+                # Ensure Docker image builds.
+                uses: docker/build-push-action@v6
+                with:
+                    context: .
+                    file: ./src/SmoothNanners.Web/Dockerfile
+                    push: false

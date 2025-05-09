@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
     <PropertyGroup>
-        <TailwindCssVersion>v4.0.17</TailwindCssVersion>
+        <TailwindCssVersion>v4.1.6</TailwindCssVersion>
         <TailwindCssInputFilePath>tailwind.css</TailwindCssInputFilePath>
         <TailwindCssOutputFilePath>wwwroot/app.css</TailwindCssOutputFilePath>
     </PropertyGroup>

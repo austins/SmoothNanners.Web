@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Routing;
-using Microsoft.Playwright;
+﻿using Microsoft.Playwright;
 using Microsoft.Playwright.TestAdapter;
 using TUnit.Core.Interfaces;
 
@@ -16,8 +15,6 @@ public sealed class TestFixture
     private IPlaywright? _playwright;
 
     public string BaseUrl => _appFactory.BaseUrl;
-
-    public LinkGenerator LinkGenerator => _appFactory.LinkGenerator;
 
     public IBrowser Browser { get; private set; } = null!;
 

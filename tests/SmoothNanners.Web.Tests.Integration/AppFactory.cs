@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Net;
 using System.Net.Sockets;
@@ -16,13 +14,9 @@ internal sealed class AppFactory : WebApplicationFactory<Program>
     {
         // Ensure the server is created.
         _ = Server;
-
-        LinkGenerator = _host!.Services.GetRequiredService<LinkGenerator>();
     }
 
     public string BaseUrl { get; } = $"http://localhost:{GetRandomUnusedPort()}";
-
-    public LinkGenerator LinkGenerator { get; }
 
     public override ValueTask DisposeAsync()
     {
@@ -38,8 +32,8 @@ internal sealed class AppFactory : WebApplicationFactory<Program>
 
 #pragma warning disable IDISP003
         _host = builder
-            .ConfigureWebHost(
-                b => b.UseSetting("Kestrel:Endpoints:Http:Url", BaseUrl).UseKestrel().UseStaticWebAssets())
+            .ConfigureWebHost(b =>
+                b.UseSetting("Kestrel:Endpoints:Http:Url", BaseUrl).UseKestrel().UseStaticWebAssets())
             .Build();
 #pragma warning restore IDISP003
 

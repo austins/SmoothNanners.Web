@@ -2,6 +2,7 @@
 
 public enum Variant
 {
+    Black,
     Blue,
     Cyan,
     Fuchsia,

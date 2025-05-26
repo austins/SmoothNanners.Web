@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
 using SmoothNanners.Web.Constants;
+using SmoothNanners.Web.Tests.Integration.Extensions;
 
 namespace SmoothNanners.Web.Tests.Integration.Pages;
 
@@ -13,12 +14,12 @@ public sealed class IndexTests : TestBase
         const string path = "/";
         var page = await CreatePageAsync();
 
-        var hasJsErrors = false;
+        var hasConsoleErrors = false;
         page.Console += (_, message) =>
         {
             if (message.Type == "error")
             {
-                hasJsErrors = true;
+                hasConsoleErrors = true;
             }
         };
 
@@ -31,7 +32,7 @@ public sealed class IndexTests : TestBase
 
         // Assert
         cachedResponse!.Status.ShouldBe(StatusCodes.Status200OK);
-        hasJsErrors.ShouldBeFalse();
+        hasConsoleErrors.ShouldBeFalse();
 
         (await cachedResponse.HeaderValueAsync(HeaderNames.ContentType)).ShouldBe("text/html; charset=utf-8");
         (await cachedResponse.HeaderValueAsync(HeaderNames.Age)).ShouldNotBeEmpty();
@@ -39,7 +40,12 @@ public sealed class IndexTests : TestBase
         (await page.Locator("head > meta[name='description']").GetAttributeAsync("content")).ShouldBe(
             AppConstants.SiteDescription);
 
-        (await page.Locator("body > div > header > h1").First.TextContentAsync()).ShouldBe(AppConstants.SiteName);
+        var siteHeader = page.Locator("body > div > header > h1").First;
+        (await siteHeader.TextContentAsync()).ShouldBe(AppConstants.SiteName);
+        (await siteHeader.CssValueAsync("font-family")).ShouldContain("Playpen Sans");
+
+        (await page.Locator(".container").First.CssValueAsync("max-width")).ShouldBe("768px");
+        (await page.Locator("p").First.CssValueAsync("padding-bottom")).ShouldBe("12px");
     }
 
     [Test]

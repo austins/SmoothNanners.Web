@@ -37,6 +37,8 @@ public sealed class IndexTests : TestBase
         (await cachedResponse.HeaderValueAsync(HeaderNames.ContentType)).ShouldBe("text/html; charset=utf-8");
         (await cachedResponse.HeaderValueAsync(HeaderNames.Age)).ShouldNotBeEmpty();
 
+        (await page.Locator("head > title").TextContentAsync()).ShouldBe(AppConstants.SiteName);
+
         (await page.Locator("head > meta[name='description']").GetAttributeAsync("content")).ShouldBe(
             AppConstants.SiteDescription);
 

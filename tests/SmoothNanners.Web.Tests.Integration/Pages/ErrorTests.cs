@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
+using SmoothNanners.Web.Constants;
 
 namespace SmoothNanners.Web.Tests.Integration.Pages;
 
@@ -31,6 +32,8 @@ public sealed class ErrorTests : TestBase
         (await response.HeaderValueAsync(HeaderNames.Pragma)).ShouldBe("no-cache");
         (await response.HeaderValueAsync(HeaderNames.Age)).ShouldBeNull();
 
+        (await page.Locator("head > title").TextContentAsync()).ShouldBe(
+            $"Error: {expectedResponseCode} | {AppConstants.SiteName}");
         (await page.Locator("head > meta[name='robots']").GetAttributeAsync("content")).ShouldBe("noindex");
 
         var errorHeading = page.Locator("body > div > main h2").First;

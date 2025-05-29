@@ -1,0 +1,30 @@
+﻿@using SmoothNanners.Web.Models.Home
+@model SmoothNanners.Web.Models.Home.HomeViewModel
+
+<div class="flex flex-col items-start gap-3 pb-3 sm:flex-row">
+    <img src="~/images/avatar.webp" width="200" height="200" alt="@AppConstants.SiteName"
+         class="rounded-md object-contain" decoding="async" loading="eager"/>
+
+    <div>
+        <p>Howdy! My name is Austin.</p>
+        <p>I'm a gamer, musician, software engineer, and photographer.</p>
+        <p>You can find links to my content and websites below!</p>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+    @{
+        async Task RenderPortalSectionsAsync(IReadOnlyList<PortalSection> sections)
+        {
+            <div class="flex flex-col gap-3">
+                @foreach (var portalSection in sections)
+                {
+                    <partial name="_PortalSection" model="portalSection"/>
+                }
+            </div>
+        }
+
+        await RenderPortalSectionsAsync(Model.LeftColumnSections);
+        await RenderPortalSectionsAsync(Model.RightColumnSections);
+    }
+</div>

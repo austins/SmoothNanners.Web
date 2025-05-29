@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
 using SmoothNanners.Web.Constants;
 
-namespace SmoothNanners.Web.Tests.Integration.Pages;
+namespace SmoothNanners.Web.Tests.Integration.Controllers;
 
-public sealed class ErrorTests : TestBase
+public sealed class ErrorControllerTests : TestBase
 {
     [Test]
     [Arguments(399, StatusCodes.Status500InternalServerError)]
@@ -14,13 +14,13 @@ public sealed class ErrorTests : TestBase
         StatusCodes.Status404NotFound,
         StatusCodes.Status404NotFound,
         "The resource you are looking for was not found.")]
-    public async Task Loads_Successfully_WithNoCache(
+    public async Task Index_Loads_Successfully_WithNoCache(
         int code,
         int expectedResponseCode,
         string expectedMessage = "An error occurred while processing your request. Please try again later.")
     {
         // Arrange
-        var path = $"/error?code={code}";
+        var path = GetPath(Routes.Controllers.Error.Index(code));
         var page = await CreatePageAsync();
 
         // Act
@@ -28,7 +28,7 @@ public sealed class ErrorTests : TestBase
 
         // Assert
         response!.Status.ShouldBe(expectedResponseCode);
-        (await response.HeaderValueAsync(HeaderNames.CacheControl)).ShouldBe("no-cache, no-store");
+        (await response.HeaderValueAsync(HeaderNames.CacheControl)).ShouldBe("no-store,no-cache");
         (await response.HeaderValueAsync(HeaderNames.Pragma)).ShouldBe("no-cache");
         (await response.HeaderValueAsync(HeaderNames.Age)).ShouldBeNull();
 

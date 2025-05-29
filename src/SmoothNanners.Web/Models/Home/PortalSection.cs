@@ -10,7 +10,7 @@ public sealed class PortalSection
 
     public required BootstrapIconGlyph HeadingIcon { get; init; }
 
-    public IList<PortalLink> PortalLinks { get; init; } = [];
+    public IReadOnlyList<PortalLink> PortalLinks { get; init; } = [];
 
-    public IList<string> YouTubeVideoIds { get; init; } = [];
+    public IReadOnlyList<string> YouTubeVideoIds { get; init; } = [];
 }

@@ -1,4 +1,4 @@
-﻿namespace SmoothNanners.Web.Models.Home;
+﻿namespace SmoothNanners.Web.Models.Error;
 
 public sealed class ErrorViewModel
 {

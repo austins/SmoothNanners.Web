@@ -3,14 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OutputCaching;
 using SmoothNanners.Web.Models;
 using SmoothNanners.Web.Models.Home;
-using System.Diagnostics;
 
 namespace SmoothNanners.Web.Controllers;
 
 [Route("")]
 public sealed class HomeController : Controller
 {
-    [Route("")]
+    [HttpGet("")]
     [OutputCache(Duration = int.MaxValue)]
     public IActionResult Index()
     {
@@ -118,30 +117,6 @@ public sealed class HomeController : Controller
                         ]
                     }
                 ]
-            });
-    }
-
-    [Route("error")]
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error([FromQuery] int? code = null)
-    {
-        if (!ModelState.IsValid || code is null or < 400 or > 599)
-        {
-            code = StatusCodes.Status500InternalServerError;
-        }
-
-        Response.StatusCode = code.Value;
-
-        return View(
-            new ErrorViewModel
-            {
-                Code = code.Value,
-                Message = code switch
-                {
-                    StatusCodes.Status404NotFound => "The resource you are looking for was not found.",
-                    _ => "An error occurred while processing your request. Please try again later."
-                },
-                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
             });
     }
 }

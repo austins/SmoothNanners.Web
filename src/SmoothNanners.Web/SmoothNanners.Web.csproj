@@ -7,7 +7,6 @@
 
     <ItemGroup>
         <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0"/>
-        <PackageReference Include="Blazicons.Bootstrap" Version="2.1.35"/>
         <PackageReference Include="BootstrapIcons.AspNetCore" Version="1.11.0"/>
         <PackageReference Include="Microsoft.Build" Version="17.14.8" Condition="'$(Configuration)' == 'Debug'"/>
         <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.12.0"/>

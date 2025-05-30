@@ -1,8 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
-    var title = $"Error: {Model.Code}";
-    ViewData.SetTitle(title);
+    var title = ViewData.SetTitle($"Error: {Model.Code}");
 }
 
 @section Head {

@@ -11,8 +11,9 @@ internal static class ViewDataExtensions
         return viewData[TitleKey] is string title && !string.IsNullOrWhiteSpace(title) ? title : null;
     }
 
-    public static void SetTitle(this ViewDataDictionary viewData, string title)
+    public static string SetTitle(this ViewDataDictionary viewData, string title)
     {
         viewData[TitleKey] = title;
+        return title;
     }
 }

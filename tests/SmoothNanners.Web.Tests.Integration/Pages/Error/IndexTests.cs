@@ -2,13 +2,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
 using SmoothNanners.Web.Constants;
 
-namespace SmoothNanners.Web.Tests.Integration.Controllers;
+namespace SmoothNanners.Web.Tests.Integration.Pages.Error;
 
-public sealed class ErrorControllerTests : TestBase
+public sealed class IndexTests : TestBase
 {
     [Test]
-    [Arguments(399, StatusCodes.Status500InternalServerError)]
-    [Arguments(600, StatusCodes.Status500InternalServerError)]
+    [Arguments(399, StatusCodes.Status400BadRequest)]
+    [Arguments(600, StatusCodes.Status400BadRequest)]
     [Arguments(StatusCodes.Status500InternalServerError, StatusCodes.Status500InternalServerError)]
     [Arguments(
         StatusCodes.Status404NotFound,
@@ -20,7 +20,7 @@ public sealed class ErrorControllerTests : TestBase
         string expectedMessage = "An error occurred while processing your request. Please try again later.")
     {
         // Arrange
-        var path = GetPath(Routes.Controllers.Error.Index(code));
+        var path = GetPath(Routes.Pages.Error_Index.Get(code));
         var page = await CreatePageAsync();
 
         // Act

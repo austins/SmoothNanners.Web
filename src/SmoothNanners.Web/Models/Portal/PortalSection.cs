@@ -1,6 +1,6 @@
 ﻿using BootstrapIcons.Net;
 
-namespace SmoothNanners.Web.Models.Home;
+namespace SmoothNanners.Web.Models.Portal;
 
 public sealed class PortalSection
 {

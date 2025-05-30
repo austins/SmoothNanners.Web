@@ -1,4 +1,5 @@
-@model SmoothNanners.Web.Models.Error.ErrorViewModel
+﻿@page
+@model IndexModel
 @{
     var title = $"Error: {Model.Code}";
     ViewData.SetTitle(title);
@@ -17,7 +18,7 @@
 </p>
 
 <div class="mt-4">
-    <a for-route="Routes.Controllers.Home.Index()"
+    <a for-route="Routes.Pages.Index.Get()"
        class="rounded-md border border-gray-600 bg-indigo-600 px-3 py-2 hover:bg-indigo-700 motion-safe:transition-colors motion-safe:duration-150 motion-safe:ease-in-out">
         Back to Home
     </a>

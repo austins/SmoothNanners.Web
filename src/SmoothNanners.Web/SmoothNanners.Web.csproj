@@ -19,6 +19,11 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Using Include="Microsoft.AspNetCore.Mvc"/>
+        <Using Include="Microsoft.AspNetCore.Mvc.RazorPages"/>
+    </ItemGroup>
+
+    <ItemGroup>
         <Content Update="appsettings.Development.json;libman.json" CopyToPublishDirectory="Never"/>
     </ItemGroup>
 

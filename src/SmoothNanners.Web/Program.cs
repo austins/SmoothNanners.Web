@@ -15,7 +15,7 @@ builder.Logging.AddSimpleConsole(o => o.TimestampFormat = "HH:mm:ss.fff ");
 
 builder.AddTelemetry();
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 builder.Services.Configure<RouteOptions>(o =>
 {
@@ -58,7 +58,7 @@ app
 
 app.MapStaticAssets();
 
-app.MapControllers().WithStaticAssets();
+app.MapRazorPages().WithStaticAssets();
 
 await app.RunAsync();
 

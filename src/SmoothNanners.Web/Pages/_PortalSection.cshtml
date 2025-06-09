@@ -24,7 +24,7 @@
             <partial name="_PortalLink" model="portalLink"/>
         }
 
-        @if (Model.YouTubeVideoIds.Any())
+        @if (Model.YouTubeVideoIds.Count > 0)
         {
             <partial name="_YouTubeEmbeds" model="Model.YouTubeVideoIds"/>
         }

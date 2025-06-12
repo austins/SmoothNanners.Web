@@ -1,7 +1,6 @@
 ﻿using BootstrapIcons.Net;
 using Microsoft.AspNetCore.OutputCaching;
 using SmoothNanners.Web.Models;
-using SmoothNanners.Web.Models.Portal;
 
 namespace SmoothNanners.Web.Pages;
 

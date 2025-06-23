@@ -1,6 +1,6 @@
 ﻿namespace SmoothNanners.Web.Constants;
 
-public static class AppConstants
+internal static class AppConstants
 {
     public const string SiteName = "SmoothNanners";
 

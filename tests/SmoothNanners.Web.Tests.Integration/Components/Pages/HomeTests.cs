@@ -35,6 +35,8 @@ public sealed class HomeTests : TestBase
         hasConsoleErrors.ShouldBeFalse();
 
         (await cachedResponse.HeaderValueAsync(HeaderNames.ContentType)).ShouldBe("text/html; charset=utf-8");
+        (await cachedResponse.HeaderValueAsync(HeaderNames.CacheControl)).ShouldBeNull();
+        (await cachedResponse.HeaderValueAsync(HeaderNames.Pragma)).ShouldBeNull();
         (await cachedResponse.HeaderValueAsync(HeaderNames.Age)).ShouldNotBeEmpty();
 
         (await page.Locator("head > title").TextContentAsync()).ShouldBe(AppConstants.SiteName);

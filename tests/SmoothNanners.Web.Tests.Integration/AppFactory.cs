@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Testing.Platform.Services;
 using System.Net;
 using System.Net.Sockets;
 
@@ -16,13 +14,9 @@ internal sealed class AppFactory : WebApplicationFactory<Program>
     {
         // Ensure the server is created.
         _ = Server;
-
-        LinkGenerator = _host!.Services.GetRequiredService<LinkGenerator>();
     }
 
     public string BaseUrl { get; } = $"http://localhost:{GetRandomUnusedPort()}";
-
-    public LinkGenerator LinkGenerator { get; }
 
     public override ValueTask DisposeAsync()
     {

@@ -1,5 +1,6 @@
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using SmoothNanners.Web.Components;
 using SmoothNanners.Web.Extensions;
 using SmoothNanners.Web.Telemetry;
 
@@ -15,13 +16,7 @@ builder.Logging.AddSimpleConsole(o => o.TimestampFormat = "HH:mm:ss.fff ");
 
 builder.AddTelemetry();
 
-builder.Services.AddRazorPages();
-
-builder.Services.Configure<RouteOptions>(o =>
-{
-    o.LowercaseUrls = true;
-    o.LowercaseQueryStrings = true;
-});
+builder.Services.AddRazorComponents();
 
 builder.Services.AddOutputCache();
 
@@ -48,7 +43,7 @@ if (!app.Environment.IsDevelopment())
     app.UseOutputCache();
 }
 
-app.UseRateLimiter();
+app.UseRateLimiter().UseAntiforgery();
 
 app
     .MapHealthChecks(
@@ -58,7 +53,7 @@ app
 
 app.MapStaticAssets();
 
-app.MapRazorPages().WithStaticAssets();
+app.MapRazorComponents<App>();
 
 await app.RunAsync();
 

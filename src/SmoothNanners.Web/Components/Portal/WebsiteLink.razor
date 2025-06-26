@@ -1,0 +1,13 @@
+﻿<PortalLink Variant="Variant.Slate" Icon="BootstrapIcon.Globe" Url="@Url">
+    @ChildContent
+</PortalLink>
+
+@code {
+    [Parameter]
+    [EditorRequired]
+    public required string Url { get; init; }
+
+    [Parameter]
+    [EditorRequired]
+    public required RenderFragment ChildContent { get; init; }
+}

@@ -1,0 +1,101 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.OutputCaching
+@using SmoothNanners.Web.Components.Portal
+@attribute [OutputCache(Duration = int.MaxValue)]
+
+<div class="flex flex-col items-start gap-3 pb-3 sm:flex-row">
+    <img src="@Assets["images/avatar.webp"]" width="200" height="200" alt="@AppConstants.SiteName"
+         class="rounded-md object-contain" decoding="async" loading="eager"/>
+
+    <div>
+        <p>Howdy! My name is Austin.</p>
+        <p>I'm a gamer, musician, software engineer, and photographer.</p>
+        <p>You can find links to my content and websites below!</p>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+    <div>
+        <PortalSection Variant="Variant.Indigo" HeadingText="Music" HeadingIcon="BootstrapIcon.MusicNoteBeamed">
+            <YouTubeLink ChannelId="UCPjcGsO8o_FKPGHLQ5d1hbg"/>
+
+            <YouTubeEmbeds VideoIds="@( ["XjIJoM1AZyQ", "aPtQZNellaI"])"/>
+        </PortalSection>
+    </div>
+
+    <div class="flex flex-col gap-3">
+        <PortalSection Variant="Variant.Pink" HeadingText="Gaming" HeadingIcon="BootstrapIcon.Controller">
+            <YouTubeLink ChannelId="UCQB1XVER5WPtxRESxHMG1Qw"/>
+
+            <PortalLink
+                Variant="Variant.Purple"
+                Icon="BootstrapIcon.Twitch"
+                Url="https://www.twitch.tv/smoothnanners">
+                Twitch
+            </PortalLink>
+
+            <PortalLink
+                Variant="Variant.Indigo"
+                Icon="BootstrapIcon.Discord"
+                Url="https://discord.gg/P7rhAhA">
+                Discord
+            </PortalLink>
+
+            <WebsiteLink Url="https://gamebyline.com/">
+                Game Byline
+            </WebsiteLink>
+        </PortalSection>
+
+        <PortalSection Variant="Variant.Cyan" HeadingText="Programming" HeadingIcon="BootstrapIcon.CodeSlash">
+            <YouTubeLink ChannelId="UCJjowuNoLywGC7ujP74zFJg"/>
+
+            <PortalLink
+                Variant="Variant.Slate"
+                Icon="BootstrapIcon.Github"
+                Url="https://github.com/austins">
+                GitHub
+            </PortalLink>
+
+            <WebsiteLink Url="https://austinsdev.com/">
+                Austin's Dev
+            </WebsiteLink>
+        </PortalSection>
+
+        <PortalSection Variant="Variant.Blue" HeadingText="Socials" HeadingIcon="BootstrapIcon.PersonCircle">
+            <PortalLink
+                Variant="Variant.Fuchsia"
+                Icon="BootstrapIcon.Instagram"
+                Url="https://www.instagram.com/smoothnanners">
+                Instagram
+            </PortalLink>
+
+            <PortalLink
+                Variant="Variant.Sky"
+                Icon="BootstrapIcon.Telegram"
+                Url="https://t.me/smoothnanners">
+                Telegram
+            </PortalLink>
+
+            <PortalLink
+                Variant="Variant.Black"
+                Icon="BootstrapIcon.TwitterX"
+                Url="https://x.com/smoothnanners">
+                Twitter
+            </PortalLink>
+
+            <PortalLink
+                Variant="Variant.Slate"
+                Icon="BootstrapIcon.PiggyBankFill"
+                Url="https://streamlabs.com/smoothnanners/tip">
+                Tip
+            </PortalLink>
+
+            <PortalLink
+                Variant="Variant.Slate"
+                Icon="BootstrapIcon.EnvelopeFill"
+                Url="mailto:austin@austinsdev.com">
+                Email
+            </PortalLink>
+        </PortalSection>
+    </div>
+</div>

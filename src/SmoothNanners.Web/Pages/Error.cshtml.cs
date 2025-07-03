@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
+using System.Net;
 
 namespace SmoothNanners.Web.Pages;
 
@@ -11,7 +12,7 @@ public sealed class Error : PageModel
     [FromQuery]
     [BindRequired]
     [Range(400, 599)]
-    public int Code { get; init; }
+    public HttpStatusCode Code { get; init; }
 
     public string Message { get; private set; } = null!;
 
@@ -26,13 +27,13 @@ public sealed class Error : PageModel
 
         Message = Code switch
         {
-            StatusCodes.Status404NotFound => "The resource you are looking for was not found.",
+            HttpStatusCode.NotFound => "The resource you are looking for was not found.",
             _ => "An error occurred while processing your request. Please try again later."
         };
 
         RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
 
-        Response.StatusCode = Code;
+        Response.StatusCode = (int)Code;
 
         return Page();
     }

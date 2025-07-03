@@ -1,25 +1,29 @@
-﻿@using System.Reflection
+﻿@{
+    var title = ViewData.GetTitle();
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>@(title != null ? $"{title} | {AppConstants.SiteName}" : AppConstants.SiteName)</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="@AppConstants.SiteDescription"/>
-    <link rel="icon" href="/@Assets["favicon.ico"]" type="image/x-icon"/>
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@700&display=swap"/>
-    <link rel="stylesheet" href="/@Assets[$"{Assembly.GetExecutingAssembly().GetName().Name}.styles.css"]"/>
-    <link rel="stylesheet" href="/@Assets["app.css"]"/>
-    <script src="/@Assets["vendors/alpinejs/dist/cdn.min.js"]" defer></script>
-    <HeadOutlet/>
+    <link rel="stylesheet" href="~/app.css"/>
+    <script src="~/vendors/alpinejs/dist/cdn.min.js" defer></script>
+    @await RenderSectionAsync("Head", false)
 </head>
 <body
     class="font-rounded-sans flex min-h-screen items-center bg-blue-950 bg-gradient-to-b from-blue-950 to-blue-800 text-2xl text-white drop-shadow">
-<Router AppAssembly="typeof(Program).Assembly">
-    <Found Context="routeData">
-        <RouteView RouteData="routeData" DefaultLayout="typeof(Layouts.MainLayout)"/>
-    </Found>
-</Router>
+<div class="container py-4">
+    <header class="pb-3">
+        <h1 class="font-handwritten text-5xl font-bold">@AppConstants.SiteName</h1>
+    </header>
+
+    <main>@RenderBody()</main>
+</div>
 </body>
 </html>

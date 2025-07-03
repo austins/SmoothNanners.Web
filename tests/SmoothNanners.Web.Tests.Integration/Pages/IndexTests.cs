@@ -3,15 +3,15 @@ using Microsoft.Net.Http.Headers;
 using SmoothNanners.Web.Constants;
 using SmoothNanners.Web.Tests.Integration.Extensions;
 
-namespace SmoothNanners.Web.Tests.Integration.Components.Pages;
+namespace SmoothNanners.Web.Tests.Integration.Pages;
 
-public sealed class HomeTests : TestBase
+public sealed class IndexTests : TestBase
 {
     [Test]
-    public async Task Home_Loads_Successfully_WithLayoutAndNoJavaScriptErrors()
+    public async Task Index_Loads_Successfully_WithLayoutAndNoJavaScriptErrors()
     {
         // Arrange
-        const string path = "/";
+        var path = GetPath(Routes.Pages.Index.Get());
         var page = await CreatePageAsync();
 
         var hasConsoleErrors = false;
@@ -53,10 +53,10 @@ public sealed class HomeTests : TestBase
     }
 
     [Test]
-    public async Task Home_Click_YouTubeEmbed_NoJavaScript_Success()
+    public async Task Index_Click_YouTubeEmbed_NoJavaScript_Success()
     {
         // Arrange
-        const string path = "/";
+        var path = GetPath(Routes.Pages.Index.Get());
         var page = await CreatePageAsync(false);
 
         // Act
@@ -74,10 +74,10 @@ public sealed class HomeTests : TestBase
     }
 
     [Test]
-    public async Task Home_Click_YouTubeEmbed_WithJavaScript_OnePlayerAtOnce()
+    public async Task Index_Click_YouTubeEmbed_WithJavaScript_OnePlayerAtOnce()
     {
         // Arrange
-        const string path = "/";
+        var path = GetPath(Routes.Pages.Index.Get());
         var page = await CreatePageAsync();
 
         // Act

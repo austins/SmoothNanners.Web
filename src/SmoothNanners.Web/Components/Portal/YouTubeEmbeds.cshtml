@@ -1,10 +1,12 @@
-﻿<h3 class="flex items-center gap-1.5 italic">
-    <Blazicon Svg="BootstrapIcon.StarFill"/>
+﻿@model YouTubeEmbeds
+
+<h3 class="flex items-center gap-1.5 italic">
+    <blazicon icon="BootstrapIcon.StarFill"/>
     Featured
 </h3>
 
 <div class="flex flex-col gap-1.5" x-data="{currentId: null}">
-    @foreach (var id in VideoIds)
+    @foreach (var id in Model.VideoIds)
     {
         <div class="relative" x-show="currentId !== '@id'">
             <img src="https://i.ytimg.com/vi_webp/@id/mqdefault.webp" alt="YouTube Video" width="328"
@@ -35,9 +37,3 @@
         </template>
     }
 </div>
-
-@code {
-    [Parameter]
-    [EditorRequired]
-    public required IReadOnlyList<string> VideoIds { get; init; }
-}

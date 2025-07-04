@@ -13,12 +13,20 @@
 <section class="rounded-md border-3 @borderVariantClass">
     <header class="border-b-2 border-b-gray-500 px-3 py-2">
         <h2 class="flex items-center gap-1.5 text-3xl">
-            <blazicon icon="Model.HeadingIcon"/>
+            <partial name="Shared/Icon" model="Model.HeadingIcon"/>
             @Model.HeadingText
         </h2>
     </header>
 
     <div class="flex flex-col gap-2 p-3">
-        @Model.ChildContent
+        @foreach (var link in Model.Links)
+        {
+            <partial name="Shared/Portal/PortalLink" model="link"/>
+        }
+        
+        @if (Model.YouTubeVideoIds?.Count > 0)
+        {
+            <partial name="Shared/Portal/YouTubeEmbeds" model="Model.YouTubeVideoIds"/>
+        }
     </div>
 </section>

@@ -1,7 +1,7 @@
-using HealthChecks.UI.Client;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using SmoothNanners.Web.Extensions;
-using SmoothNanners.Web.Telemetry;
+using AspNetStatic;
+using AspNetStatic.Optimizer;
+
+var isSsg = args.HasExitWhenDoneArg();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,8 +13,6 @@ builder.Host.UseDefaultServiceProvider(o =>
 
 builder.Logging.AddSimpleConsole(o => o.TimestampFormat = "HH:mm:ss.fff ");
 
-builder.AddTelemetry();
-
 builder.Services.AddRazorPages();
 
 builder.Services.Configure<RouteOptions>(o =>
@@ -23,12 +21,25 @@ builder.Services.Configure<RouteOptions>(o =>
     o.LowercaseQueryStrings = true;
 });
 
-builder.Services.AddOutputCache();
-
-builder.Services.AddRateLimiting().AddHealthChecks();
-
+if (isSsg)
+{
+    builder.Services.AddSingleton<IStaticResourcesInfoProvider>(
+        new StaticResourcesInfoProvider(
+        [
+            new BinResource("/favicon.ico"),
+            new CssResource("/app.css") { OptimizationType = OptimizationType.None },
+            new JsResource("/vendors/alpinejs/dist/cdn.min.js") { OptimizationType = OptimizationType.None },
+            new PageResource("/"),
+            new BinResource("/images/avatar.webp"),
+            new PageResource("/error")
+            {
+                Query = $"?code={StatusCodes.Status404NotFound}",
+                OutFile = "404.html"
+            }
+        ]));
+}
 #if DEBUG
-if (builder.Environment.IsDevelopment())
+else if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddHostedService<SmoothNanners.Web.TailwindWatcher>();
 }
@@ -36,29 +47,30 @@ if (builder.Environment.IsDevelopment())
 
 var app = builder.Build();
 
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+else
 {
     app.UseExceptionHandler("/error");
 }
 
-app.UseStatusCodePagesWithReExecute("/error", "?code={0}").UseRouting();
+app.UseStatusCodePagesWithReExecute("/error", "?code={0}").UseStaticFiles().UseRouting();
 
-if (!app.Environment.IsDevelopment())
+app.MapRazorPages();
+
+if (isSsg)
 {
-    app.UseOutputCache();
+    var ssgOutputPath = Path.Combine(AppContext.BaseDirectory, "ssg");
+    if (Directory.Exists(ssgOutputPath))
+    {
+        Directory.Delete(ssgOutputPath, true);
+    }
+
+    Directory.CreateDirectory(ssgOutputPath);
+    app.GenerateStaticContent(ssgOutputPath, true);
 }
-
-app.UseRateLimiter();
-
-app
-    .MapHealthChecks(
-        "/_health",
-        new HealthCheckOptions { ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse })
-    .RequireRateLimiting(RateLimitingExtensions.HealthCheckRateLimiterPolicyName);
-
-app.MapStaticAssets();
-
-app.MapRazorPages().WithStaticAssets();
 
 await app.RunAsync();
 

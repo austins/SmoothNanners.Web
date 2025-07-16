@@ -8,54 +8,37 @@ concurrency:
     group: deploy
     cancel-in-progress: true
 
-env:
-    REGISTRY: ghcr.io
-
 jobs:
     analyze:
         uses: ./.github/workflows/codeql.yml
     test:
         uses: ./.github/workflows/test.yml
-    docker:
+    build:
         needs: [ analyze, test ]
         runs-on: ubuntu-latest
         steps:
             -   name: Checkout
                 uses: actions/checkout@v4
-            -   name: Set up Docker Buildx
-                uses: docker/setup-buildx-action@v3
-            -   name: Login to Docker registry
-                uses: docker/login-action@v3
+            -   uses: ./.github/actions/setup-dotnet-environment
+            -   name: Build
+                run: dotnet build ./src/SmoothNanners.Web -c Release
+            -   name: SSG
+                run: dotnet run --project ./src/SmoothNanners.Web -lp ssg -c Release --no-build
+            -   name: Upload artifact
+                id: deployment
+                uses: actions/upload-pages-artifact@v3
                 with:
-                    registry: ${{ env.REGISTRY }}
-                    username: ${{ github.actor }}
-                    password: ${{ secrets.GITHUB_TOKEN }}
-            -   name: Set image name
-                # Periods are not allowed in the Docker image name; replace any with a hyphen.
-                run: echo "IMAGE_NAME=${GITHUB_REPOSITORY//./-}" >> $GITHUB_ENV
-            -   name: Extract Docker metadata
-                id: meta
-                uses: docker/metadata-action@v5
-                with:
-                    images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-                    tags: type=raw,value=latest,enable={{is_default_branch}}
-            -   name: Build and push
-                uses: docker/build-push-action@v6
-                with:
-                    context: .
-                    file: ./src/SmoothNanners.Web/Dockerfile
-                    push: true
-                    tags: ${{ steps.meta.outputs.tags }}
-                    labels: ${{ steps.meta.outputs.labels }}
-                    cache-from: type=gha,scope=deploy
-                    cache-to: type=gha,mode=max,scope=deploy
-                    github-token: ${{ secrets.GITHUB_TOKEN }}
+                    path: ./src/SmoothNanners.Web/bin/Release/net9.0/ssg
     deploy:
-        needs: docker
+        needs: build
+        permissions:
+            pages: write
+            id-token: write
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
         runs-on: ubuntu-latest
         steps:
-            -   name: Trigger deployment webhook
-                uses: distributhor/workflow-webhook@v3
-                with:
-                    webhook_url: ${{ secrets.WEBHOOK_URL }}
-                    webhook_secret: ${{ secrets.WEBHOOK_SECRET }}
+            -   name: Deploy to GitHub Pages
+                id: deployment
+                uses: actions/deploy-pages@v4

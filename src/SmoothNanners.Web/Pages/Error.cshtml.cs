@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+﻿using AspNetStatic;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Net;
@@ -16,7 +17,9 @@ public sealed class Error : PageModel
 
     public string Message { get; private set; } = null!;
 
-    public string RequestId { get; private set; } = null!;
+    public string? RequestId { get; private set; }
+
+    public bool IsSsg { get; private set; }
 
     public IActionResult OnGet()
     {
@@ -31,9 +34,12 @@ public sealed class Error : PageModel
             _ => "An error occurred while processing your request. Please try again later."
         };
 
-        RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
-
-        Response.StatusCode = (int)Code;
+        IsSsg = Environment.GetCommandLineArgs().HasExitWhenDoneArg();
+        if (!IsSsg)
+        {
+            RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+            Response.StatusCode = (int)Code;
+        }
 
         return Page();
     }

@@ -10,12 +10,14 @@
 
 <h2 class="text-4xl font-bold">@title</h2>
 
-
 <p>@Model.Message</p>
 
-<p class="text-sm">
-    <strong>Request ID:</strong> <code>@Model.RequestId</code>
-</p>
+@if (!Model.IsSsg)
+{
+    <p class="text-sm">
+        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+    </p>
+}
 
 <div class="mt-4">
     <a for-route="Routes.Pages.Index.Get()"

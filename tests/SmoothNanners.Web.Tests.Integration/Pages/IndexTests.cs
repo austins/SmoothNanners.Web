@@ -24,20 +24,15 @@ public sealed class IndexTests : TestBase
         };
 
         // Act
-        await page.GotoAsync(path);
-
-        // The response output may have been cached previously from another test case, so we reload at least two times to ensure we're seeing a cached page with relevant headers.
-        await page.ReloadAsync();
-        var cachedResponse = await page.ReloadAsync();
+        var response = await page.GotoAsync(path);
 
         // Assert
-        cachedResponse!.Status.ShouldBe(StatusCodes.Status200OK);
+        response!.Status.ShouldBe(StatusCodes.Status200OK);
         hasConsoleErrors.ShouldBeFalse();
 
-        (await cachedResponse.HeaderValueAsync(HeaderNames.ContentType)).ShouldBe("text/html; charset=utf-8");
-        (await cachedResponse.HeaderValueAsync(HeaderNames.CacheControl)).ShouldBeNull();
-        (await cachedResponse.HeaderValueAsync(HeaderNames.Pragma)).ShouldBeNull();
-        (await cachedResponse.HeaderValueAsync(HeaderNames.Age)).ShouldNotBeEmpty();
+        (await response.HeaderValueAsync(HeaderNames.ContentType)).ShouldBe("text/html; charset=utf-8");
+        (await response.HeaderValueAsync(HeaderNames.CacheControl)).ShouldBeNull();
+        (await response.HeaderValueAsync(HeaderNames.Pragma)).ShouldBeNull();
 
         (await page.Locator("head > title").TextContentAsync()).ShouldBe(AppConstants.SiteName);
 

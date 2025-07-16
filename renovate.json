@@ -3,7 +3,6 @@
     "extends": [
         "config:recommended",
         "schedule:daily",
-        "docker:pinDigests",
         "npm:unpublishSafe",
         ":configMigration",
         ":enableVulnerabilityAlerts",

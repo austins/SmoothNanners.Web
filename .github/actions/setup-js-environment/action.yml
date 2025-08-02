@@ -9,6 +9,3 @@ runs:
             with:
                 node-version: '24.x'
                 cache: 'pnpm'
-        -   name: Install Node.js dependencies
-            shell: bash
-            run: pnpm install --frozen-lockfile

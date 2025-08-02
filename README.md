@@ -1,7 +1,7 @@
 The [SmoothNanners](https://smoothnanners.com) website. A portal with links to my other websites and content.
 
-Built with ASP.NET Core Razor Pages. The website currently has two pages (home page + error page), but may be modified to
-support more content in the future. This also serves as a template for future projects.
+Built with ASP.NET Core Razor Pages and statically generated. The website currently has two pages, but may be modified to
+support more content in the future; it primarily serves as a template for future projects.
 
 # Development
 Run `pnpm run dev` to have asset files watched and built as changes are saved.

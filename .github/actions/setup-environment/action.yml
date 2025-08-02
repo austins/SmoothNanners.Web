@@ -8,7 +8,6 @@ runs:
                 dotnet-version: '9.x'
         -   name: Set up pnpm
             uses: pnpm/action-setup@v4
-            working-directory: ./src/SmoothNanners.Web
         -   name: Install Node.js
             uses: actions/setup-node@v4
             working-directory: ./src/SmoothNanners.Web

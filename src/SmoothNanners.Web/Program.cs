@@ -1,5 +1,5 @@
 using AspNetStatic;
-using AspNetStatic.Optimizer;
+using AspNetStaticContrib.AspNetStatic;
 
 var isSsg = args.HasExitWhenDoneArg();
 
@@ -26,17 +26,13 @@ if (isSsg)
     builder.Services.AddSingleton<IStaticResourcesInfoProvider>(
         new StaticResourcesInfoProvider(
         [
-            new BinResource("/favicon.ico"),
-            new CssResource("/assets/app.css") { OptimizationType = OptimizationType.None },
-            new JsResource("/assets/app.js") { OptimizationType = OptimizationType.None },
             new PageResource("/"),
-            new BinResource("/images/avatar.webp"),
             new PageResource("/error")
             {
                 Query = $"?code={StatusCodes.Status404NotFound}",
                 OutFile = "404.html"
             }
-        ]));
+        ]).AddAllWebRootContent(builder.Environment));
 }
 
 var app = builder.Build();

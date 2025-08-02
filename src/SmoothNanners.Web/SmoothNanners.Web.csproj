@@ -20,7 +20,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Update="appsettings.Development.json;package.json;tsconfig.json" CopyToPublishDirectory="Never"/>
+        <Content Update="appsettings.Development.json" CopyToPublishDirectory="Never"/>
+        <Content Update="package.json;tsconfig.json" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never"/>
     </ItemGroup>
 
     <Target Name="BuildAssets" AfterTargets="BeforeBuild">

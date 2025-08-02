@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@import "tailwindcss" source(none);
+
+@source "../**/*.cshtml";
 
 @theme {
     --font-handwritten: "Playpen Sans", "Segoe Print", "Bradley Hand", Chilanka, TSCu_Comic, casual, cursive;

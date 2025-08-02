@@ -1,4 +1,4 @@
-name: Setup environment
+name: Set up environment
 runs:
     using: "composite"
     steps:

@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="All" type="CompoundRunConfigurationType">
-    <toRun name="watch (no hot reload)" type="RunDotNetWatch" />
+  <configuration default="false" name="Watch All" type="CompoundRunConfigurationType">
+    <toRun name="watch" type="RunDotNetWatch" />
     <toRun name="dev" type="js.build_tools.npm" />
     <method v="2" />
   </configuration>

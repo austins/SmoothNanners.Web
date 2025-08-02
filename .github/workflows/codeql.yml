@@ -58,9 +58,11 @@ jobs:
             -   if: matrix.language == 'javascript-typescript'
                 name: Install asset dependencies
                 shell: bash
+                working-directory: ./src/SmoothNanners.Web
                 run: pnpm install --frozen-lockfile
             -   if: matrix.language == 'javascript-typescript'
                 name: Build assets
+                shell: bash
                 working-directory: ./src/SmoothNanners.Web
                 run: pnpm run build
             

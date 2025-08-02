@@ -30,14 +30,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmoothNanners.Web.Tests.Int
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "actions", "actions", "{BE9C054F-1CB1-41D8-B6E8-C3255F43931F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "setup-dotnet-environment", "setup-dotnet-environment", "{0C187863-576B-4EB1-8213-4338C0296CD3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "setup-environment", "setup-environment", "{F1186479-1B6B-40EC-BA0B-6F26E7D1BA9F}"
 	ProjectSection(SolutionItems) = preProject
-		.github\actions\setup-dotnet-environment\action.yml = .github\actions\setup-dotnet-environment\action.yml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "setup-js-environment", "setup-js-environment", "{AB5AC5C6-27C6-4B51-986B-5897ED2EB8B2}"
-	ProjectSection(SolutionItems) = preProject
-		.github\actions\setup-js-environment\action.yml = .github\actions\setup-js-environment\action.yml
+		.github\actions\setup-environment\action.yml = .github\actions\setup-environment\action.yml
 	EndProjectSection
 EndProject
 Global
@@ -61,7 +56,6 @@ Global
 		{A9E8AC7A-5368-434C-9BA8-2E6FF54094E9} = {0D94F482-41B5-45FB-8882-600421A2EE9F}
 		{D6135DBB-851E-4E6D-B6F6-310ED2E1D426} = {B58DBDD8-C270-4C34-A262-1DC9391A7B7C}
 		{BE9C054F-1CB1-41D8-B6E8-C3255F43931F} = {9EF876F1-45B4-424D-93E2-6EE45373C83E}
-		{0C187863-576B-4EB1-8213-4338C0296CD3} = {BE9C054F-1CB1-41D8-B6E8-C3255F43931F}
-		{AB5AC5C6-27C6-4B51-986B-5897ED2EB8B2} = {BE9C054F-1CB1-41D8-B6E8-C3255F43931F}
+		{F1186479-1B6B-40EC-BA0B-6F26E7D1BA9F} = {BE9C054F-1CB1-41D8-B6E8-C3255F43931F}
 	EndGlobalSection
 EndGlobal

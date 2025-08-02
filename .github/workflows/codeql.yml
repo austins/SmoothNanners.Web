@@ -52,19 +52,10 @@ jobs:
         steps:
             -   name: Checkout repository
                 uses: actions/checkout@v4
-
-            -   if: matrix.language == 'javascript-typescript'
-                uses: ./.github/actions/setup-js-environment
-            -   if: matrix.language == 'javascript-typescript'
-                name: Install asset dependencies
+            -   uses: ./.github/actions/setup-environment
+            -   name: Build
                 shell: bash
-                working-directory: ./src/SmoothNanners.Web
-                run: pnpm install --frozen-lockfile
-            -   if: matrix.language == 'javascript-typescript'
-                name: Build assets
-                shell: bash
-                working-directory: ./src/SmoothNanners.Web
-                run: pnpm run build
+                run: dotnet build ./src/SmoothNanners.Web -c Release
             
             # Initializes the CodeQL tools for scanning.
             -   name: Initialize CodeQL

@@ -23,16 +23,8 @@
         <Content Update="appsettings.Development.json;package.json;tsconfig.json" CopyToPublishDirectory="Never"/>
     </ItemGroup>
 
-    <Target Name="EnsureJsEnv" BeforeTargets="Build" Condition="!Exists('node_modules')">
-        <Exec Command="node --version" ContinueOnError="true">
-            <Output TaskParameter="ExitCode" PropertyName="ErrorCode"/>
-        </Exec>
-        <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project."/>
-        <Message Importance="high" Text="Restoring dependencies using 'pnpm'..."/>
-        <Exec Command="pnpm install"/>
-    </Target>
-
     <Target Name="BuildAssets" AfterTargets="BeforeBuild">
+        <Exec Command="pnpm install"/>
         <Exec Command="pnpm run build"/>
     </Target>
 

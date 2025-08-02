@@ -20,6 +20,7 @@ jobs:
             -   name: Checkout
                 uses: actions/checkout@v4
             -   uses: ./.github/actions/setup-dotnet-environment
+            -   uses: ./.github/actions/setup-js-environment
             -   name: Build
                 run: dotnet build ./src/SmoothNanners.Web -c Release
             -   name: SSG

@@ -23,7 +23,7 @@ builder.Services.Configure<RouteOptions>(o =>
 
 if (isSsg)
 {
-    List<NonPageResource> assetResources =
+    IReadOnlyList<NonPageResource> assetResources =
     [
         new BinResource("/favicon.ico"),
         new CssResource("/assets/app.css") { OptimizationType = OptimizationType.None },
@@ -35,7 +35,7 @@ if (isSsg)
         new BinResource("/images/avatar.webp")
     ];
 
-    List<PageResource> pageResources =
+    IReadOnlyList<PageResource> pageResources =
     [
         new("/"),
         new("/error")

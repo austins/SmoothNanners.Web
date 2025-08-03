@@ -1,5 +1,5 @@
 using AspNetStatic;
-using AspNetStaticContrib.AspNetStatic;
+using AspNetStatic.Optimizer;
 
 var isSsg = args.HasExitWhenDoneArg();
 
@@ -23,16 +23,30 @@ builder.Services.Configure<RouteOptions>(o =>
 
 if (isSsg)
 {
+    List<NonPageResource> assetResources =
+    [
+        new BinResource("/favicon.ico"),
+        new CssResource("/assets/app.css") { OptimizationType = OptimizationType.None },
+        new BinResource("/assets/playpen-sans-latin-wght-normal.woff2")
+        {
+            OptimizationType = OptimizationType.None
+        },
+        new JsResource("/assets/app.js") { OptimizationType = OptimizationType.None },
+        new BinResource("/images/avatar.webp")
+    ];
+
+    List<PageResource> pageResources =
+    [
+        new("/"),
+        new("/error")
+        {
+            Query = $"?code={StatusCodes.Status404NotFound}",
+            OutFile = "404.html"
+        }
+    ];
+
     builder.Services.AddSingleton<IStaticResourcesInfoProvider>(
-        new StaticResourcesInfoProvider(
-        [
-            new PageResource("/"),
-            new PageResource("/error")
-            {
-                Query = $"?code={StatusCodes.Status404NotFound}",
-                OutFile = "404.html"
-            }
-        ]).AddAllWebRootContent(builder.Environment));
+        new StaticResourcesInfoProvider([..assetResources, ..pageResources]));
 }
 
 var app = builder.Build();

@@ -5,7 +5,6 @@
 
     <ItemGroup>
         <PackageReference Include="AspNetStatic" Version="0.26.6"/>
-        <PackageReference Include="AspNetStaticContrib" Version="1.1.1"/>
         <PackageReference Include="BootstrapIcons.AspNetCore" Version="1.11.0"/>
         <PackageReference Include="SafeRouting" Version="1.5.0"/>
         <PackageReference Include="TechGems.RazorComponentTagHelpers" Version="1.1.0"/>

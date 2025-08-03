@@ -28,7 +28,7 @@ public sealed class Error : PageModel
 
         Message = Code switch
         {
-            HttpStatusCode.NotFound => "The resource you are looking for was not found.",
+            HttpStatusCode.NotFound => "The page you are looking for was not found.",
             _ => "An error occurred while processing your request. Please try again later."
         };
 

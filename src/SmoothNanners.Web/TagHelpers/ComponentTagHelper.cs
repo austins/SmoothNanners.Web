@@ -20,14 +20,18 @@ public abstract class ComponentTagHelper : RazorComponentTagHelper
     /// </summary>
     /// <param name="context">Tag helper context.</param>
     /// <param name="output">Tag helper output.</param>
-    public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public sealed override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
     {
         ValidatePropsOrThrow(output.Attributes);
 
-        var viewRoute =
-            $"{_instanceType.Namespace![_instanceType.Assembly.GetName().Name!.Length..].Replace('.', '/')}/{_instanceType.Name}.cshtml";
+        return RenderPartialView(
+            $"{_instanceType.Namespace![_instanceType.Assembly.GetName().Name!.Length..].Replace('.', '/')}/{_instanceType.Name}.cshtml",
+            output);
+    }
 
-        return RenderPartialView(viewRoute, output);
+    public sealed override void Process(TagHelperContext context, TagHelperOutput output)
+    {
+        base.Process(context, output);
     }
 
     private void ValidatePropsOrThrow(TagHelperAttributeList attributes)

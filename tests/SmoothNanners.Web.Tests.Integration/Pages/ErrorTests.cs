@@ -9,7 +9,7 @@ public sealed class ErrorTests : TestBase
     [Test]
     [Arguments(HttpStatusCode.OK, HttpStatusCode.BadRequest)]
     [Arguments(HttpStatusCode.InternalServerError, HttpStatusCode.InternalServerError)]
-    [Arguments(HttpStatusCode.NotFound, HttpStatusCode.NotFound, "The resource you are looking for was not found.")]
+    [Arguments(HttpStatusCode.NotFound, HttpStatusCode.NotFound, "The page you are looking for was not found.")]
     public async Task Error_Loads_Successfully_WithNoCache(
         HttpStatusCode code,
         HttpStatusCode expectedResponseCode,

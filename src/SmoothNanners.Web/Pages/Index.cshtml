@@ -1,0 +1,81 @@
+﻿@page
+@model Index
+
+<div class="flex flex-col items-start gap-3 pb-3 sm:flex-row">
+    <img src="~/images/avatar.webp" asp-append-version="true" width="200" height="200" alt="@AppConstants.SiteName"
+         class="rounded-md object-contain" decoding="async" loading="eager"/>
+
+    <div>
+        <p>Howdy! My name is Austin.</p>
+        <p>I'm a gamer, musician, software engineer, and photographer.</p>
+        <p>You can find links to my content and websites below!</p>
+    </div>
+</div>
+
+<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+    <div>
+        <portal-section variant="Indigo" heading-icon="BootstrapIcon.MusicNoteBeamed" heading-text="Music">
+            <youtube-link channel-id="UCPjcGsO8o_FKPGHLQ5d1hbg"/>
+
+            <h3 class="flex items-center gap-1.5 italic">
+                <blazicon icon="BootstrapIcon.StarFill"/>
+                Featured
+            </h3>
+
+            <youtube-embeds video-ids="@(["XjIJoM1AZyQ", "aPtQZNellaI"])"/>
+        </portal-section>
+    </div>
+
+    <div class="flex flex-col gap-3">
+        <portal-section variant="Pink" heading-icon="BootstrapIcon.Controller" heading-text="Gaming">
+            <youtube-link channel-id="UCQB1XVER5WPtxRESxHMG1Qw"/>
+
+            <portal-link variant="Purple" icon="BootstrapIcon.Twitch" url="https://www.twitch.tv/smoothnanners">
+                Twitch
+            </portal-link>
+
+            <portal-link variant="Indigo" icon="BootstrapIcon.Discord" url="https://discord.gg/P7rhAhA">
+                Discord
+            </portal-link>
+
+            <website-link url="https://gamebyline.com/">
+                Game Byline
+            </website-link>
+        </portal-section>
+
+        <portal-section variant="Cyan" heading-icon="BootstrapIcon.CodeSlash" heading-text="Programming">
+            <youtube-link channel-id="UCJjowuNoLywGC7ujP74zFJg"/>
+
+            <portal-link variant="Slate" icon="BootstrapIcon.Github" url="https://github.com/austins">
+                GitHub
+            </portal-link>
+
+            <website-link url="https://austinsdev.com/">
+                Austin's Dev
+            </website-link>
+        </portal-section>
+
+        <portal-section variant="Blue" heading-icon="BootstrapIcon.PersonCircle" heading-text="Socials">
+            <portal-link variant="Fuchsia" icon="BootstrapIcon.Instagram" url="https://www.instagram.com/smoothnanners">
+                Instagram
+            </portal-link>
+
+            <portal-link variant="Sky" icon="BootstrapIcon.Telegram" url="https://t.me/smoothnanners">
+                Telegram
+            </portal-link>
+
+            <portal-link variant="Black" icon="BootstrapIcon.TwitterX" url="https://x.com/smoothnanners">
+                Twitter
+            </portal-link>
+
+            <portal-link variant="Slate" icon="BootstrapIcon.PiggyBankFill"
+                         url="https://streamlabs.com/smoothnanners/tip">
+                Tip
+            </portal-link>
+
+            <portal-link variant="Slate" icon="BootstrapIcon.EnvelopeFill" url="mailto:austin@austinsdev.com">
+                Email
+            </portal-link>
+        </portal-section>
+    </div>
+</div>

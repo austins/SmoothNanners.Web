@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{054C8FE5-C706-40EE-9FC1-A1BF21E097B9}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		Directory.Build.props = Directory.Build.props
+		.gitignore = .gitignore
+		README.md = README.md
+		renovate.json = renovate.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{9EF876F1-45B4-424D-93E2-6EE45373C83E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{28BCA48C-0D57-49CF-A0A9-22DCC4F608B4}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\codeql.yml = .github\workflows\codeql.yml
+		.github\workflows\deploy.yml = .github\workflows\deploy.yml
+		.github\workflows\test.yml = .github\workflows\test.yml
+		.github\workflows\pr.yml = .github\workflows\pr.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B58DBDD8-C270-4C34-A262-1DC9391A7B7C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0D94F482-41B5-45FB-8882-600421A2EE9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmoothNanners.Web", "src\SmoothNanners.Web\SmoothNanners.Web.csproj", "{A9E8AC7A-5368-434C-9BA8-2E6FF54094E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmoothNanners.Web.Tests.Integration", "tests\SmoothNanners.Web.Tests.Integration\SmoothNanners.Web.Tests.Integration.csproj", "{D6135DBB-851E-4E6D-B6F6-310ED2E1D426}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "actions", "actions", "{BE9C054F-1CB1-41D8-B6E8-C3255F43931F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "setup-environment", "setup-environment", "{F1186479-1B6B-40EC-BA0B-6F26E7D1BA9F}"
+	ProjectSection(SolutionItems) = preProject
+		.github\actions\setup-environment\action.yml = .github\actions\setup-environment\action.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9E8AC7A-5368-434C-9BA8-2E6FF54094E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9E8AC7A-5368-434C-9BA8-2E6FF54094E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9E8AC7A-5368-434C-9BA8-2E6FF54094E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9E8AC7A-5368-434C-9BA8-2E6FF54094E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6135DBB-851E-4E6D-B6F6-310ED2E1D426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6135DBB-851E-4E6D-B6F6-310ED2E1D426}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6135DBB-851E-4E6D-B6F6-310ED2E1D426}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6135DBB-851E-4E6D-B6F6-310ED2E1D426}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9EF876F1-45B4-424D-93E2-6EE45373C83E} = {054C8FE5-C706-40EE-9FC1-A1BF21E097B9}
+		{28BCA48C-0D57-49CF-A0A9-22DCC4F608B4} = {9EF876F1-45B4-424D-93E2-6EE45373C83E}
+		{A9E8AC7A-5368-434C-9BA8-2E6FF54094E9} = {0D94F482-41B5-45FB-8882-600421A2EE9F}
+		{D6135DBB-851E-4E6D-B6F6-310ED2E1D426} = {B58DBDD8-C270-4C34-A262-1DC9391A7B7C}
+		{BE9C054F-1CB1-41D8-B6E8-C3255F43931F} = {9EF876F1-45B4-424D-93E2-6EE45373C83E}
+		{F1186479-1B6B-40EC-BA0B-6F26E7D1BA9F} = {BE9C054F-1CB1-41D8-B6E8-C3255F43931F}
+	EndGlobalSection
+EndGlobal

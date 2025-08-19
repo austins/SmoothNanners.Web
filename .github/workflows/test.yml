@@ -1,0 +1,18 @@
+name: Test
+
+on:
+    workflow_call:
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v4
+            -   uses: ./.github/actions/setup-environment
+            -   name: Build
+                run: dotnet build -c Release
+            -   name: Setup Playwright
+                run: pwsh ./tests/SmoothNanners.Web.Tests.Integration/bin/Release/net9.0/playwright.ps1 install --with-deps chromium
+            -   name: Test
+                run: dotnet test -c Release --no-build

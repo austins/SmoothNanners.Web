@@ -411,5 +411,5 @@ FodyWeavers.xsd
 .DS_Store
 *.tsbuildinfo
 
-/src/SmoothNanners.Web/wwwroot/app.css
-/src/SmoothNanners.Web/wwwroot/vendors
+/src/SmoothNanners.Web/wwwroot/assets/app.css
+/src/SmoothNanners.Web/wwwroot/assets/vendors

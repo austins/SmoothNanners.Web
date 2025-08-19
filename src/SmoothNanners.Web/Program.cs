@@ -32,9 +32,9 @@ if (isSsg)
     IReadOnlyList<NonPageResource> assetResources =
     [
         new BinResource("/favicon.ico"),
-        new CssResource("/app.css") { OptimizationType = OptimizationType.None },
-        new JsResource("/vendors/alpinejs/dist/cdn.min.js") { OptimizationType = OptimizationType.None },
-        new BinResource("/images/avatar.webp")
+        new CssResource("/assets/app.css") { OptimizationType = OptimizationType.None },
+        new JsResource("/assets/vendors/alpinejs/dist/cdn.min.js") { OptimizationType = OptimizationType.None },
+        new BinResource("/assets/images/avatar.webp")
     ];
 
     IReadOnlyList<PageResource> pageResources =

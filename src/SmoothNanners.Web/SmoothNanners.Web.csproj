@@ -3,7 +3,7 @@
         <StaticWebAssetsEnabled>false</StaticWebAssetsEnabled>
         <TailwindCssVersion>v4.1.12</TailwindCssVersion>
         <TailwindCssInputFilePath>tailwind.css</TailwindCssInputFilePath>
-        <TailwindCssOutputFilePath>wwwroot/app.css</TailwindCssOutputFilePath>
+        <TailwindCssOutputFilePath>wwwroot\assets\app.css</TailwindCssOutputFilePath>
     </PropertyGroup>
 
     <ItemGroup>
@@ -34,7 +34,7 @@
     </Target>
 
     <Target Name="CleanAssets" AfterTargets="Clean">
-        <Delete Files="wwwroot\app.css"/>
-        <RemoveDir Directories="wwwroot\vendors"/>
+        <Delete Files="wwwroot\assets\app.css"/>
+        <RemoveDir Directories="wwwroot\assets\vendors"/>
     </Target>
 </Project>

@@ -1,7 +1,7 @@
 {
     "$schema": "http://json.schemastore.org/libman.json",
     "version": "3.0",
-    "defaultDestination": "./wwwroot/vendors",
+    "defaultDestination": "./wwwroot/assets/vendors",
     "defaultProvider": "jsdelivr",
     "libraries": [
         {
@@ -9,7 +9,7 @@
             "files": [
                 "dist/cdn.min.js"
             ],
-            "destination": "./wwwroot/vendors/alpinejs"
+            "destination": "./wwwroot/assets/vendors/alpinejs"
         }
     ]
 }

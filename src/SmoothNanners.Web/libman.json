@@ -5,7 +5,7 @@
     "defaultProvider": "jsdelivr",
     "libraries": [
         {
-            "library": "alpinejs@3.14.9",
+            "library": "alpinejs@3.15.0",
             "files": [
                 "dist/cdn.min.js"
             ],

@@ -3,6 +3,6 @@ runs:
     using: "composite"
     steps:
         -   name: Set up .NET Core SDK
-            uses: actions/setup-dotnet@v4
+            uses: actions/setup-dotnet@v5
             with:
                 dotnet-version: '9.x'

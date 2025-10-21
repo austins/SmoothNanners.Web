@@ -9,7 +9,7 @@
         <PackageReference Include="Microsoft.Playwright" Version="1.55.0"/>
         <PackageReference Include="Microsoft.Playwright.TestAdapter" Version="1.55.0"/>
         <PackageReference Include="Shouldly" Version="4.3.0"/>
-        <PackageReference Include="TUnit.Engine" Version="0.73.19"/>
+        <PackageReference Include="TUnit.Engine" Version="0.74.2"/>
     </ItemGroup>
 
     <ItemGroup>

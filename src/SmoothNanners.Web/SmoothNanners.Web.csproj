@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
     <PropertyGroup>
         <StaticWebAssetsEnabled>false</StaticWebAssetsEnabled>
-        <TailwindCssVersion>v4.1.15</TailwindCssVersion>
+        <TailwindCssVersion>v4.1.16</TailwindCssVersion>
         <TailwindCssInputFilePath>tailwind.css</TailwindCssInputFilePath>
         <TailwindCssOutputFilePath>wwwroot\assets\app.css</TailwindCssOutputFilePath>
     </PropertyGroup>

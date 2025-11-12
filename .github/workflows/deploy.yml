@@ -28,7 +28,7 @@ jobs:
                 id: deployment
                 uses: actions/upload-pages-artifact@v4
                 with:
-                    path: ./src/SmoothNanners.Web/bin/Release/net9.0/ssg
+                    path: ./src/SmoothNanners.Web/bin/Release/net10.0/ssg
     deploy:
         needs: build
         permissions:

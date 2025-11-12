@@ -7,5 +7,5 @@ support more content in the future; it primarily serves as a template for future
 To run the Integration tests, run this command from the root of the solution to install the default browser:
 
 ```
-pwsh ./tests/SmoothNanners.Web.Tests.Integration/bin/Debug/net9.0/playwright.ps1 install chromium
+pwsh ./tests/SmoothNanners.Web.Tests.Integration/bin/Debug/net10.0/playwright.ps1 install chromium
 ```

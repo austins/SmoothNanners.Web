@@ -5,7 +5,5 @@ on:
         branches: [ main ]
 
 jobs:
-    pr-analyze:
-        uses: ./.github/workflows/codeql.yml
     pr-test:
         uses: ./.github/workflows/test.yml

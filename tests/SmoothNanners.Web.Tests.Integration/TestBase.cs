@@ -11,6 +11,17 @@ public abstract class TestBase
     [ClassDataSource<TestFixture>(Shared = SharedType.PerTestSession)]
     public required TestFixture Fixture { get; init; }
 
+    [Before(TestDiscovery)]
+    public static void BeforeTestDiscovery()
+    {
+        // Install browser binaries needed for Playwright.
+        var exitCode = Microsoft.Playwright.Program.Main(["install", "chromium"]);
+        if (exitCode != 0)
+        {
+            throw new InvalidOperationException($"Playwright browser install exited with code [{exitCode}].");
+        }
+    }
+
     [After(Test)]
     public async Task AfterTestAsync()
     {

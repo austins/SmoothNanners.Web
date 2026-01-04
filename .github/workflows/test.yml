@@ -10,9 +10,5 @@ jobs:
             -   name: Checkout
                 uses: actions/checkout@v6
             -   uses: ./.github/actions/setup-environment
-            -   name: Build
-                run: dotnet build -c Release
-            -   name: Setup Playwright
-                run: pwsh ./tests/SmoothNanners.Web.Tests.Integration/bin/Release/net10.0/playwright.ps1 install --with-deps chromium
             -   name: Test
-                run: dotnet test -c Release --no-build
+                run: dotnet test -c Release

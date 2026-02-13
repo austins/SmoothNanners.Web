@@ -9,7 +9,7 @@
     <ItemGroup>
         <PackageReference Include="AspNetStatic" Version="0.27.2"/>
         <PackageReference Include="Blazicons.Bootstrap" Version="2.3.40"/>
-        <PackageReference Include="Microsoft.Build" Version="18.0.2"/>
+        <PackageReference Include="Microsoft.Build" Version="18.3.3"/>
         <PackageReference Include="SafeRouting" Version="1.5.0"/>
         <PackageReference Include="TechGems.RazorComponentTagHelpers" Version="1.1.0"/>
     </ItemGroup>

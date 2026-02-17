@@ -16,14 +16,14 @@
 </div>
 
 <div class="row g-3">
-    <div class="col-md-6">
+    <div class="col-sm-6">
         @foreach (var card in Model.LeftCards)
         {
             <partial name="_PortalCard" model="card"/>
         }
     </div>
 
-    <div class="col-md-6">
+    <div class="col-sm-6">
         <div class="vstack gap-3">
             @foreach (var card in Model.RightCards)
             {

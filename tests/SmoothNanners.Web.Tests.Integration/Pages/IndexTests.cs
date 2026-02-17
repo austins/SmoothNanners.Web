@@ -45,6 +45,7 @@ public sealed class IndexTests : TestBase
 
         (await page.Locator(".container").First.CssValueAsync("max-width")).ShouldBe("768px");
         (await page.Locator("p").First.CssValueAsync("margin-bottom")).ShouldBe("16px");
+        (await page.Locator(".btn-black").First.CssValueAsync("background-color")).ShouldBe("rgb(0, 0, 0)");
     }
 
     [Test]

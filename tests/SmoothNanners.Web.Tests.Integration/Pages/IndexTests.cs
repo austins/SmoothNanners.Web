@@ -41,10 +41,10 @@ public sealed class IndexTests : TestBase
 
         var siteHeader = page.Locator("body > div > header > h1").First;
         (await siteHeader.TextContentAsync()).ShouldBe(AppConstants.SiteName);
-        (await siteHeader.CssValueAsync("font-family")).ShouldContain("Optima");
+        (await siteHeader.CssValueAsync("font-family")).ShouldContain("Lato");
 
         (await page.Locator(".container").First.CssValueAsync("max-width")).ShouldBe("768px");
-        (await page.Locator("p").First.CssValueAsync("padding-bottom")).ShouldBe("12px");
+        (await page.Locator("p").First.CssValueAsync("margin-bottom")).ShouldBe("16px");
     }
 
     [Test]
@@ -84,10 +84,10 @@ public sealed class IndexTests : TestBase
         await youtubeEmbedLinks.First.ClickAsync();
         await youtubeEmbedLinks.Last.ClickAsync();
 
-        var iframes = embedContainer.Locator("> iframe");
-
         // Assert
         (await youtubeEmbedLinks.CountAsync()).ShouldBe(2);
+
+        var iframes = embedContainer.Locator("iframe");
         (await iframes.CountAsync()).ShouldBe(1);
         (await iframes.First.IsVisibleAsync()).ShouldBeTrue();
     }

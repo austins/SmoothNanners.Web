@@ -20,6 +20,12 @@ jobs:
             -   uses: ./.github/actions/setup-environment
             -   name: Build
                 run: dotnet build ./src/SmoothNanners.Web -c Release
+            -   name: Optimize assets
+                run: |
+                    npx -y purgecss \
+                        --css "./src/SmoothNanners.Web/wwwroot/assets/vendors/bootswatch/dist/vapor/bootstrap.min.css" \
+                        --content "./src/SmoothNanners.Web/Pages/**/*.cshtml" \
+                        --output "./src/SmoothNanners.Web/wwwroot/assets/vendors/bootswatch/dist/vapor/bootstrap.min.css"
             -   name: SSG
                 run: dotnet run --project ./src/SmoothNanners.Web -lp ssg -c Release --no-build
             -   name: Upload artifact

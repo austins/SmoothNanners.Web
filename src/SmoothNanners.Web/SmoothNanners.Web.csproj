@@ -1,9 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
     <PropertyGroup>
         <StaticWebAssetsEnabled>false</StaticWebAssetsEnabled>
-        <TailwindCssVersion>v4.1.18</TailwindCssVersion>
-        <TailwindCssInputFilePath>tailwind.css</TailwindCssInputFilePath>
-        <TailwindCssOutputFilePath>wwwroot/assets/app.css</TailwindCssOutputFilePath>
     </PropertyGroup>
 
     <ItemGroup>
@@ -11,7 +8,6 @@
         <PackageReference Include="Blazicons.Bootstrap" Version="2.3.40"/>
         <PackageReference Include="Microsoft.Build" Version="18.3.3"/>
         <PackageReference Include="SafeRouting" Version="1.5.0"/>
-        <PackageReference Include="TechGems.RazorComponentTagHelpers" Version="1.1.0"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -29,12 +25,10 @@
 
     <Target Name="RestoreAssets" AfterTargets="BeforeBuild">
         <Exec Command="dotnet tool restore"/>
-        <Exec Command="dotnet tool run tailwindcss build -t $(TailwindCssVersion) -m -i &quot;$(TailwindCssInputFilePath)&quot; -o &quot;$(TailwindCssOutputFilePath)&quot;"/>
         <Exec Command="dotnet tool run libman restore"/>
     </Target>
 
     <Target Name="CleanAssets" AfterTargets="Clean">
-        <Delete Files="wwwroot\assets\app.css"/>
         <RemoveDir Directories="wwwroot\assets\vendors"/>
     </Target>
 </Project>

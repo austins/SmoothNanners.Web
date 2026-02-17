@@ -11,6 +11,24 @@ p:last-child {
     max-width: 768px;
 }
 
+.btn-indigo {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: oklch(58.5% 0.233 277.117);
+    --bs-btn-hover-bg: oklch(51.1% 0.262 276.966);
+    --bs-btn-active-bg: oklch(45.7% 0.24 277.023);
+    box-shadow: 0 0 2px rgba(111, 66, 193, .9), 0 0 4px rgba(111, 66, 193, .4), 0 0 1rem rgba(111, 66, 193, .3), 0 0 4rem rgba(111, 66, 193, .1);
+    text-shadow: 0 0 1px rgba(255, 255, 255, .3), 0 0 2px rgba(255, 255, 255, .3), 0 0 5px rgba(255, 255, 255, .2);
+}
+
+.btn-black {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #000;
+    --bs-btn-hover-bg: oklch(27.8% 0.033 256.848);
+    --bs-btn-active-bg: oklch(21% 0.034 264.665);
+    box-shadow: 0 0 2px rgba(66, 68, 193, 0.9), 0 0 4px rgba(70, 66, 193, 0.4), 0 0 1rem rgba(82, 66, 193, 0.3), 0 0 4rem rgba(70, 66, 193, 0.1);
+    text-shadow: 0 0 1px rgba(255, 255, 255, .3), 0 0 2px rgba(255, 255, 255, .3), 0 0 5px rgba(255, 255, 255, .2);
+}
+
 .video-embed-link {
     transition: filter .15s ease-in-out;
 }

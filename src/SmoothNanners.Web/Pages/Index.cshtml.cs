@@ -37,7 +37,7 @@ public sealed class Index : PageModel
                 },
                 new PortalLink
                 {
-                    Variant = Variant.Primary,
+                    Variant = Variant.Indigo,
                     Icon = BootstrapIcon.Discord,
                     Text = "Discord",
                     Url = new Uri("https://discord.gg/P7rhAhA")
@@ -86,7 +86,7 @@ public sealed class Index : PageModel
                 },
                 new PortalLink
                 {
-                    Variant = Variant.Dark,
+                    Variant = Variant.Black,
                     Icon = BootstrapIcon.TwitterX,
                     Text = "Twitter",
                     Url = new Uri("https://x.com/smoothnanners")

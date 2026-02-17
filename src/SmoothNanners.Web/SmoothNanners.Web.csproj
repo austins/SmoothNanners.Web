@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
     <PropertyGroup>
-        <!-- Disabling static web assets as we are statically generating pages and require fixed links. This means we can't use CSS isolation. -->
+        <!-- Disable static web assets as we are statically generating pages and require fixed links. This means we can't use CSS isolation. -->
         <StaticWebAssetsEnabled>false</StaticWebAssetsEnabled>
     </PropertyGroup>
 

@@ -71,7 +71,7 @@ if (isSsg)
     }
 
     Directory.CreateDirectory(ssgOutputPath);
-    app.GenerateStaticContent(ssgOutputPath, true);
+    app.GenerateStaticContent(ssgOutputPath, true, dontUpdateLinks: true);
 }
 
 await app.RunAsync();

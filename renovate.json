@@ -16,18 +16,6 @@
         {
             "customType": "regex",
             "managerFilePatterns": [
-                "/(^|/)SmoothNanners\\.Web\\.csproj$/"
-            ],
-            "datasourceTemplate": "npm",
-            "versioningTemplate": "npm",
-            "depNameTemplate": "@tailwindcss/cli",
-            "matchStrings": [
-                "<TailwindCssVersion>v?(?<currentValue>.*?)</TailwindCssVersion>"
-            ]
-        },
-        {
-            "customType": "regex",
-            "managerFilePatterns": [
                 "/(^|/)libman\\.json$/"
             ],
             "datasourceTemplate": "npm",

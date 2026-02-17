@@ -34,7 +34,7 @@
     </Target>
 
     <Target Name="CleanAssets" AfterTargets="Clean">
-        <Delete Files="wwwroot/assets/app.css"/>
-        <RemoveDir Directories="wwwroot/assets/vendors"/>
+        <Delete Files="wwwroot\assets\app.css"/>
+        <RemoveDir Directories="wwwroot\assets\vendors"/>
     </Target>
 </Project>

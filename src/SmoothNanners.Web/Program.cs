@@ -1,6 +1,5 @@
 using AspNetStatic;
 using AspNetStatic.Optimizer;
-using SmoothNanners.Web;
 
 var isSsg = args.HasExitWhenDoneArg();
 
@@ -22,17 +21,14 @@ builder.Services.Configure<RouteOptions>(o =>
     o.LowercaseQueryStrings = true;
 });
 
-if (builder.Environment.IsDevelopment())
-{
-    builder.Services.AddHostedService<TailwindWatcher>();
-}
-
 if (isSsg)
 {
     IReadOnlyList<NonPageResource> assetResources =
     [
         new BinResource("/favicon.ico"),
-        new CssResource("/assets/app.css") { OptimizationType = OptimizationType.None },
+        new CssResource("/assets/vendors/bootswatch/dist/vapor/bootstrap.min.css")
+            { OptimizationType = OptimizationType.None },
+        new CssResource("/assets/app.css") { OptimizationType = OptimizationType.Css },
         new JsResource("/assets/vendors/alpinejs/dist/cdn.min.js") { OptimizationType = OptimizationType.None },
         new BinResource("/assets/images/avatar.webp")
     ];

@@ -1,6 +1,6 @@
-﻿@model Blazicon
+﻿@model SvgIcon
 @{
-    var attributes = new Dictionary<string, string?>(Model.Icon.Attributes)
+    var attributes = new Dictionary<string, string?>(Model.Attributes)
     {
         ["width"] = "1em",
         ["height"] = "1em"
@@ -8,5 +8,5 @@
 }
 
 <svg class="align-middle" @Html.Raw(string.Join(' ', attributes.Select(kvp => $"{kvp.Key}=\"{kvp.Value}\"")))>
-    @Html.Raw(Model.Icon.Content)
+    @Html.Raw(Model.Content)
 </svg>

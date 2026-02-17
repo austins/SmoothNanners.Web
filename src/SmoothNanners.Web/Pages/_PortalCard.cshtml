@@ -1,0 +1,93 @@
+﻿@model SmoothNanners.Web.Models.Portal.PortalCard
+@{
+    var borderVariantClass = Model.Variant switch
+    {
+        Variant.Primary => "border-primary",
+        Variant.Secondary => "border-secondary",
+        Variant.Success => "border-success",
+        Variant.Danger => "border-danger",
+        Variant.Warning => "border-warning",
+        Variant.Info => "border-info",
+        Variant.Light => "border-light",
+        Variant.Dark => "border-dark",
+        _ => throw new ArgumentOutOfRangeException(nameof(Model.Variant))
+    };
+}
+
+<div class="card @borderVariantClass">
+    <div class="card-header">
+        <span class="hstack gap-2 fs-3">
+            <partial name="Shared/_Icon" model="Model.HeadingIcon"/>
+            @Model.HeadingText
+        </span>
+    </div>
+
+    <div class="card-body">
+        <div class="vstack gap-2">
+            @foreach (var link in Model.Links)
+            {
+                var linkVariantClass = link.Variant switch
+                {
+                    Variant.Primary => "btn-primary",
+                    Variant.Secondary => "btn-secondary",
+                    Variant.Success => "btn-success",
+                    Variant.Danger => "btn-danger",
+                    Variant.Warning => "btn-warning",
+                    Variant.Info => "btn-info",
+                    Variant.Light => "btn-light",
+                    Variant.Dark => "btn-dark",
+                    _ => throw new ArgumentOutOfRangeException(nameof(link.Variant))
+                };
+
+                <a href="@link.Url" target="_blank" rel="noreferrer" class="btn btn-lg @linkVariantClass text-start">
+                    <span class="hstack gap-2">
+                        <partial name="Shared/_Icon" model="link.Icon"/>
+                        @link.Text
+                    </span>
+                </a>
+            }
+
+            @if (Model.YouTubeVideoIds.Count > 0)
+            {
+                <h5 class="card-title mb-0">
+                    <span class="hstack gap-2">
+                        <partial name="Shared/_Icon" model="BootstrapIcon.StarFill"/>
+                        Featured
+                    </span>
+                </h5>
+
+                <div class="d-flex flex-column gap-2" x-data="{currentId: null}">
+                    @foreach (var videoId in Model.YouTubeVideoIds)
+                    {
+                        <div class="position-relative" x-show="currentId !== '@videoId'">
+                            <img src="https://i.ytimg.com/vi_webp/@videoId/mqdefault.webp" alt="YouTube Video"
+                                 width="328"
+                                 height="186.5"
+                                 class="w-100 rounded" decoding="async" loading="eager"/>
+
+                            <a href="https://www.youtube.com/watch?v=@videoId" aria-label="YouTube Video"
+                               target="_blank"
+                               rel="noreferrer"
+                               class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center video-embed-link"
+                               x-on:click.prevent="currentId = '@videoId'">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="3.6rem" height="3.6rem"
+                                     viewBox="0 0 256 180">
+                                    <path fill="#f00"
+                                          d="M250.346 28.075A32.18 32.18 0 0 0 227.69 5.418C207.824 0 127.87 0 127.87 0S47.912.164 28.046 5.582A32.18 32.18 0 0 0 5.39 28.24c-6.009 35.298-8.34 89.084.165 122.97a32.18 32.18 0 0 0 22.656 22.657c19.866 5.418 99.822 5.418 99.822 5.418s79.955 0 99.82-5.418a32.18 32.18 0 0 0 22.657-22.657c6.338-35.348 8.291-89.1-.164-123.134"/>
+                                    <path fill="#fff" d="m102.421 128.06l66.328-38.418l-66.328-38.418z"/>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <template x-if="currentId === '@videoId'">
+                            <div class="ratio ratio-16x9">
+                                <iframe src="https://www.youtube.com/embed/@videoId?autoplay=1" title="YouTube Video"
+                                        allowFullScreen allow="autoplay" class="rounded"></iframe>
+                            </div>
+                        </template>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -10,6 +10,13 @@
                 "dist/cdn.min.js"
             ],
             "destination": "./wwwroot/assets/vendors/alpinejs"
+        },
+        {
+            "library": "bootswatch@5.3.8",
+            "files": [
+                "dist/vapor/bootstrap.min.css"
+            ],
+            "destination": "./wwwroot/assets/vendors/bootswatch"
         }
     ]
 }

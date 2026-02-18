@@ -58,7 +58,7 @@ public sealed class IndexTests : TestBase
         // Act
         await page.GotoAsync(path);
 
-        var youTubeEmbed = page.Locator("a[href^='https://www.youtube.com/watch?v='][aria-label='YouTube Video']")
+        var youTubeEmbed = page.Locator("a[href^='https://www.youtube.com/watch?v='][aria-label='Play YouTube video']")
             .First;
 
         var embedContainer = youTubeEmbed.Locator("..").Locator("..");
@@ -79,7 +79,7 @@ public sealed class IndexTests : TestBase
         // Act
         await page.GotoAsync(path);
 
-        var youtubeEmbedLinks = page.Locator("a[href^='https://www.youtube.com/watch?v='][aria-label='YouTube Video']");
+        var youtubeEmbedLinks = page.Locator("a[href^='https://www.youtube.com/watch?v='][aria-label='Play YouTube video']");
         var embedContainer = youtubeEmbedLinks.First.Locator("..").Locator("..");
 
         await youtubeEmbedLinks.First.ClickAsync();

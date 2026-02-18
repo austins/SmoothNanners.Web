@@ -7,6 +7,7 @@
     };
 }
 
-<svg class="align-middle" @Html.Raw(string.Join(' ', attributes.Select(kvp => $"{kvp.Key}=\"{kvp.Value}\"")))>
+<svg class="align-middle" aria-hidden="true"
+     @Html.Raw(string.Join(' ', attributes.Select(kvp => $"{kvp.Key}=\"{kvp.Value}\"")))>
     @Html.Raw(Model.Content)
 </svg>

@@ -18,8 +18,10 @@
     box-shadow: 0 0 2px rgba(70, 70, 70, 0.9), 0 0 4px rgba(92, 91, 91, 0.4), 0 0 1rem rgba(83, 83, 83, 0.3), 0 0 4rem rgba(106, 106, 106, 0.1);
 }
 
-.video-embed-link {
-    transition: filter .15s ease-in-out;
+@media (prefers-reduced-motion: no-preference) {
+    .video-embed-link {
+        transition: filter .15s ease-in-out;
+    }
 }
 
 .video-embed-link:hover {

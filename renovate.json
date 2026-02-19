@@ -24,5 +24,16 @@
                 "\"library\": ?\"(?<depName>@?[^\"]+?)@(?<currentValue>.*?)\""
             ]
         }
+    ],
+    "packageRules": [
+        {
+            "description": "Schedule TUnit.Engine updates on early Monday mornings (before 4 AM)",
+            "matchPackageNames": [
+                "TUnit.Engine"
+            ],
+            "schedule": [
+                "* 0-3 * * 1"
+            ]
+        }
     ]
 }

@@ -17,4 +17,7 @@ jobs:
                 uses: ctrf-io/github-test-reporter@v1
                 with:
                     report-path: ./test-results/*.ctrf
-                    github-report: true
+                    summary-report: true
+                    suite-folded-report: true
+                    failed-folded-report: true
+                    skipped-report: true

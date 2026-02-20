@@ -16,5 +16,5 @@ jobs:
                 name: Publish test report
                 uses: ctrf-io/github-test-reporter@v1
                 with:
-                    report-path: ./test-results/*.json
+                    report-path: ./test-results/*.ctrf
                     github-report: true

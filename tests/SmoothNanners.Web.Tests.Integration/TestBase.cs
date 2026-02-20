@@ -14,6 +14,9 @@ public abstract class TestBase : IAsyncDisposable
         _fixture = fixture;
     }
 
+    /// <summary>
+    /// Disposal that runs after each test method is run.
+    /// </summary>
     public async ValueTask DisposeAsync()
     {
         await DisposeAsyncCore();

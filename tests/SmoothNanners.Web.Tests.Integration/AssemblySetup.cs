@@ -4,6 +4,9 @@ using Xunit.v3;
 
 namespace SmoothNanners.Web.Tests.Integration;
 
+/// <summary>
+/// Setup for the assembly that runs early in the test pipeline during discovery and execution.
+/// </summary>
 internal sealed class AssemblySetup : ITestPipelineStartup
 {
     public ValueTask StartAsync(IMessageSink diagnosticMessageSink)

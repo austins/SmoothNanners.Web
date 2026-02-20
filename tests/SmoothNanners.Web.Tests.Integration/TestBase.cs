@@ -4,26 +4,26 @@ using SafeRouting;
 
 namespace SmoothNanners.Web.Tests.Integration;
 
-public abstract class TestBase
+public abstract class TestBase : IAsyncDisposable
 {
+    private readonly TestFixture _fixture;
     private readonly IList<IBrowserContext> _browserContexts = [];
 
-    [ClassDataSource<TestFixture>(Shared = SharedType.PerTestSession)]
-    public required TestFixture Fixture { get; init; }
-
-    [Before(TestDiscovery)]
-    public static void BeforeTestDiscovery()
+    protected TestBase(TestFixture fixture)
     {
-        // Install browser binaries needed for Playwright.
-        var exitCode = Microsoft.Playwright.Program.Main(["install", "chromium"]);
-        if (exitCode != 0)
-        {
-            throw new InvalidOperationException($"Playwright browser install exited with code [{exitCode}].");
-        }
+        _fixture = fixture;
     }
 
-    [After(Test)]
-    public async Task AfterTestAsync()
+    /// <summary>
+    /// Disposal that runs after each test method is run.
+    /// </summary>
+    public async ValueTask DisposeAsync()
+    {
+        await DisposeAsyncCore();
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual async ValueTask DisposeAsyncCore()
     {
         foreach (var browserContext in _browserContexts)
         {
@@ -33,10 +33,10 @@ public abstract class TestBase
 
     protected async Task<IPage> CreatePageAsync(bool jsEnabled = true)
     {
-        var context = await Fixture.Browser.NewContextAsync(
+        var context = await _fixture.Browser.NewContextAsync(
             new BrowserNewContextOptions
             {
-                BaseURL = Fixture.BaseUrl,
+                BaseURL = _fixture.AppFactory.BaseUrl,
                 JavaScriptEnabled = jsEnabled
             });
 
@@ -49,6 +49,6 @@ public abstract class TestBase
 
     protected string GetPath(IRouteValues route)
     {
-        return route.Path(Fixture.LinkGenerator);
+        return route.Path(_fixture.AppFactory.LinkGenerator);
     }
 }

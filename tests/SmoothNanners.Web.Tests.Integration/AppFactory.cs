@@ -1,20 +1,21 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Testing.Platform.Services;
+using Microsoft.Extensions.Logging;
 using System.Net;
 using System.Net.Sockets;
 
 namespace SmoothNanners.Web.Tests.Integration;
 
-internal sealed class AppFactory : WebApplicationFactory<Program>
+public sealed class AppFactory : WebApplicationFactory<Program>
 {
     private IHost? _host;
 
     public AppFactory()
     {
-        // Ensure the server is created.
+        // Ensure the host is created.
         _ = Server;
 
         LinkGenerator = _host!.Services.GetRequiredService<LinkGenerator>();
@@ -37,9 +38,7 @@ internal sealed class AppFactory : WebApplicationFactory<Program>
         var dummyHost = builder.Build();
 
 #pragma warning disable IDISP003
-        _host = builder
-            .ConfigureWebHost(b => b.UseSetting("Kestrel:Endpoints:Http:Url", BaseUrl).UseKestrel())
-            .Build();
+        _host = builder.ConfigureWebHost(b => b.UseSetting("Kestrel:Endpoints:Http:Url", BaseUrl).UseKestrel()).Build();
 #pragma warning restore IDISP003
 
         _host.Start();

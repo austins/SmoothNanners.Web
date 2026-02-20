@@ -1,31 +1,17 @@
-﻿using Microsoft.AspNetCore.Routing;
-using Microsoft.Playwright;
+﻿using Microsoft.Playwright;
 using Microsoft.Playwright.TestAdapter;
-using TUnit.Core.Interfaces;
 
 namespace SmoothNanners.Web.Tests.Integration;
 
-/// <summary>
-/// Test fixture that should be instantiated only once as a singleton for any tests within the session.
-/// </summary>
-public sealed class TestFixture
-    : IAsyncInitializer,
-        IAsyncDisposable
+public sealed class TestFixture : IAsyncLifetime
 {
-    private readonly AppFactory _appFactory = new();
     private IPlaywright? _playwright;
 
-    public string BaseUrl => _appFactory.BaseUrl;
-
-    public LinkGenerator LinkGenerator => _appFactory.LinkGenerator;
+    public AppFactory AppFactory { get; } = new();
 
     public IBrowser Browser { get; private set; } = null!;
 
-    /// <summary>
-    /// Initialization that should run once when the test session starts.
-    /// </summary>
-    /// <returns>Task.</returns>
-    public async Task InitializeAsync()
+    public async ValueTask InitializeAsync()
     {
 #pragma warning disable IDISP003
         _playwright = await Playwright.CreateAsync();
@@ -34,14 +20,10 @@ public sealed class TestFixture
         Browser = await _playwright[PlaywrightSettingsProvider.BrowserName].LaunchAsync();
     }
 
-    /// <summary>
-    /// Async teardown that should run once the test session is finished.
-    /// </summary>
-    /// <returns>ValueTask.</returns>
     public async ValueTask DisposeAsync()
     {
         await Browser.DisposeAsync();
         _playwright?.Dispose();
-        await _appFactory.DisposeAsync();
+        await AppFactory.DisposeAsync();
     }
 }

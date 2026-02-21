@@ -4,13 +4,8 @@ using System.Net;
 
 namespace SmoothNanners.Web.Tests.Integration.Pages;
 
-public sealed class ErrorTests : TestBase
+public sealed class ErrorTests(TestFixture fixture) : TestBase(fixture)
 {
-    public ErrorTests(TestFixture fixture)
-        : base(fixture)
-    {
-    }
-
     [Theory]
     [InlineData(HttpStatusCode.OK, HttpStatusCode.BadRequest)]
     [InlineData(HttpStatusCode.InternalServerError, HttpStatusCode.InternalServerError)]

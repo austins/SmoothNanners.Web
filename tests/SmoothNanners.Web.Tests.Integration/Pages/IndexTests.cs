@@ -5,13 +5,8 @@ using SmoothNanners.Web.Tests.Integration.Extensions;
 
 namespace SmoothNanners.Web.Tests.Integration.Pages;
 
-public sealed class IndexTests : TestBase
+public sealed class IndexTests(TestFixture fixture) : TestBase(fixture)
 {
-    public IndexTests(TestFixture fixture)
-        : base(fixture)
-    {
-    }
-
     [Fact]
     public async Task Index_Loads_Successfully_WithLayoutAndNoJavaScriptErrors()
     {

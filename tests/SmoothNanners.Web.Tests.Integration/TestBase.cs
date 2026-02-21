@@ -36,7 +36,7 @@ public abstract class TestBase : IAsyncDisposable
         var context = await _fixture.Browser.NewContextAsync(
             new BrowserNewContextOptions
             {
-                BaseURL = _fixture.AppFactory.BaseUrl,
+                BaseURL = _fixture.BaseUrl.AbsoluteUri,
                 JavaScriptEnabled = jsEnabled
             });
 
@@ -49,6 +49,6 @@ public abstract class TestBase : IAsyncDisposable
 
     protected string GetPath(IRouteValues route)
     {
-        return route.Path(_fixture.AppFactory.LinkGenerator);
+        return route.Path(_fixture.LinkGenerator);
     }
 }

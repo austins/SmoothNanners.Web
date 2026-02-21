@@ -1,5 +1,7 @@
-﻿using Microsoft.Playwright;
+﻿using Microsoft.AspNetCore.Routing;
+using Microsoft.Playwright;
 using Microsoft.Playwright.TestAdapter;
+using Microsoft.Testing.Platform.Services;
 
 namespace SmoothNanners.Web.Tests.Integration;
 
@@ -9,14 +11,19 @@ namespace SmoothNanners.Web.Tests.Integration;
 /// </summary>
 public sealed class TestFixture : IAsyncLifetime
 {
+    private readonly AppFactory _appFactory = new();
     private IPlaywright? _playwright;
 
-    public AppFactory AppFactory { get; } = new();
+    public Uri BaseUrl => _appFactory.ClientOptions.BaseAddress;
+
+    public LinkGenerator LinkGenerator => field ??= _appFactory.Services.GetRequiredService<LinkGenerator>();
 
     public IBrowser Browser { get; private set; } = null!;
 
     public async ValueTask InitializeAsync()
     {
+        _appFactory.StartServer();
+
 #pragma warning disable IDISP003
         _playwright = await Playwright.CreateAsync();
 #pragma warning restore IDISP003
@@ -28,6 +35,6 @@ public sealed class TestFixture : IAsyncLifetime
     {
         await Browser.DisposeAsync();
         _playwright?.Dispose();
-        await AppFactory.DisposeAsync();
+        await _appFactory.DisposeAsync();
     }
 }

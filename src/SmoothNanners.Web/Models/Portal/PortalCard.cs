@@ -10,7 +10,7 @@ public sealed class PortalCard
 
     public required string HeadingText { get; init; }
 
-    public required IList<PortalLink> Links { get; init; }
+    public required IReadOnlyList<PortalLink> Links { get; init; }
 
     public IReadOnlyList<string> YouTubeVideoIds { get; init; } = [];
 }

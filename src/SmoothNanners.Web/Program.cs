@@ -2,7 +2,7 @@ using AspNetStatic;
 using AspNetStatic.Optimizer;
 using System.Reflection;
 
-var isSsg = args.HasExitWhenDoneArg();
+var isSsg = args.HasSsgArg();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,10 +32,14 @@ if (isSsg)
     [
         new BinResource("/favicon.ico"),
         new CssResource("/assets/vendors/bootswatch/dist/vapor/bootstrap.min.css")
-            { OptimizationType = OptimizationType.None },
+        {
+            OptimizationType = OptimizationType.None
+        },
         new CssResource("/assets/global.css") { OptimizationType = OptimizationType.Css },
         new CssResource($"/{Assembly.GetExecutingAssembly().GetName().Name}.styles.css")
-            { OptimizationType = OptimizationType.Css },
+        {
+            OptimizationType = OptimizationType.Css
+        },
         new JsResource("/assets/vendors/alpinejs/dist/cdn.min.js") { OptimizationType = OptimizationType.None },
         new BinResource("/assets/images/avatar.webp")
     ];

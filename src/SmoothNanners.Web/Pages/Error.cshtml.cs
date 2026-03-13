@@ -32,7 +32,7 @@ public sealed class Error : PageModel
             _ => "An error occurred while processing your request. Please try again later."
         };
 
-        if (!Environment.GetCommandLineArgs().HasExitWhenDoneArg())
+        if (!Environment.GetCommandLineArgs().HasSsgArg())
         {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
             Response.StatusCode = (int)Code;

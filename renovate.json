@@ -17,6 +17,7 @@
     "packageRules": [
         {
             "matchDatasources": [
+                "github-digest",
                 "github-tags",
                 "nuget"
             ],

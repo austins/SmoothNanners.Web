@@ -12,6 +12,14 @@
         ":automergeMinor",
         ":automergeDigest"
     ],
+    "packageRules": [
+        {
+            "matchDatasources": [
+                "nuget"
+            ],
+            "minimumReleaseAge": "3 days"
+        }
+    ],
     "customManagers": [
         {
             "customType": "regex",

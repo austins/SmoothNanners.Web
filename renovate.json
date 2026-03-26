@@ -17,6 +17,7 @@
     "packageRules": [
         {
             "matchDatasources": [
+                "github-tags",
                 "nuget"
             ],
             "minimumReleaseAge": "3 days"

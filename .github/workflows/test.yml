@@ -20,7 +20,7 @@ jobs:
                       Select-Object -ExpandProperty Version
                     echo "PlaywrightVersion=$version" >> $env:GITHUB_ENV
             -   name: Cache Playwright browsers
-                uses: actions/cache@v5
+                uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
                 with:
                     path: ~/.cache/ms-playwright
                     key: ${{ runner.os }}-playwright-${{ env.PlaywrightVersion }}

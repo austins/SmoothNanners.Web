@@ -2,6 +2,8 @@
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
         "config:recommended",
+        "helpers:githubDigestChangelogs",
+        "helpers:pinGitHubActionDigestsToSemver",
         "schedule:daily",
         "security:minimumReleaseAgeNpm",
         ":configMigration",

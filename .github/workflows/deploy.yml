@@ -9,10 +9,12 @@ concurrency:
     cancel-in-progress: true
 
 jobs:
+    lint:
+        uses: ./.github/workflows/lint.yml
     test:
         uses: ./.github/workflows/test.yml
     build:
-        needs: test
+        needs: [ lint, test ]
         runs-on: ubuntu-latest
         steps:
             -   name: Checkout

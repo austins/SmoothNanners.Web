@@ -18,6 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\deploy.yml = .github\workflows\deploy.yml
 		.github\workflows\test.yml = .github\workflows\test.yml
 		.github\workflows\pr.yml = .github\workflows\pr.yml
+		.github\workflows\lint.yml = .github\workflows\lint.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B58DBDD8-C270-4C34-A262-1DC9391A7B7C}"

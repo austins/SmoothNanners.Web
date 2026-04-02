@@ -5,6 +5,8 @@ on:
         branches: [ main ]
 
 jobs:
+    pr-lint:
+        uses: ./.github/workflows/lint.yml
     pr-test:
         uses: ./.github/workflows/test.yml
     # Build and verify static site generation succeeds.

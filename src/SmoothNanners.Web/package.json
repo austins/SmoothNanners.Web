@@ -4,6 +4,17 @@
     "engines": {
         "npm": ">=11.10.0"
     },
+    "devEngines": {
+        "runtime": {
+            "name": "node",
+            "onFail": "error"
+        },
+        "packageManager": {
+            "name": "npm",
+            "version": ">=11.10.0",
+            "onFail": "error"
+        }
+    },
     "scripts": {
         "dev": "vite build --watch",
         "build": "tsc && vite build",

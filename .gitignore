@@ -282,6 +282,9 @@ FakesAssemblies/
 # Node.js Tools for Visual Studio
 .ntvs_analysis.dat
 **/node_modules/
+pnpm-workspace.yaml
+pnpm-lock.yaml
+yarn.lock
 
 # Visual Studio 6 build log
 *.plg

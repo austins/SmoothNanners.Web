@@ -22,7 +22,8 @@
     </ItemGroup>
 
     <Target Name="RestoreAssets" AfterTargets="BeforeBuild">
-        <Exec Command="npm ci"/>
+        <Exec Command="npm install" Condition="'$(CI)' != 'true'"/>
+        <Exec Command="npm ci" Condition="'$(CI)' == 'true'"/>
         <Exec Command="npm run build"/>
     </Target>
 

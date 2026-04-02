@@ -11,3 +11,4 @@ runs:
             with:
                 node-version: 'lts/*'
                 cache: 'npm'
+                cache-dependency-path: './src/SmoothNanners.Web/package-lock.json'

@@ -15,7 +15,7 @@ internal sealed partial class ViteWatcher
 
         _process = new Process
         {
-            StartInfo = new ProcessStartInfo("npm", "run build")
+            StartInfo = new ProcessStartInfo("npm", "run dev")
             {
                 WorkingDirectory = environment.ContentRootPath,
                 CreateNoWindow = true,

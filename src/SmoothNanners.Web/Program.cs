@@ -1,7 +1,6 @@
 using AspNetStatic;
 using AspNetStatic.Optimizer;
 using SmoothNanners.Web;
-using System.Reflection;
 
 var isSsg = args.HasSsgArg();
 
@@ -37,17 +36,9 @@ if (isSsg)
     IReadOnlyList<NonPageResource> assetResources =
     [
         new BinResource("/favicon.ico"),
-        new CssResource("/assets/vendors/bootswatch/dist/vapor/bootstrap.min.css")
-        {
-            OptimizationType = OptimizationType.None
-        },
-        new CssResource("/assets/global.css") { OptimizationType = OptimizationType.Css },
-        new CssResource($"/{Assembly.GetExecutingAssembly().GetName().Name}.styles.css")
-        {
-            OptimizationType = OptimizationType.Css
-        },
-        new JsResource("/assets/vendors/alpinejs/dist/cdn.min.js") { OptimizationType = OptimizationType.None },
-        new BinResource("/assets/images/avatar.webp")
+        new CssResource("/assets/app.css") { OptimizationType = OptimizationType.None },
+        new JsResource("/assets/app.js") { OptimizationType = OptimizationType.None },
+        new BinResource("/images/avatar.webp")
     ];
 
     IReadOnlyList<PageResource> pageResources =

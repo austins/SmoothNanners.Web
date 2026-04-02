@@ -5,6 +5,7 @@
         "npm": ">=11.10.0"
     },
     "scripts": {
+        "dev": "vite build --watch",
         "build": "tsc && vite build",
         "lint": "eslint .",
         "format": "eslint --fix ."

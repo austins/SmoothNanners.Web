@@ -6,7 +6,7 @@ export default defineConfig({
     build: {
         outDir: "wwwroot/assets",
         assetsDir: ".",
-        emptyOutDir: false,
+        emptyOutDir: true,
         rolldownOptions: {
             input: "Assets/app.ts",
             output: {

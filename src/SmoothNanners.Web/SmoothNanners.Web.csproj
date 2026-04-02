@@ -22,7 +22,7 @@
     </ItemGroup>
 
     <Target Name="RestoreAssets" AfterTargets="BeforeBuild">
-        <Exec Command="npm install" Condition="'$(CI)' != 'true' AND !Exists('node_modules')"/>
+        <Exec Command="npm install" Condition="'$(CI)' != 'true'"/>
         <Exec Command="npm ci" Condition="'$(CI)' == 'true'"/>
         <Exec Command="npm run lint"/>
         <Exec Command="npm run build"/>

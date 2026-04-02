@@ -412,4 +412,4 @@ FodyWeavers.xsd
 .DS_Store
 *.tsbuildinfo
 
-/src/SmoothNanners.Web/wwwroot/assets/vendors
+/src/SmoothNanners.Web/wwwroot/assets

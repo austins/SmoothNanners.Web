@@ -1,5 +1,6 @@
 using AspNetStatic;
 using AspNetStatic.Optimizer;
+using SmoothNanners.Web;
 using System.Reflection;
 
 var isSsg = args.HasSsgArg();
@@ -21,6 +22,11 @@ builder.Services.Configure<RouteOptions>(o =>
     o.LowercaseUrls = true;
     o.LowercaseQueryStrings = true;
 });
+
+if (Environment.GetEnvironmentVariable("DOTNET_WATCH") == "1")
+{
+    builder.Services.AddHostedService<ViteWatcher>();
+}
 
 // Allow the app's isolated CSS bundle to be produced as a static asset in environments other than Development as SSG is done on the built app instead of a published build.
 // We use asp-append-version in place of static asset fingerprinting in order to have fixed paths to fetch for SSG.

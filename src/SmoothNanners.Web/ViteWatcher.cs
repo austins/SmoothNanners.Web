@@ -1,3 +1,4 @@
+#if DEBUG
 using System.Diagnostics;
 
 namespace SmoothNanners.Web;
@@ -72,3 +73,4 @@ internal sealed partial class ViteWatcher
         public partial void Output(string output);
     }
 }
+#endif

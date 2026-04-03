@@ -56,7 +56,7 @@
                     <div class="relative" x-show="currentId !== '@videoId'">
                         <img src="https://i.ytimg.com/vi_webp/@videoId/mqdefault.webp" alt="YouTube video"
                              width="328"
-                             height="186.5"
+                             height="186"
                              class="w-full rounded-md" decoding="async" loading="eager"/>
 
                         <a href="https://www.youtube.com/watch?v=@videoId" aria-label="Play YouTube video"
@@ -79,7 +79,7 @@
 
                     <template x-if="currentId === '@videoId'">
                         <iframe src="https://www.youtube.com/embed/@videoId?autoplay=1" title="YouTube Video"
-                                allowFullScreen allow="autoplay" class="aspect-video h-auto w-full rounded-md"></iframe>
+                                allow="autoplay; fullscreen" class="aspect-video h-auto w-full rounded-md"></iframe>
                     </template>
                 }
             </div>

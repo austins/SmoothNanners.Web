@@ -16,7 +16,7 @@ public sealed class PortalLink
     {
         return new PortalLink
         {
-            Variant = Variant.Slate,
+            Variant = Variant.Dark,
             Icon = BootstrapIcon.Globe,
             Text = text,
             Url = url
@@ -27,7 +27,7 @@ public sealed class PortalLink
     {
         return new PortalLink
         {
-            Variant = Variant.Red,
+            Variant = Variant.Danger,
             Icon = BootstrapIcon.Youtube,
             Text = "YouTube",
             Url = new Uri($"https://www.youtube.com/channel/{channelId}")

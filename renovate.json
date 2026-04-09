@@ -24,5 +24,18 @@
             ],
             "minimumReleaseAge": "3 days"
         }
+    ],
+    "customManagers": [
+        {
+            "customType": "regex",
+            "managerFilePatterns": [
+                "/(^|/)libman\\.json$/"
+            ],
+            "datasourceTemplate": "npm",
+            "versioningTemplate": "npm",
+            "matchStrings": [
+                "\"library\": ?\"(?<depName>@?[^\"]+?)@(?<currentValue>.*?)\""
+            ]
+        }
     ]
 }

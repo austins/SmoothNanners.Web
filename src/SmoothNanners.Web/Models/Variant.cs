@@ -2,14 +2,12 @@
 
 public enum Variant
 {
-    Black,
-    Blue,
-    Cyan,
-    Fuchsia,
+    Primary,
+    Secondary,
+    Danger,
+    Info,
+    Light,
+    Dark,
     Indigo,
-    Pink,
-    Purple,
-    Red,
-    Sky,
-    Slate
+    Black
 }

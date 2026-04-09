@@ -1,5 +1,6 @@
 using AspNetStatic;
 using AspNetStatic.Optimizer;
+using System.Reflection;
 
 var isSsg = args.HasSsgArg();
 
@@ -21,21 +22,25 @@ builder.Services.Configure<RouteOptions>(o =>
     o.LowercaseQueryStrings = true;
 });
 
-#if DEBUG
-if (Environment.GetEnvironmentVariable("DOTNET_WATCH") == "1")
-{
-    builder.Services.AddHostedService<SmoothNanners.Web.ViteWatcher>();
-}
-#endif
+// Allow the app's isolated CSS bundle to be produced as a static asset in environments other than Development as SSG is done on the built app instead of a published build.
+// We use asp-append-version in place of static asset fingerprinting in order to have fixed paths to fetch for SSG.
+builder.WebHost.UseStaticWebAssets();
 
 if (isSsg)
 {
     IReadOnlyList<NonPageResource> assetResources =
     [
         new BinResource("/favicon.ico"),
-        new CssResource("/assets/app.css") { OptimizationType = OptimizationType.None },
-        new JsResource("/assets/app.js") { OptimizationType = OptimizationType.None },
-        new BinResource("/images/avatar.webp")
+        new CssResource("/assets/vendors/bootswatch/dist/vapor/bootstrap.min.css")
+        {
+            OptimizationType = OptimizationType.None
+        },
+        new CssResource($"/{Assembly.GetExecutingAssembly().GetName().Name}.styles.css")
+        {
+            OptimizationType = OptimizationType.Css
+        },
+        new JsResource("/assets/vendors/alpinejs/dist/cdn.min.js") { OptimizationType = OptimizationType.None },
+        new BinResource("/assets/images/avatar.webp")
     ];
 
     IReadOnlyList<PageResource> pageResources =

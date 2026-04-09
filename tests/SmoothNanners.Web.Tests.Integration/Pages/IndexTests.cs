@@ -40,12 +40,13 @@ public sealed class IndexTests(TestFixture fixture) : TestBase(fixture)
             .Should()
             .Be(AppConstants.SiteDescription);
 
-        var siteHeader = page.Locator("body > div > header > h1").First;
+        var siteHeader = page.Locator("#body-inner > div > header > h1").First;
         (await siteHeader.TextContentAsync()).Should().Be(AppConstants.SiteName);
-        (await siteHeader.CssValueAsync("font-family")).Should().Contain("Optima");
+        (await siteHeader.CssValueAsync("font-family")).Should().Contain("Lato");
 
         (await page.Locator(".container").First.CssValueAsync("max-width")).Should().Be("768px");
-        (await page.Locator("p").First.CssValueAsync("padding-bottom")).Should().Be("12px");
+        (await page.Locator("p").First.CssValueAsync("margin-bottom")).Should().Be("16px");
+        (await page.Locator(".btn-black").First.CssValueAsync("background-color")).Should().Be("rgb(0, 0, 0)");
     }
 
     [Fact]

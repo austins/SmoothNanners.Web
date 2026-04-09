@@ -18,17 +18,15 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Content Update="appsettings.Development.json;package.json;package-lock.json;tsconfig.json" CopyToPublishDirectory="Never"/>
+        <Content Update="appsettings.Development.json;libman.json" CopyToPublishDirectory="Never"/>
     </ItemGroup>
 
     <Target Name="RestoreAssets" AfterTargets="BeforeBuild">
-        <Exec Command="npm install" Condition="'$(CI)' != 'true'"/>
-        <Exec Command="npm ci" Condition="'$(CI)' == 'true'"/>
-        <Exec Command="npm run lint"/>
-        <Exec Command="npm run build"/>
+        <Exec Command="dotnet tool restore"/>
+        <Exec Command="dotnet tool run libman restore"/>
     </Target>
 
     <Target Name="CleanAssets" AfterTargets="Clean">
-        <RemoveDir Directories="wwwroot\assets"/>
+        <RemoveDir Directories="wwwroot\assets\vendors"/>
     </Target>
 </Project>

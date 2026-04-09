@@ -1,26 +1,27 @@
-﻿<!DOCTYPE html>
+﻿@using System.Reflection
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>@(ViewData.TryGetTitle(out var title) ? $"{title} | {AppConstants.SiteName}" : AppConstants.SiteName)</title>
-    <link rel="stylesheet" href="~/assets/app.css" asp-append-version="true"/>
-    <script type="module" src="~/assets/app.js" asp-append-version="true"></script>
+    <link rel="stylesheet" href="~/assets/vendors/bootswatch/dist/vapor/bootstrap.min.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/@(Assembly.GetExecutingAssembly().GetName().Name).styles.css"
+          asp-append-version="true"/>
+    <script src="~/assets/vendors/alpinejs/dist/cdn.min.js" asp-append-version="true" defer></script>
     <link rel="icon" type="image/x-icon" href="~/favicon.ico" asp-append-version="true"/>
     <meta name="description" content="@AppConstants.SiteDescription"/>
     @await RenderSectionAsync("Head", false)
 </head>
-<body
-    class="
-        flex min-h-screen items-center bg-blue-950 bg-linear-to-b from-blue-950 to-blue-800 font-rounded-sans text-2xl
-        text-white drop-shadow-sm
-    ">
-<div class="container py-4">
-    <header class="pb-3">
-        <h1 class="font-classical-humanist text-5xl font-bold">@AppConstants.SiteName</h1>
-    </header>
+<body>
+<div id="body-inner" class="d-flex min-vh-100 align-items-center text-white">
+    <div class="container py-3">
+        <header class="pb-2">
+            <h1 class="fw-bold">@AppConstants.SiteName</h1>
+        </header>
 
-    <main>@RenderBody()</main>
+        <main>@RenderBody()</main>
+    </div>
 </div>
 </body>
 </html>

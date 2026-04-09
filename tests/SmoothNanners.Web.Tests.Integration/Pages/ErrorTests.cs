@@ -34,13 +34,13 @@ public sealed class ErrorTests(TestFixture fixture) : TestBase(fixture)
 
         (await page.Locator("head > meta[name='robots']").GetAttributeAsync("content")).Should().Be("noindex");
 
-        var errorHeading = page.Locator("body > div > main h2").First;
+        var errorHeading = page.Locator("#body-inner > div > main h2").First;
         (await errorHeading.TextContentAsync()).Should().Be($"Error: {(int)expectedResponseCode}");
 
         var errorMessage = errorHeading.Locator("//following-sibling::p[1]");
         (await errorMessage.TextContentAsync()).Should().Be(expectedMessage);
 
-        (await page.Locator("body > div > main a").GetByText("Back to Home").GetAttributeAsync("href"))
+        (await page.Locator("#body-inner > div > main a").GetByText("Back to Home").GetAttributeAsync("href"))
             .Should()
             .Be("/");
     }

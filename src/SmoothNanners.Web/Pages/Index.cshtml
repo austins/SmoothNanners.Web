@@ -1,30 +1,34 @@
 ﻿@page
 @model Index
 
-<div class="flex flex-col items-start gap-3 pb-3 sm:flex-row">
-    <img src="~/images/avatar.webp" asp-append-version="true" width="200" height="200"
-         alt="@AppConstants.SiteName"
-         class="rounded-md object-contain" decoding="async" loading="eager"/>
+<div class="row gap-2 gx-2 mb-3">
+    <div class="col-auto">
+        <img src="~/assets/images/avatar.webp" asp-append-version="true" width="200" height="200"
+             alt="@AppConstants.SiteName"
+             class="img-fluid rounded" decoding="async" loading="eager"/>
+    </div>
 
-    <div>
+    <div class="col-sm fs-4">
         <p>Howdy! My name is Austin.</p>
         <p>I'm a gamer, musician, software engineer, and photographer.</p>
         <p>You can find links to my content and websites below!</p>
     </div>
 </div>
 
-<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
-    <div>
+<div class="row g-3">
+    <div class="col-sm-6">
         @foreach (var card in Model.LeftCards)
         {
             <partial name="_PortalCard" model="card"/>
         }
     </div>
 
-    <div class="flex flex-col gap-3">
-        @foreach (var card in Model.RightCards)
-        {
-            <partial name="_PortalCard" model="card"/>
-        }
+    <div class="col-sm-6">
+        <div class="vstack gap-3">
+            @foreach (var card in Model.RightCards)
+            {
+                <partial name="_PortalCard" model="card"/>
+            }
+        </div>
     </div>
 </div>

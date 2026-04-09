@@ -10,7 +10,7 @@ public sealed class Index : PageModel
     [
         new()
         {
-            Variant = Variant.Indigo,
+            Variant = Variant.Primary,
             HeadingIcon = BootstrapIcon.MusicNoteBeamed,
             HeadingText = "Music",
             Links = [PortalLink.YouTubeLink("UCPjcGsO8o_FKPGHLQ5d1hbg")],
@@ -22,7 +22,7 @@ public sealed class Index : PageModel
     [
         new()
         {
-            Variant = Variant.Pink,
+            Variant = Variant.Danger,
             HeadingIcon = BootstrapIcon.Controller,
             HeadingText = "Gaming",
             Links =
@@ -30,7 +30,7 @@ public sealed class Index : PageModel
                 PortalLink.YouTubeLink("UCQB1XVER5WPtxRESxHMG1Qw"),
                 new PortalLink
                 {
-                    Variant = Variant.Purple,
+                    Variant = Variant.Primary,
                     Icon = BootstrapIcon.Twitch,
                     Text = "Twitch",
                     Url = new Uri("https://www.twitch.tv/smoothnanners")
@@ -47,7 +47,7 @@ public sealed class Index : PageModel
         },
         new()
         {
-            Variant = Variant.Cyan,
+            Variant = Variant.Light,
             HeadingIcon = BootstrapIcon.CodeSlash,
             HeadingText = "Programming",
             Links =
@@ -55,7 +55,7 @@ public sealed class Index : PageModel
                 PortalLink.YouTubeLink("UCJjowuNoLywGC7ujP74zFJg"),
                 new PortalLink
                 {
-                    Variant = Variant.Slate,
+                    Variant = Variant.Dark,
                     Icon = BootstrapIcon.Github,
                     Text = "GitHub",
                     Url = new Uri("https://github.com/austins")
@@ -65,21 +65,21 @@ public sealed class Index : PageModel
         },
         new()
         {
-            Variant = Variant.Blue,
+            Variant = Variant.Info,
             HeadingIcon = BootstrapIcon.PersonCircle,
             HeadingText = "Socials",
             Links =
             [
                 new PortalLink
                 {
-                    Variant = Variant.Fuchsia,
+                    Variant = Variant.Secondary,
                     Icon = BootstrapIcon.Instagram,
                     Text = "Instagram",
                     Url = new Uri("https://www.instagram.com/smoothnanners")
                 },
                 new PortalLink
                 {
-                    Variant = Variant.Sky,
+                    Variant = Variant.Info,
                     Icon = BootstrapIcon.Telegram,
                     Text = "Telegram",
                     Url = new Uri("https://t.me/smoothnanners")
@@ -93,14 +93,14 @@ public sealed class Index : PageModel
                 },
                 new PortalLink
                 {
-                    Variant = Variant.Slate,
+                    Variant = Variant.Dark,
                     Icon = BootstrapIcon.PiggyBankFill,
                     Text = "Tip",
                     Url = new Uri("https://streamlabs.com/smoothnanners/tip")
                 },
                 new PortalLink
                 {
-                    Variant = Variant.Slate,
+                    Variant = Variant.Dark,
                     Icon = BootstrapIcon.EnvelopeFill,
                     Text = "Email",
                     Url = new Uri("mailto:austin@austinsdev.com")

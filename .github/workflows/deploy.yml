@@ -25,7 +25,8 @@ jobs:
                     npx -y purgecss \
                         --css "./src/SmoothNanners.Web/wwwroot/assets/vendors/bootswatch/dist/vapor/bootstrap.min.css" \
                         --content "./src/SmoothNanners.Web/Pages/**/*.cshtml" \
-                        --output "./src/SmoothNanners.Web/wwwroot/assets/vendors/bootswatch/dist/vapor/bootstrap.min.css"
+                        --output "./src/SmoothNanners.Web/wwwroot/assets/vendors/bootswatch/dist/vapor/bootstrap.min.css" \
+                        --font-face --keyframes --variables
             -   name: SSG
                 run: dotnet run --project ./src/SmoothNanners.Web -lp ssg -c Release --no-build
             -   name: Upload artifact

@@ -18,6 +18,7 @@ jobs:
             -   name: Checkout
                 uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
             -   uses: ./.github/actions/setup-environment
+            -   uses: ./.github/actions/cache-libman-assets
             -   name: Build
                 run: dotnet build ./src/SmoothNanners.Web -c Release
             -   name: Optimize assets

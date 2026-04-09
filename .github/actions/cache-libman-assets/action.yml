@@ -1,0 +1,9 @@
+name: Set up environment
+runs:
+    using: "composite"
+    steps:
+        -   name: Cache libman assets
+            uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+            with:
+                path: ~/.local/share/.librarymanager/cache
+                key: ${{ runner.os }}-libman-${{ hashFiles('./src/**/libman.json') }}

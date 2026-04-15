@@ -7,7 +7,7 @@ using Microsoft.Testing.Platform.Services;
 namespace SmoothNanners.Web.Tests.Integration;
 
 /// <summary>
-/// Test fixture that should be configured as an assembly fixture that sets up
+/// Test fixture that should be configured as a collection fixture that sets up
 /// services used across all tests before and after all tests are run.
 /// </summary>
 public sealed class TestFixture : IAsyncLifetime

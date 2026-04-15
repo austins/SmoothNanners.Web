@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Routing;
+﻿using Meziantou.Xunit.v3;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Playwright;
 using Microsoft.Playwright.TestAdapter;
 using Microsoft.Testing.Platform.Services;
@@ -22,6 +23,13 @@ public sealed class TestFixture : IAsyncLifetime
 
     public async ValueTask InitializeAsync()
     {
+        // Install browser binaries needed for Playwright.
+        var exitCode = Microsoft.Playwright.Program.Main(["install", PlaywrightSettingsProvider.BrowserName]);
+        if (exitCode != 0)
+        {
+            throw new InvalidOperationException($"Playwright browser install exited with code [{exitCode}].");
+        }
+
         _appFactory.StartServer();
 
 #pragma warning disable IDISP003
@@ -38,3 +46,9 @@ public sealed class TestFixture : IAsyncLifetime
         await _appFactory.DisposeAsync();
     }
 }
+
+[CollectionDefinition(nameof(TestCollection))]
+[EnableParallelization]
+#pragma warning disable CA1711
+public sealed class TestCollection : ICollectionFixture<TestFixture>;
+#pragma warning restore CA1711

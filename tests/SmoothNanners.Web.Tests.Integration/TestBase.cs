@@ -1,9 +1,12 @@
-﻿using Microsoft.Playwright;
+﻿using Meziantou.Xunit.v3;
+using Microsoft.Playwright;
 using Microsoft.Playwright.TestAdapter;
 using SafeRouting;
 
 namespace SmoothNanners.Web.Tests.Integration;
 
+[Collection(nameof(TestCollection))]
+[EnableParallelization]
 public abstract class TestBase : IAsyncDisposable
 {
     private readonly TestFixture _fixture;

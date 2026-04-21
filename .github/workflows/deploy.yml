@@ -3,6 +3,11 @@ name: Deploy
 on:
     push:
         branches: [ main ]
+        paths:
+            - '.editorconfig'
+            - 'Directory.Build.props'
+            - 'src/**'
+            - 'tests/**'
 
 concurrency:
     group: deploy

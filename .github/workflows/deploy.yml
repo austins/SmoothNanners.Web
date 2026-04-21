@@ -6,6 +6,7 @@ on:
         paths:
             - '.editorconfig'
             - 'Directory.Build.props'
+            - 'global.json'
             - 'src/**'
             - 'tests/**'
 

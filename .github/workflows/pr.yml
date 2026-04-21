@@ -3,11 +3,6 @@ name: PR
 on:
     pull_request:
         branches: [ main ]
-        paths:
-            - '.editorconfig'
-            - 'Directory.Build.props'
-            - 'src/**'
-            - 'tests/**'
 
 jobs:
     pr-test:

@@ -1,0 +1,41 @@
+name: Test
+
+on: [ workflow_call, workflow_dispatch ]
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        env:
+            NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+            -   uses: ./.github/actions/setup-environment
+            -   name: Get Playwright version
+                id: playwright-version
+                run: |
+                    VERSION=$(dotnet package list --project ./tests/SmoothNanners.Web.Tests.E2E --format json 2>/dev/null | jq -r '.projects[0].frameworks[0].topLevelPackages[] | select(.id == "Microsoft.Playwright.TestAdapter") | .resolvedVersion')
+                    if [ -z "$VERSION" ]; then
+                        echo "Error: could not determine Playwright version"
+                        exit 1
+                    fi
+                    echo "Resolved Playwright version: $VERSION"
+                    echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+            -   name: Cache Playwright browsers
+                uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+                with:
+                    path: ~/.cache/ms-playwright
+                    key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}
+            -   name: Restore dependencies
+                run: dotnet restore --locked-mode
+            -   name: Test
+                run: dotnet test --no-restore -c Release --results-directory ./test-results -- --report-ctrf
+            -   if: always()
+                name: Publish test report
+                uses: ctrf-io/github-test-reporter@0f299074936c32ccaab5be5230511f6b2b9080aa # v1.0.28
+                with:
+                    report-path: ./test-results/*.ctrf
+                    summary-report: true
+                    file-report: true
+                    failed-folded-report: true
+                    skipped-report: true

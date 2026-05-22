@@ -1,0 +1,30 @@
+﻿@{
+    var siteTitle = ViewData["Title"] is string title ? $"{title} | {AppConstants.SiteName}" : AppConstants.SiteName;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="text-scale" content="scale"/>
+    <title>@siteTitle</title>
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" asp-append-version="true"/>
+    <meta name="description" content="@AppConstants.SiteDescription"/>
+    <link rel="stylesheet" href="~/reset.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/@(AppConstants.AssemblyName).styles.css"
+          asp-append-version="true"/>
+    @await RenderSectionAsync("Head", false)
+    <script src="~/vendor/alpinejs/dist/cdn.min.js" asp-append-version="true" defer></script>
+</head>
+<body>
+<div id="root">
+    <div>
+        <header>
+            <h1>@AppConstants.SiteName</h1>
+        </header>
+
+        <main>@RenderBody()</main>
+    </div>
+</div>
+</body>
+</html>

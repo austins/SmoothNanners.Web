@@ -1,0 +1,19 @@
+﻿@page
+@model NotFound
+@{
+    ViewData["Title"] = "Error: 404";
+}
+
+@section Head {
+    <meta name="robots" content="noindex"/>
+}
+
+<h2>Error: 404</h2>
+
+<p>The page you are looking for was not found.</p>
+
+<div>
+    <a for-route="@Routes.Pages.Index.Get()">
+        Back to Home
+    </a>
+</div>

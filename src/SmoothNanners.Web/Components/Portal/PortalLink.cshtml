@@ -1,0 +1,11 @@
+@model PortalLink
+
+<a
+    href="@Model.Href"
+    target="_blank"
+    rel="external noreferrer"
+    class="portal-link-@Model.Variant.ToString().ToLowerInvariant()"
+>
+    <icon svg-icon="Model.Icon"/>
+    @Model.ChildContent
+</a>

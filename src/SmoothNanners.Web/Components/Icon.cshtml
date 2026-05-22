@@ -1,0 +1,10 @@
+@model Icon
+@{
+    var attributes = Model.SvgIcon.Attributes.ToDictionary();
+    attributes["width"] = "1em";
+    attributes["height"] = "1em";
+}
+
+<svg @(Html.Raw(string.Join(' ', attributes.Select(x => $"{x.Key}=\"{x.Value}\"")))) aria-hidden="true">
+    @Html.Raw(Model.SvgIcon.Content)
+</svg>

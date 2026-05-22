@@ -30,6 +30,11 @@ jobs:
             -   uses: ./.github/actions/setup-environment
             -   name: Restore dependencies
                 run: dotnet restore --locked-mode
+            -   name: Cache Libman assets
+                uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+                with:
+                    path: ~/.local/share/.librarymanager/cache
+                    key: ${{ runner.os }}-libman-${{ hashFiles('**/libman.json') }}
             -   name: SSG
                 run: dotnet run --project ./src/SmoothNanners.Web --no-restore -c Release -lp ssg
             -   name: Upload artifact

@@ -28,6 +28,11 @@ jobs:
                     key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}
             -   name: Restore dependencies
                 run: dotnet restore --locked-mode
+            -   name: Cache Libman assets
+                uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+                with:
+                    path: ~/.local/share/.librarymanager/cache
+                    key: ${{ runner.os }}-libman-${{ hashFiles('**/libman.json') }}
             -   name: Test
                 run: dotnet test --no-restore -c Release --results-directory ./test-results -- --report-ctrf
             -   if: always()

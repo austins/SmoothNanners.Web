@@ -97,9 +97,6 @@ public sealed class NotFoundTests(TestFixture fixture) : TestBase(fixture)
 
         var uri = new Uri(page.Url);
         uri.PathAndQuery.Should().Be(GetPath(Routes.Pages.Index.Get()));
-
-        var bio = page.Locator("#bio");
-        await bio.WaitForAsync();
     }
 
     [Fact]

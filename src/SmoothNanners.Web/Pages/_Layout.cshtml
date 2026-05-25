@@ -1,5 +1,5 @@
 ﻿@{
-    var siteTitle = ViewData["Title"] is string title ? $"{title} | {AppConstants.SiteName}" : AppConstants.SiteName;
+    var siteTitle = ViewData.TryGetTitle(out var title) ? $"{title} | {AppConstants.SiteName}" : AppConstants.SiteName;
 }
 <!doctype html>
 <html lang="en">

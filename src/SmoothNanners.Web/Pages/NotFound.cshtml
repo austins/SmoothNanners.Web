@@ -1,14 +1,14 @@
 ﻿@page
 @model NotFound
 @{
-    ViewData["Title"] = "Error: 404";
+    var title = ViewData.SetTitle("Error: 404");
 }
 
 @section Head {
     <meta name="robots" content="noindex"/>
 }
 
-<h2>Error: 404</h2>
+<h2>@title</h2>
 
 <p>The page you are looking for was not found.</p>
 

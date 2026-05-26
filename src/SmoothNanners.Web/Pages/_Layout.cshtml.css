@@ -1,9 +1,9 @@
 ﻿::deep p {
     padding-bottom: 0.75rem;
+}
 
-    &:last-child {
-        padding-bottom: 0;
-    }
+::deep p:last-child {
+    padding-bottom: 0;
 }
 
 #root {

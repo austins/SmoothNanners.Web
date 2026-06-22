@@ -6,7 +6,7 @@
             <ExcludeAssets>buildTransitive</ExcludeAssets>
         </PackageReference>
         <PackageReference Include="SafeRouting" Version="1.5.0"/>
-        <PackageReference Include="TechGems.StaticComponents" Version="1.2.0"/>
+        <PackageReference Include="TechGems.StaticComponents" Version="1.3.2"/>
     </ItemGroup>
 
     <ItemGroup>

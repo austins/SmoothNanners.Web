@@ -578,8 +578,8 @@
       },
       "TechGems.StaticComponents": {
         "type": "Transitive",
-        "resolved": "1.2.0",
-        "contentHash": "nsIDr7dfogQnYwWNZfb9tXl+9hyCkX3Np+sYJy2VFWOk/W0+Fy0o5jf+fhfS1pB40FEUZlvrDS5ou2jAtVNd3g==",
+        "resolved": "1.3.2",
+        "contentHash": "vpbB0bgQrgN6tFSBUiDrwmAf5hEzJ2UGmuIkSg1+j7mAlgiCW5VKvpOl2jhv7wCKSRyt/VBW0tGHQ/SeAWHNJQ==",
         "dependencies": {
           "Newtonsoft.Json": "13.0.4"
         }
@@ -671,7 +671,7 @@
           "AspNetStatic": "[0.27.8, )",
           "Blazicons.Ionicons": "[4.0.2, )",
           "SafeRouting": "[1.5.0, )",
-          "TechGems.StaticComponents": "[1.2.0, )"
+          "TechGems.StaticComponents": "[1.3.2, )"
         }
       }
     }

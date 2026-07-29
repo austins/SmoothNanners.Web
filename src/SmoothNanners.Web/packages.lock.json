@@ -22,11 +22,11 @@
       },
       "Blazicons.Ionicons": {
         "type": "Direct",
-        "requested": "[4.0.2, )",
-        "resolved": "4.0.2",
-        "contentHash": "8fdZX6YtZTWgH/ymXOkD88DT/f806JfqmtXOshk7Lcmef/kGzB4JhX4JP+io+f/j+YaYYcv2lbQywSDBcPSTGw==",
+        "requested": "[5.0.4, )",
+        "resolved": "5.0.4",
+        "contentHash": "56PowTW4nsz5B8PzdaGXEbVA3LzArS7zATwbp1eqo6yUvXw+oG1C1lUOZjVrulEpvlHd5lH/hqP4kSmd022e9w==",
         "dependencies": {
-          "Blazicons": "3.0.12"
+          "Blazicons": "4.0.21"
         }
       },
       "IDisposableAnalyzers": {
@@ -78,8 +78,8 @@
       },
       "Blazicons": {
         "type": "Transitive",
-        "resolved": "3.0.12",
-        "contentHash": "VXLFGvTm7QhScNYOUBdiQmafZFc+mJxgYlqmUrJRbZwftd71e9qQl2kDuyxONyjm48uywxBgQHI7RqOgAA6iZA==",
+        "resolved": "4.0.21",
+        "contentHash": "KBMo/nlpJBkYI27XM8atlEF+YYFUxm11JuaHOShTThYD/4O1AtNItP9NLqF4VD31PojL4QNL+R9Q1zOcKbDB4w==",
         "dependencies": {
           "BlazorComponentUtilities": "1.8.0"
         }

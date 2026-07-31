@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace SmoothNanners.Web.Tests.E2E.Pages;
 
-public sealed class IndexTests(TestFixture fixture) : TestBase(fixture)
+public sealed partial class IndexTests(TestFixture fixture) : TestBase(fixture)
 {
     [Fact]
     public async Task Index_Loads_Success()
@@ -152,7 +152,7 @@ public sealed class IndexTests(TestFixture fixture) : TestBase(fixture)
         var thumbnails = page.Locator(".youtube-thumbnail");
         var firstPlayButton = thumbnails.Nth(0).Locator("a[aria-label=\"Play YouTube video\"]");
         var firstVideoHref = (await firstPlayButton.GetAttributeAsync("href"))!;
-        var firstVideoId = Regex.Match(firstVideoHref, @"v=([a-zA-Z0-9_-]+)").Groups[1].Value!;
+        var firstVideoId = YouTubeVideoIdRegex().Match(firstVideoHref).Groups[1].Value;
 
         await firstPlayButton.ClickAsync();
         await page.Locator(".youtube-embeds iframe").WaitForAsync();
@@ -175,8 +175,8 @@ public sealed class IndexTests(TestFixture fixture) : TestBase(fixture)
         var secondPlayButton = thumbnails.Nth(1).Locator("a[aria-label=\"Play YouTube video\"]");
         var firstVideoHref = (await firstPlayButton.GetAttributeAsync("href"))!;
         var secondVideoHref = (await secondPlayButton.GetAttributeAsync("href"))!;
-        var firstVideoId = Regex.Match(firstVideoHref, @"v=([a-zA-Z0-9_-]+)").Groups[1].Value!;
-        var secondVideoId = Regex.Match(secondVideoHref, @"v=([a-zA-Z0-9_-]+)").Groups[1].Value!;
+        var firstVideoId = YouTubeVideoIdRegex().Match(firstVideoHref).Groups[1].Value;
+        var secondVideoId = YouTubeVideoIdRegex().Match(secondVideoHref).Groups[1].Value;
 
         // Act - click first video
         await firstPlayButton.ClickAsync();
@@ -229,8 +229,8 @@ public sealed class IndexTests(TestFixture fixture) : TestBase(fixture)
         var secondPlayButton = thumbnails.Nth(1).Locator("a[aria-label=\"Play YouTube video\"]");
         var firstVideoHref = (await firstPlayButton.GetAttributeAsync("href"))!;
         var secondVideoHref = (await secondPlayButton.GetAttributeAsync("href"))!;
-        var firstVideoId = Regex.Match(firstVideoHref, @"v=([a-zA-Z0-9_-]+)").Groups[1].Value!;
-        var secondVideoId = Regex.Match(secondVideoHref, @"v=([a-zA-Z0-9_-]+)").Groups[1].Value!;
+        var firstVideoId = YouTubeVideoIdRegex().Match(firstVideoHref).Groups[1].Value;
+        var secondVideoId = YouTubeVideoIdRegex().Match(secondVideoHref).Groups[1].Value;
 
         // Act - click first video
         await firstPlayButton.ClickAsync();
@@ -250,4 +250,7 @@ public sealed class IndexTests(TestFixture fixture) : TestBase(fixture)
         var secondSrc = await page.Locator(".youtube-embeds iframe").Nth(0).GetAttributeAsync("src");
         secondSrc.Should().Contain(secondVideoId);
     }
+
+    [GeneratedRegex("v=([a-zA-Z0-9_-]+)")]
+    private static partial Regex YouTubeVideoIdRegex();
 }

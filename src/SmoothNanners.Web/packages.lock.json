@@ -64,9 +64,9 @@
       },
       "TechGems.StaticComponents": {
         "type": "Direct",
-        "requested": "[1.3.2, )",
-        "resolved": "1.3.2",
-        "contentHash": "vpbB0bgQrgN6tFSBUiDrwmAf5hEzJ2UGmuIkSg1+j7mAlgiCW5VKvpOl2jhv7wCKSRyt/VBW0tGHQ/SeAWHNJQ==",
+        "requested": "[1.3.4, )",
+        "resolved": "1.3.4",
+        "contentHash": "I3N/GWVGsHqg9WOJNdzdU1CMSUPW0HNS02mkx4L9uO7lMk0u4TVP5Qw87+JOWA8uEul3OHSUL+PfuiRwLymrGA==",
         "dependencies": {
           "Newtonsoft.Json": "13.0.4"
         }

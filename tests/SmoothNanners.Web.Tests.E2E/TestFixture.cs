@@ -1,4 +1,3 @@
-using Meziantou.Xunit.v3;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Playwright;
 using Microsoft.Playwright.TestAdapter;
@@ -52,7 +51,6 @@ public sealed class TestFixture : IAsyncLifetime
 }
 
 [CollectionDefinition(nameof(TestCollection))]
-[EnableParallelization]
 #pragma warning disable CA1711
 public sealed class TestCollection : ICollectionFixture<TestFixture>;
 #pragma warning restore CA1711

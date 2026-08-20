@@ -1,11 +1,9 @@
-using Meziantou.Xunit.v3;
 using Microsoft.Playwright;
 using SafeRouting;
 
 namespace SmoothNanners.Web.Tests.E2E;
 
 [Collection(nameof(TestCollection))]
-[EnableParallelization]
 public abstract class TestBase
 {
     private readonly TestFixture _fixture;

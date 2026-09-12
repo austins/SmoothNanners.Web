@@ -10,7 +10,7 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.11"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.12"/>
         <PackageReference Include="Microsoft.Playwright.TestAdapter" Version="1.62.0"/>
         <PackageReference Include="xunit.analyzers" Version="2.0.0">
             <PrivateAssets>all</PrivateAssets>

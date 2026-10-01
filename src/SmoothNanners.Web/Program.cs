@@ -33,10 +33,6 @@ if (isSsg)
 }
 
 var app = builder.Build();
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
 
 // Using static files instead of static assets so exact paths are generated and can be used with SSG.
 app.UseStaticFiles().UseRouting();

@@ -19,11 +19,12 @@ div {
             translate: 0 -0.125rem;
             transform: scale(101%);
             background: #0069a8;
-            box-shadow: rgba(0, 0, 0, 0) 0 0 0 0, rgba(0, 0, 0, 0) 0 0 0 0, rgba(0, 0, 0, 0) 0 0 0 0, rgba(0, 0, 0, 0) 0 0 0 0, color(srgb 0 0 0 / 0) 0 0 0 0, color(srgb 0 0 0 / 0) 0 0 0 0;
         }
 
         @media (prefers-reduced-motion: no-preference) {
-            transition: all 300ms ease-out;
+            & {
+                transition: all 300ms ease-out;
+            }
         }
     }
 }

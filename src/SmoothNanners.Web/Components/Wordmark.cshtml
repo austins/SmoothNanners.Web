@@ -1,5 +1,6 @@
 @model Wordmark
 
+@* Pauses the wordmark animation until the Recursive font loads. Inline so it runs before the h1 paints. *@
 <script static-script render-once="Model">
     document.documentElement.classList.add("recursive-loading");
     document.fonts.load("1000 1em Recursive").finally(() => document.documentElement.classList.remove("recursive-loading"));

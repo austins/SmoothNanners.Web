@@ -1,4 +1,4 @@
-﻿@{
+@{
     var siteTitle = ViewData.TryGetTitle(out var title) ? $"{title} | {AppConstants.SiteName}" : AppConstants.SiteName;
 }
 <!doctype html>
@@ -7,23 +7,31 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="text-scale" content="scale"/>
+    <meta name="theme-color" content="#4a2210"/>
     <title>@siteTitle</title>
     <link rel="icon" type="image/x-icon" href="~/favicon.ico" asp-append-version="true"/>
     <meta name="description" content="@AppConstants.SiteDescription"/>
+    <link rel="preload" href="~/vendor/recursive/files/recursive-latin-full-normal.woff2" as="font" type="font/woff2" crossorigin/>
     <link rel="stylesheet" href="~/reset.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/@(AppConstants.AssemblyName).styles.css" asp-append-version="true"/>
     @await RenderSectionAsync("Head", false)
     <script src="~/vendor/alpinejs/dist/cdn.min.js" asp-append-version="true" defer></script>
 </head>
 <body>
 <div id="root">
-    <div>
-        <header>
-            <h1>@AppConstants.SiteName</h1>
-        </header>
+    <header>
+        <div id="masthead">
+            <wordmark text="@AppConstants.SiteName"/>
+            @await RenderSectionAsync("Hero", false)
+        </div>
 
-        <main>@RenderBody()</main>
-    </div>
+        <svg id="pour" viewBox="0 0 1440 96" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 52C180 18 330 10 520 34s330 62 560 46 260-58 360-60V96H0Z"/>
+        </svg>
+    </header>
+
+    <main>@RenderBody()</main>
 </div>
 </body>
 </html>

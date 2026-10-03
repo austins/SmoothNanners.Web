@@ -24,8 +24,10 @@ if (isSsg)
         [
             new BinResource("/favicon.ico") { OptimizationType = OptimizationType.None },
             new CssResource("/reset.css"),
+            new CssResource("/site.css"),
             new CssResource($"/{AppConstants.AssemblyName}.styles.css"),
             new JsResource("/vendor/alpinejs/dist/cdn.min.js") { OptimizationType = OptimizationType.None },
+            new BinResource("/vendor/recursive/files/recursive-latin-full-normal.woff2") { OptimizationType = OptimizationType.None },
             new PageResource("/"),
             new BinResource("/images/avatar.webp") { OptimizationType = OptimizationType.None },
             new PageResource("/notfound") { OutFile = "404.html" }

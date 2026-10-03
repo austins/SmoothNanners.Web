@@ -1,0 +1,19 @@
+@model Wordmark
+
+<script static-script render-once="Model">
+    document.documentElement.classList.add("recursive-loading");
+    document.fonts.load("1000 1em Recursive").finally(() => document.documentElement.classList.remove("recursive-loading"));
+</script>
+
+<h1 aria-label="@Model.Text">
+    <span class="name" style="--letters: @Model.Text.Length" aria-hidden="true">
+        @{
+            // The letter delegate keeps the loop body as C#, so no whitespace renders between the inline-block letters as gaps.
+            Func<int, object> letter = @<span class="letter" style="--i: @item">@Model.Text[item]</span>;
+            for (var i = 0; i < Model.Text.Length; i++)
+            {
+                @letter(i)
+            }
+        }
+    </span>
+</h1>

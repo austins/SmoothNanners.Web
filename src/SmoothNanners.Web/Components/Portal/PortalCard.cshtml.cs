@@ -5,17 +5,17 @@ namespace SmoothNanners.Web.Components.Portal;
 
 public sealed class PortalCard : StaticComponent
 {
-    public PortalCardVariant Variant { get; set; }
-
     public SvgIcon HeadingIcon { get; set; } = null!;
 
     public string HeadingText { get; set; } = null!;
+
+    public PortalCardAccent Accent { get; set; }
 }
 
-public enum PortalCardVariant
+public enum PortalCardAccent
 {
-    Indigo,
-    Pink,
-    Cyan,
-    Blue
+    Tangerine,
+    Purple,
+    Yellow,
+    Cyan
 }

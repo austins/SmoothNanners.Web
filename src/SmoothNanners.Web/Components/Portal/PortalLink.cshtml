@@ -1,10 +1,12 @@
 @model PortalLink
+@{
+    var isEmail = Model.Href.StartsWith("mailto:", StringComparison.OrdinalIgnoreCase);
+}
 
 <a
     href="@Model.Href"
-    target="_blank"
-    rel="external noreferrer"
-    class="portal-link-@Model.Variant.ToString().ToLowerInvariant()"
+    target="@(isEmail ? null : "_blank")"
+    rel="@(isEmail ? null : "external noreferrer")"
 >
     <icon svg-icon="Model.Icon"/>
     @Model.ChildContent

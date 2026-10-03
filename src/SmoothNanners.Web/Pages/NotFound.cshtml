@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model NotFound
 @{
     var title = ViewData.SetTitle("Error: 404");
@@ -8,12 +8,10 @@
     <meta name="robots" content="noindex"/>
 }
 
-<h2>@title</h2>
+<div id="not-found">
+    <h2>@title</h2>
 
-<p>The page you are looking for was not found.</p>
+    <p>The page you are looking for was not found.</p>
 
-<div>
-    <a for-route="@Routes.Pages.Index.Get()">
-        Back to Home
-    </a>
+    <a for-route="@Routes.Pages.Index.Get()">Back to Home</a>
 </div>

@@ -1,16 +1,12 @@
 @model PortalCard
 
-<div class="portal-card portal-card-@Model.Variant.ToString().ToLowerInvariant()">
-    <section>
-        <header>
-            <h2>
-                <icon svg-icon="Model.HeadingIcon"/>
-                @Model.HeadingText
-            </h2>
-        </header>
+<section class="portal-card @Model.Accent.ToString().ToLowerInvariant()">
+    <h2>
+        <icon svg-icon="Model.HeadingIcon"/>
+        @Model.HeadingText
+    </h2>
 
-        <div>
-            @Model.ChildContent
-        </div>
-    </section>
-</div>
+    <div>
+        @Model.ChildContent
+    </div>
+</section>

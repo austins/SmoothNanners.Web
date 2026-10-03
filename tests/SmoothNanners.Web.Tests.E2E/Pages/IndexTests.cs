@@ -101,6 +101,29 @@ public sealed partial class IndexTests(TestFixture fixture) : TestBase(fixture)
     }
 
     [Fact]
+    public async Task Index_Portal_Links_Have_Correct_Attributes()
+    {
+        var page = await CreatePageAsync();
+        await page.GotoAsync(GetPath(Routes.Pages.Index.Get()));
+
+        var links = await page.Locator(".portal-card > div > a").AllAsync();
+        links.Should().NotBeEmpty();
+
+        foreach (var link in links)
+        {
+            var href = await link.GetAttributeAsync("href");
+            href.Should().NotBeNullOrWhiteSpace();
+            (await link.InnerTextAsync()).Should().NotBeNullOrWhiteSpace();
+
+            var isEmail = href.StartsWith("mailto:", StringComparison.OrdinalIgnoreCase);
+            (await link.GetAttributeAsync("target")).Should().Be(isEmail ? null : "_blank");
+            (await link.GetAttributeAsync("rel")).Should().Be(isEmail ? null : "external noreferrer");
+        }
+
+        (await page.Locator(".portal-card a[href^=\"mailto:\"]").CountAsync()).Should().Be(1);
+    }
+
+    [Fact]
     public async Task Index_YouTube_Embeds_With_JS_Shows_Featured_Heading()
     {
         var page = await CreatePageAsync();

@@ -48,7 +48,6 @@ Scoping gotchas:
 ## Dependencies
 
 - Front-end libraries come from `libman.json`, restored into `wwwroot/vendor` on build.
-- Commit `packages.lock.json` with any package change; CI restores in `--locked-mode`.
 
 ## Tests
 

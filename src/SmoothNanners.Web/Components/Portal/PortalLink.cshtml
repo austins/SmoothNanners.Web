@@ -1,7 +1,6 @@
 @model PortalLink
 @{
     var isEmail = Model.Href.StartsWith("mailto:", StringComparison.OrdinalIgnoreCase);
-    var cardHeadingText = Model.QualifyName ? Model.CardHeadingText : null;
 }
 
 <li>
@@ -12,7 +11,7 @@
     >
         <icon svg-icon="Model.Icon"/>
         @Model.ChildContent
-        @if (cardHeadingText is not null)
+        @if (Model.AppendCardHeadingText && Model.CardHeadingText is { } cardHeadingText)
         {
             <span class="visually-hidden"> @cardHeadingText</span>
         }

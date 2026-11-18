@@ -12,7 +12,7 @@ public sealed class PortalLink : StaticComponent
     /// <summary>
     /// Appends the enclosing card's heading to the accessible name, to tell apart links that share a visible label.
     /// </summary>
-    public bool QualifyName { get; set; }
+    public bool AppendCardHeadingText { get; set; }
 
     public string? CardHeadingText => PortalCard.GetCurrentHeadingText(ViewContext!);
 }

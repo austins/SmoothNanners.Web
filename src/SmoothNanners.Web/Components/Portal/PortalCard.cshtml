@@ -6,7 +6,15 @@
         @Model.HeadingText
     </h2>
 
-    <div>
+    @* Safari drops list semantics from unstyled lists. *@
+    <ul role="list">
         @Model.ChildContent
-    </div>
+    </ul>
+
+    @if (!Model.IsSlotContentNullOrEmpty(PortalCard.ExtrasSlot))
+    {
+        <div class="extras">
+            @Model.RenderSlot(PortalCard.ExtrasSlot)
+        </div>
+    }
 </section>

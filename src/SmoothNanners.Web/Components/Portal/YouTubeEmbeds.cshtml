@@ -36,9 +36,10 @@
 
         <template x-if="currentId == '@videoId'">
             <iframe
-                src="https://www.youtube.com/embed/@videoId?autoplay=1"
+                src="https://www.youtube-nocookie.com/embed/@videoId?autoplay=1"
                 title="YouTube video"
                 allow="autoplay; fullscreen"
+                x-init="$nextTick(() => $el.focus())"
             ></iframe>
         </template>
     }

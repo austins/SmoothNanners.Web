@@ -3,11 +3,11 @@ a {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    min-height: 3.5rem;
+    min-block-size: 3.5rem;
     padding: 0.5rem 1.125rem;
     border: 2px solid color-mix(in srgb, var(--accent) 80%, transparent);
     border-radius: 1rem;
-    background-color: color-mix(in srgb, var(--accent) 6%, var(--espresso));
+    background-color: color-mix(in oklab, var(--accent) 6%, var(--espresso));
     box-shadow:
         0 0 0.875rem -0.125rem color-mix(in srgb, var(--accent) 45%, transparent),
         inset 0 0 0.75rem -0.25rem color-mix(in srgb, var(--accent) 45%, transparent);
@@ -15,6 +15,7 @@ a {
     font-weight: 700;
     font-variation-settings: "CASL" 1;
     text-decoration: none;
+    transition: background-color 150ms ease-out, color 150ms ease-out, box-shadow 150ms ease-out;
 
     /* Keyboard focus lights the tube as well, so focus never rests on the ring alone. */
     &:focus-visible {
@@ -29,12 +30,6 @@ a {
             background-color: var(--accent);
             box-shadow: 0 0 1.5rem color-mix(in srgb, var(--accent) 65%, transparent);
             color: var(--espresso);
-        }
-    }
-
-    @media (prefers-reduced-motion: no-preference) {
-        & {
-            transition: background-color 150ms ease-out, color 150ms ease-out, box-shadow 150ms ease-out;
         }
     }
 

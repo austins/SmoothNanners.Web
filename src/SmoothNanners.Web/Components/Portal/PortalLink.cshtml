@@ -1,13 +1,20 @@
 @model PortalLink
 @{
     var isEmail = Model.Href.StartsWith("mailto:", StringComparison.OrdinalIgnoreCase);
+    var cardHeadingText = Model.QualifyName ? Model.CardHeadingText : null;
 }
 
-<a
-    href="@Model.Href"
-    target="@(isEmail ? null : "_blank")"
-    rel="@(isEmail ? null : "external noreferrer")"
->
-    <icon svg-icon="Model.Icon"/>
-    @Model.ChildContent
-</a>
+<li>
+    <a
+        href="@Model.Href"
+        target="@(isEmail ? null : "_blank")"
+        rel="@(isEmail ? null : "external noreferrer")"
+    >
+        <icon svg-icon="Model.Icon"/>
+        @Model.ChildContent
+        @if (cardHeadingText is not null)
+        {
+            <span class="visually-hidden"> @cardHeadingText</span>
+        }
+    </a>
+</li>

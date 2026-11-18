@@ -35,7 +35,7 @@ Follow [StaticComponents](https://static-components.techgems.net/introduction/ov
 Every interactive style honours user preferences:
 
 - `:focus-visible` matches hover; hover sits in `@media (hover: hover)`.
-- Motion sits in `@media (prefers-reduced-motion: no-preference)`.
+- Motion (movement, scaling, rotation, ongoing animation) sits in `@media (prefers-reduced-motion: no-preference)`; colour, background and shadow transitions stay unconditional.
 - `prefers-contrast: more` drops glows; `forced-colors: active` sets SVG icons to system colours (`LinkText`, `CanvasText`).
 
 Scoping gotchas:

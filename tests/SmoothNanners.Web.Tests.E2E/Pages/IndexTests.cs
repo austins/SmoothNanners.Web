@@ -80,7 +80,7 @@ public sealed partial class IndexTests(TestFixture fixture) : TestBase(fixture)
         src.Should().Contain("v=");
 
         var loading = await img.GetAttributeAsync("loading");
-        loading.Should().Be("eager");
+        loading.Should().BeNull();
 
         var decoding = await img.GetAttributeAsync("decoding");
         decoding.Should().Be("async");
@@ -106,7 +106,7 @@ public sealed partial class IndexTests(TestFixture fixture) : TestBase(fixture)
         var page = await CreatePageAsync();
         await page.GotoAsync(GetPath(Routes.Pages.Index.Get()));
 
-        var links = await page.Locator(".portal-card > div > a").AllAsync();
+        var links = await page.Locator(".portal-card > ul > li > a").AllAsync();
         links.Should().NotBeEmpty();
 
         foreach (var link in links)
@@ -272,6 +272,75 @@ public sealed partial class IndexTests(TestFixture fixture) : TestBase(fixture)
         (await page.Locator(".youtube-embeds iframe").CountAsync()).Should().Be(1);
         var secondSrc = await page.Locator(".youtube-embeds iframe").Nth(0).GetAttributeAsync("src");
         secondSrc.Should().Contain(secondVideoId);
+    }
+
+    [Fact]
+    public async Task Index_Portal_Cards_Links_Are_List_Items()
+    {
+        var page = await CreatePageAsync();
+        await page.GotoAsync(GetPath(Routes.Pages.Index.Get()));
+
+        foreach (var card in await page.Locator(".portal-card").AllAsync())
+        {
+            var listChildren = await card.Locator("> ul > *").AllAsync();
+            listChildren.Should().NotBeEmpty();
+
+            foreach (var child in listChildren)
+            {
+                (await child.EvaluateAsync<string>("e => e.tagName")).Should().Be("LI");
+                (await child.Locator("> a").CountAsync()).Should().Be(1);
+            }
+        }
+    }
+
+    [Fact]
+    public async Task Index_YouTube_Links_Have_Distinct_Accessible_Names_With_Card_Heading()
+    {
+        var page = await CreatePageAsync();
+        await page.GotoAsync(GetPath(Routes.Pages.Index.Get()));
+
+        var links = page.Locator(".portal-card a[href^=\"https://www.youtube.com/channel/\"]");
+        (await links.CountAsync()).Should().Be(3);
+
+        foreach (var heading in new[] { "Gaming", "Music", "Programming" })
+        {
+            // GetByRole matches on the computed accessible name.
+            var link = page.GetByRole(AriaRole.Link, new() { Name = $"YouTube {heading}", Exact = true });
+            (await link.CountAsync()).Should().Be(1);
+
+            var card = page.Locator(".portal-card", new() { Has = page.GetByRole(AriaRole.Heading, new() { Name = heading }) });
+            (await card.Locator(link).CountAsync()).Should().Be(1);
+        }
+    }
+
+    [Fact]
+    public async Task Index_YouTube_Embeds_With_JS_Click_Moves_Focus_To_Iframe()
+    {
+        var page = await CreatePageAsync();
+        await page.GotoAsync(GetPath(Routes.Pages.Index.Get()));
+        await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
+
+        await page.Locator(".youtube-thumbnail a[aria-label=\"Play YouTube video\"]").Nth(0).ClickAsync();
+        var iframe = page.Locator(".youtube-embeds iframe");
+        await iframe.WaitForAsync();
+
+        await Assertions.Expect(iframe).ToBeFocusedAsync();
+    }
+
+    [Fact]
+    public async Task Index_YouTube_Embeds_With_JS_Click_Iframe_Uses_Nocookie_Domain()
+    {
+        var page = await CreatePageAsync();
+        await page.GotoAsync(GetPath(Routes.Pages.Index.Get()));
+        await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
+
+        await page.Locator(".youtube-thumbnail a[aria-label=\"Play YouTube video\"]").Nth(0).ClickAsync();
+        var iframe = page.Locator(".youtube-embeds iframe");
+        await iframe.WaitForAsync();
+
+        var src = await iframe.GetAttributeAsync("src");
+        src.Should().StartWith("https://www.youtube-nocookie.com/embed/");
+        src.Should().EndWith("?autoplay=1");
     }
 
     [GeneratedRegex("v=([a-zA-Z0-9_-]+)")]

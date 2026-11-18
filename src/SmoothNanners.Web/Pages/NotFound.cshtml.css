@@ -7,7 +7,7 @@
 }
 
 h2 {
-    font-size: clamp(2.75rem, 9vw, 5rem);
+    font-size: clamp(2.75rem, 0.5rem + 8vw, 5rem);
     font-weight: 1000;
     font-variation-settings: "CASL" 1, "slnt" -7;
     line-height: 1;
@@ -23,14 +23,17 @@ h2 {
 }
 
 p {
-    max-width: 34rem;
-    font-size: clamp(1.125rem, 2.2vw, 1.3125rem);
+    max-inline-size: 34rem;
+    font-size: clamp(1.125rem, 0.25rem + 1.75vw, 1.3125rem);
 }
 
 /* The link is rendered by a tag helper, which doesn't receive the scope attribute. */
 #not-found ::deep a {
-    margin-top: 0.75rem;
-    padding: 0.875rem 1.5rem;
+    margin-block-start: 0.75rem;
+    /* Transparent in normal rendering; forced colours paint it, so the link still reads as a button. */
+    border: 2px solid transparent;
+    /* 2px less than the border adds, so the button keeps its size. */
+    padding: calc(0.875rem - 2px) calc(1.5rem - 2px);
     border-radius: 1rem;
     background-color: var(--tangerine);
     box-shadow: 0 0 1.25rem color-mix(in srgb, var(--tangerine) 55%, transparent);
